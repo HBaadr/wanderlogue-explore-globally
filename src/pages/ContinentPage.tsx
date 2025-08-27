@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { Continent, Country } from '@/types/travel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { HtmlContent } from '@/components/HtmlContent';
 
 interface ContinentPageProps {
   continentId: string;
@@ -13,6 +15,7 @@ interface ContinentPageProps {
 
 const ContinentPage = ({ continentId }: ContinentPageProps) => {
   const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
   
   const { data: continent, loading: continentLoading } = useFirestoreDocument<Continent>(
     'Continents', 
@@ -43,16 +46,16 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
   if (!continent) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">Continent not found</h1>
+        <h1 className="text-2xl font-bold text-destructive mb-4">Continent {t('notFound')}</h1>
         <Link to="/" className="text-primary hover:underline">
-          Return to home
+          {t('returnToHome')}
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -60,7 +63,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to World Map
+          {t('backTo')} World Map
         </Link>
 
         {/* Continent header */}
@@ -72,7 +75,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           <div className="flex flex-wrap gap-6 mb-6">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
-              <span>Area: {continent.area?.toLocaleString()} km²</span>
+              <span>{t('area')}: {continent.area?.toLocaleString()} km²</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Users className="h-5 w-5" />
@@ -85,9 +88,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           </div>
 
           <div className="prose max-w-none">
-            <p className="text-lg text-muted-foreground">
-              {getLocalizedField('general_infos', continent)}
-            </p>
+            <HtmlContent content={getLocalizedField('general_infos', continent)} className="text-lg" />
           </div>
         </div>
 
@@ -125,7 +126,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
                           </span>
                         </div>
                         <p className="text-white/80 text-sm">
-                          Capital: {getLocalizedField('capital', country)}
+                          {t('capital')}: {getLocalizedField('capital', country)}
                         </p>
                       </div>
                     </div>

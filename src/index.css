@@ -174,3 +174,31 @@
     background-clip: text;
   }
 }
+
+/* RTL Support */
+.rtl {
+  direction: rtl;
+}
+
+.rtl .text-left {
+  text-align: right;
+}
+
+.rtl .text-right {
+  text-align: left;
+}
+
+.rtl .ml-auto {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.rtl .mr-auto {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Arabic Font Support */
+.rtl * {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+}

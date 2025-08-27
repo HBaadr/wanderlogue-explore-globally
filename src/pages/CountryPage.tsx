@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users, Phone, Banknote } from 'lucide-react';
-import { useFirestoreDocument, useFirestoreQuery, useFirestoreQueryContains } from '@/hooks/useFirestore';
+import { useFirestoreDocument, useFirestoreQuery, useFirestoreQueryArrayContains } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { Country, City, UnescoSite } from '@/types/travel';
@@ -29,7 +29,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
     countryCode
   );
 
-  const { data: unescoSites, loading: unescoLoading } = useFirestoreQueryContains<UnescoSite>(
+  const { data: unescoSites, loading: unescoLoading } = useFirestoreQueryArrayContains<UnescoSite>(
     'UnescoSites',
     'iso_code',
     countryCode
@@ -57,7 +57,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 

@@ -62,7 +62,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 

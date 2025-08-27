@@ -92,7 +92,7 @@ export function useFirestoreQuery<T>(collectionName: string, field: string, valu
   return { data, loading, error };
 }
 
-export function useFirestoreQueryContains<T>(collectionName: string, field: string, value: string) {
+export function useFirestoreQueryArrayContains<T>(collectionName: string, field: string, value: string) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -100,18 +100,12 @@ export function useFirestoreQueryContains<T>(collectionName: string, field: stri
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // For contains-like functionality, we fetch all documents and filter client-side
-        // since Firestore doesn't support contains queries directly
-        const querySnapshot = await getDocs(collection(db, collectionName));
-        const items = querySnapshot.docs
-          .map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          .filter((item: any) => {
-            const fieldValue = item[field];
-            return fieldValue && typeof fieldValue === 'string' && fieldValue.includes(value);
-          }) as T[];
+        const q = query(collection(db, collectionName), where(field, 'array-contains', value));
+        const querySnapshot = await getDocs(q);
+        const items = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as T[];
         setData(items);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, ExternalLink, Camera } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { Landmark } from '@/types/travel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
+import { HtmlContent } from '@/components/HtmlContent';
 
 interface LandmarkPageProps {
   landmarkCode: string;
@@ -14,6 +16,7 @@ interface LandmarkPageProps {
 
 const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
   
   const { data: landmark, loading: landmarkLoading } = useFirestoreDocument<Landmark>(
     'Landmarks', 
@@ -33,16 +36,16 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   if (!landmark) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">Landmark not found</h1>
+        <h1 className="text-2xl font-bold text-destructive mb-4">Landmark {t('notFound')}</h1>
         <Link to="/" className="text-primary hover:underline">
-          Return to home
+          {t('returnToHome')}
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -50,7 +53,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to City
+          {t('backTo')} City
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -109,9 +112,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
               </CardHeader>
               <CardContent>
                 <div className="prose max-w-none">
-                  <p className="text-muted-foreground text-lg leading-relaxed">
-                    {getLocalizedField('description', landmark)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('description', landmark)} className="text-lg leading-relaxed" />
                 </div>
               </CardContent>
             </Card>
@@ -123,9 +124,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                   <CardTitle>Landmark Types</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('types', landmark)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('types', landmark)} />
                 </CardContent>
               </Card>
             )}
