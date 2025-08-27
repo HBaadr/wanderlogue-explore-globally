@@ -38,7 +38,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">UNESCO Site {t('notFound')}</h1>
-        <Link to="/" className="text-primary hover:underline">
+        <Link to={`/${language}`} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -50,7 +50,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${site.iso_code}`}
+          to={`/${language}/${site.iso_code[0]}`}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -268,11 +268,11 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 
                 <Button variant="outline" asChild className="w-full">
                   <Link 
-                    to={`/${site.iso_code}`}
+                    to={`/${language}/${site.iso_code[0]}`}
                     className="flex items-center gap-2"
                   >
                     <MapPin className="h-4 w-4" />
-                    Explore {site.iso_code}
+                    Explore {site.iso_code[0]}
                   </Link>
                 </Button>
               </CardContent>

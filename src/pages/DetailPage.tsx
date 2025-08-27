@@ -9,7 +9,7 @@ import UnescoPage from './UnescoPage';
 import NotFound from './NotFound';
 
 const DetailPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string; language?: string }>();
   
   if (!id) {
     return <NotFound />;

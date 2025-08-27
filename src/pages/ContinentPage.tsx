@@ -47,7 +47,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">Continent {t('notFound')}</h1>
-        <Link to="/" className="text-primary hover:underline">
+        <Link to={`/${language}`} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -59,7 +59,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to="/" 
+          to={`/${language}`}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -105,7 +105,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {countries.map((country) => (
-                <Link key={country.id} to={`/${country.country_code}`}>
+                <Link key={country.id} to={`/${language}/${country.country_code}`}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {country.image && (

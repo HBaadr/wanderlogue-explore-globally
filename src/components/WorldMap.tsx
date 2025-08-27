@@ -21,7 +21,7 @@ export function WorldMap() {
   };
 
   const handleContinentClick = (continentId: string) => {
-    navigate(`/${continentId}`);
+    navigate(`/${language}/${continentId}`);
   };
 
   return (
