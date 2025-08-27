@@ -1,0 +1,287 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, MapPin, Users, Phone, Banknote } from 'lucide-react';
+import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Country, City, UnescoSite } from '@/types/travel';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+interface CountryPageProps {
+  countryCode: string;
+}
+
+const CountryPage = ({ countryCode }: CountryPageProps) => {
+  const { language, getLocalizedField } = useLanguage();
+  
+  const { data: country, loading: countryLoading } = useFirestoreDocument<Country>(
+    'Countries', 
+    countryCode
+  );
+  
+  const { data: cities, loading: citiesLoading } = useFirestoreQuery<City>(
+    'Cities',
+    'country_code',
+    countryCode
+  );
+
+  const { data: unescoSites, loading: unescoLoading } = useFirestoreQuery<UnescoSite>(
+    'UnescoSites',
+    'iso_code',
+    countryCode
+  );
+
+  if (countryLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-32 mb-6" />
+        <Skeleton className="h-12 w-64 mb-4" />
+        <Skeleton className="h-32 w-full mb-8" />
+      </div>
+    );
+  }
+
+  if (!country) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <h1 className="text-2xl font-bold text-destructive mb-4">Country not found</h1>
+        <Link to="/" className="text-primary hover:underline">
+          Return to home
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8">
+        {/* Back navigation */}
+        <Link 
+          to={`/${country.continent}`}
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to {country.continent}
+        </Link>
+
+        {/* Country header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-4 mb-4">
+            {country.flag && (
+              <img src={country.flag} alt="Flag" className="w-16 h-12 rounded shadow-md" />
+            )}
+            <h1 className="travel-heading">
+              {getLocalizedField('name', country)}
+            </h1>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="h-5 w-5" />
+              <div>
+                <p className="text-sm">Capital</p>
+                <p className="font-medium">{getLocalizedField('capital', country)}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Banknote className="h-5 w-5" />
+              <div>
+                <p className="text-sm">Currency</p>
+                <p className="font-medium">{getLocalizedField('currency', country)}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Phone className="h-5 w-5" />
+              <div>
+                <p className="text-sm">Calling Code</p>
+                <p className="font-medium">{country.calling_code}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="h-5 w-5" />
+              <div>
+                <p className="text-sm">Area</p>
+                <p className="font-medium">{country.area?.toLocaleString()} km²</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Country image */}
+          {country.image && (
+            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden mb-6 travel-shadow">
+              <img
+                src={country.image}
+                alt={getLocalizedField('name', country)}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+          )}
+        </div>
+
+        {/* Tabbed content */}
+        <Tabs defaultValue="cities" className="w-full">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="cities">Cities</TabsTrigger>
+            <TabsTrigger value="unesco">UNESCO Sites</TabsTrigger>
+            <TabsTrigger value="culture">Culture</TabsTrigger>
+            <TabsTrigger value="info">General Info</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="cities" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cities.map((city) => (
+                <Link key={city.id} to={`/${city.city_code}`}>
+                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
+                    <div className="relative h-48">
+                      {city.image && (
+                        <img
+                          src={city.image}
+                          alt={getLocalizedField('name', city)}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-white text-lg font-semibold mb-1">
+                          {getLocalizedField('name', city)}
+                        </h3>
+                        {city.is_capital && (
+                          <span className="inline-block bg-secondary/80 text-secondary-foreground text-xs px-2 py-1 rounded">
+                            Capital
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="unesco" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {unescoSites.map((site) => (
+                <Link key={site.id} to={`/${site.id}`}>
+                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
+                    <div className="relative h-48">
+                      {site.image_url && (
+                        <img
+                          src={site.image_url}
+                          alt={getLocalizedField('site', site)}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-white text-lg font-semibold mb-1">
+                          {getLocalizedField('site', site)}
+                        </h3>
+                        <p className="text-white/80 text-sm">
+                          {site.category} • {site.date_inscribed}
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="culture" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Gastronomy</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('gastronomy', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Local Traditions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('local_traditions', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Religions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('religions', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Languages</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('languages', country)}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="info" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Geography</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('geography', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>History</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('history', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>General Information</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('general_infos', country)}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Travel Advice</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('travel_advices', country)}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+export default CountryPage;
