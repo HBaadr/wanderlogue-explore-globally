@@ -6,7 +6,7 @@ interface HtmlContentProps {
 }
 
 export function HtmlContent({ content, className = '' }: HtmlContentProps) {
-  if (!content) return null;
+  if (!content || typeof content !== 'string') return null;
 
   // Clean up the HTML content
   const cleanContent = content
