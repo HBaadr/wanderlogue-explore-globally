@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users, Phone, Banknote } from 'lucide-react';
-import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
+import { useFirestoreDocument, useFirestoreQuery, useFirestoreQueryContains } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { Country, City, UnescoSite } from '@/types/travel';
+import { HtmlContent } from '@/components/HtmlContent';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -14,6 +16,7 @@ interface CountryPageProps {
 
 const CountryPage = ({ countryCode }: CountryPageProps) => {
   const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
   
   const { data: country, loading: countryLoading } = useFirestoreDocument<Country>(
     'Countries', 
@@ -26,7 +29,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
     countryCode
   );
 
-  const { data: unescoSites, loading: unescoLoading } = useFirestoreQuery<UnescoSite>(
+  const { data: unescoSites, loading: unescoLoading } = useFirestoreQueryContains<UnescoSite>(
     'UnescoSites',
     'iso_code',
     countryCode
@@ -45,9 +48,9 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
   if (!country) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">Country not found</h1>
+        <h1 className="text-2xl font-bold text-destructive mb-4">Country {t('notFound')}</h1>
         <Link to="/" className="text-primary hover:underline">
-          Return to home
+          {t('returnToHome')}
         </Link>
       </div>
     );
@@ -62,7 +65,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to {country.continent}
+          {t('backTo')} {country.continent}
         </Link>
 
         {/* Country header */}
@@ -80,28 +83,28 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
               <div>
-                <p className="text-sm">Capital</p>
+                <p className="text-sm">{t('capital')}</p>
                 <p className="font-medium">{getLocalizedField('capital', country)}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Banknote className="h-5 w-5" />
               <div>
-                <p className="text-sm">Currency</p>
+                <p className="text-sm">{t('currency')}</p>
                 <p className="font-medium">{getLocalizedField('currency', country)}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Phone className="h-5 w-5" />
               <div>
-                <p className="text-sm">Calling Code</p>
+                <p className="text-sm">{t('callingCode')}</p>
                 <p className="font-medium">{country.calling_code}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
               <div>
-                <p className="text-sm">Area</p>
+                <p className="text-sm">{t('area')}</p>
                 <p className="font-medium">{country.area?.toLocaleString()} km²</p>
               </div>
             </div>
@@ -123,10 +126,10 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
         {/* Tabbed content */}
         <Tabs defaultValue="cities" className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="cities">Cities</TabsTrigger>
-            <TabsTrigger value="unesco">UNESCO Sites</TabsTrigger>
-            <TabsTrigger value="culture">Culture</TabsTrigger>
-            <TabsTrigger value="info">General Info</TabsTrigger>
+            <TabsTrigger value="cities">{t('cities')}</TabsTrigger>
+            <TabsTrigger value="unesco">{t('unescoSites')}</TabsTrigger>
+            <TabsTrigger value="culture">{t('culture')}</TabsTrigger>
+            <TabsTrigger value="info">{t('generalInfo')}</TabsTrigger>
           </TabsList>
           
           <TabsContent value="cities" className="space-y-6">
@@ -147,11 +150,11 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                         <h3 className="text-white text-lg font-semibold mb-1">
                           {getLocalizedField('name', city)}
                         </h3>
-                        {city.is_capital && (
-                          <span className="inline-block bg-secondary/80 text-secondary-foreground text-xs px-2 py-1 rounded">
-                            Capital
-                          </span>
-                        )}
+                         {city.is_capital && (
+                           <span className="inline-block bg-secondary/80 text-secondary-foreground text-xs px-2 py-1 rounded">
+                             {t('capital')}
+                           </span>
+                         )}
                       </div>
                     </div>
                   </Card>
@@ -193,42 +196,34 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Gastronomy</CardTitle>
+                  <CardTitle>{t('gastronomy')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('gastronomy', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('gastronomy', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Local Traditions</CardTitle>
+                  <CardTitle>{t('localTraditions')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('local_traditions', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('local_traditions', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Religions</CardTitle>
+                  <CardTitle>{t('religions')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('religions', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('religions', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Languages</CardTitle>
+                  <CardTitle>{t('languages')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('languages', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('languages', country)} />
                 </CardContent>
               </Card>
             </div>
@@ -238,42 +233,34 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Geography</CardTitle>
+                  <CardTitle>{t('geography')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('geography', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('geography', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>History</CardTitle>
+                  <CardTitle>{t('history')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('history', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('history', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>General Information</CardTitle>
+                  <CardTitle>{t('generalInformation')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('general_infos', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('general_infos', country)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Travel Advice</CardTitle>
+                  <CardTitle>{t('travelAdvice')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('travel_advices', country)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('travel_advices', country)} />
                 </CardContent>
               </Card>
             </div>

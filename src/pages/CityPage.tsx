@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Plane, Waves, Mountain, Shield, Droplets, CreditCard, Clock } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import { City, Landmark } from '@/types/travel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { HtmlContent } from '@/components/HtmlContent';
 
 interface CityPageProps {
   cityCode: string;
@@ -15,6 +17,7 @@ interface CityPageProps {
 
 const CityPage = ({ cityCode }: CityPageProps) => {
   const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
   
   const { data: city, loading: cityLoading } = useFirestoreDocument<City>(
     'Cities', 
@@ -40,9 +43,9 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   if (!city) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">City not found</h1>
+        <h1 className="text-2xl font-bold text-destructive mb-4">City {t('notFound')}</h1>
         <Link to="/" className="text-primary hover:underline">
-          Return to home
+          {t('returnToHome')}
         </Link>
       </div>
     );
@@ -67,7 +70,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Country
+          {t('backTo')} Country
         </Link>
 
         {/* City header */}
@@ -78,7 +81,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
             </h1>
             {city.is_capital && (
               <Badge variant="secondary" className="text-lg px-3 py-1">
-                Capital City
+                {t('capital')} City
               </Badge>
             )}
           </div>
@@ -122,10 +125,10 @@ const CityPage = ({ cityCode }: CityPageProps) => {
         {/* Tabbed content */}
         <Tabs defaultValue="landmarks" className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="landmarks">Landmarks</TabsTrigger>
+            <TabsTrigger value="landmarks">{t('landmarks')}</TabsTrigger>
             <TabsTrigger value="attractions">Attractions</TabsTrigger>
-            <TabsTrigger value="practical">Practical Info</TabsTrigger>
-            <TabsTrigger value="culture">Culture</TabsTrigger>
+            <TabsTrigger value="practical">{t('practicalInfo')}</TabsTrigger>
+            <TabsTrigger value="culture">{t('culture')}</TabsTrigger>
           </TabsList>
           
           <TabsContent value="landmarks" className="space-y-6">
@@ -163,14 +166,8 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>Top Attractions</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  {getLocalizedField('attractions', city)}
-                </p>
-                <div className="prose max-w-none">
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('activities', city)}
-                  </p>
-                </div>
+                <HtmlContent content={getLocalizedField('attractions', city)} className="mb-4" />
+                <HtmlContent content={getLocalizedField('activities', city)} />
               </CardContent>
             </Card>
           </TabsContent>
@@ -182,9 +179,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Transportation</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('transportation', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('transportation', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -192,9 +187,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Safety Information</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('safety_infos', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('safety_infos', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -202,9 +195,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Health & Medical</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('health', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('health', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -212,9 +203,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Emergency Numbers</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('emergency_numbers', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('emergency_numbers', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -222,9 +211,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Accessibility</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('accessibility', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('accessibility', city)} />
                 </CardContent>
               </Card>
             </div>
@@ -237,9 +224,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Local Languages</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('languages', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('languages', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -247,9 +232,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Popular Dishes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('popular_dishes', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('popular_dishes', city)} />
                 </CardContent>
               </Card>
               <Card>
@@ -257,19 +240,15 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>Climate</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('climate', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('climate', city)} />
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>General Information</CardTitle>
+                  <CardTitle>{t('generalInformation')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    {getLocalizedField('general_infos', city)}
-                  </p>
+                  <HtmlContent content={getLocalizedField('general_infos', city)} />
                 </CardContent>
               </Card>
             </div>
