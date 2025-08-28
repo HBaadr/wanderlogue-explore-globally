@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "net.wanderlogue",
+      "sha256_cert_fingerprints": [
+        "bc:25:15:b2:e8:9c:f2:cd:62:70:49:86:71:49:dd:7a:33:a0:c1:9a:3a:36:86:03:73:7a:8d:a8:b6:65:9e:18", "28:d3:87:72:93:32:97:df:f9:95:5f:67:11:ad:50:b1:a6:5d:92:e4:ef:76:a1:2a:46:35:d0:ba:32:71:6e:b4", "f7:4f:07:40:ea:bb:54:c1:8b:27:99:8d:33:ee:26:31:15:ed:a5:74:11:74:23:40:3a:f6:e8:4f:c6:a1:0d:df"
+      ]
+    }
+  }
+]
