@@ -22,9 +22,8 @@ const App = () => (
             <Sonner />
             <Navbar />
             <Routes>
-              <Route path="/" element={<Navigate to="/en" replace />} />
-              <Route path="/:language" element={<Index />} />
-              <Route path="/:language/:id" element={<DetailPage />} />
+              <Route path="/" element={<Index />} />
+              <Route path="/:id" element={<DetailPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

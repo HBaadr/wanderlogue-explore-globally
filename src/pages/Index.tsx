@@ -1,10 +1,13 @@
 import React from 'react';
 import { WorldMap } from '@/components/WorldMap';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Compass, Globe, MapPin, Camera } from 'lucide-react';
+import { useTranslation } from '@/contexts/TranslationContext';
+import { Compass, Globe, MapPin, Camera, Smartphone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   const getLocalizedText = (key: string) => {
     const texts = {
@@ -42,20 +45,42 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             <div className="flex items-center gap-2 text-primary">
               <Globe className="h-5 w-5" />
-              <span className="font-medium">6 Continents</span>
+              <span className="font-medium">6 {t('continents_count')}</span>
             </div>
             <div className="flex items-center gap-2 text-primary">
               <MapPin className="h-5 w-5" />
-              <span className="font-medium">195+ Countries</span>
+              <span className="font-medium">195+ {t('countries_count')}</span>
             </div>
             <div className="flex items-center gap-2 text-primary">
               <Camera className="h-5 w-5" />
-              <span className="font-medium">UNESCO Sites</span>
+              <span className="font-medium">{t('unesco_sites')}</span>
             </div>
             <div className="flex items-center gap-2 text-primary">
               <Compass className="h-5 w-5" />
-              <span className="font-medium">Landmarks</span>
+              <span className="font-medium">{t('landmarks')}</span>
             </div>
+          </div>
+          
+          {/* Download buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <Button
+              variant="outline"
+              size="lg"
+              className="flex items-center gap-2"
+              onClick={() => window.open('https://play.google.com/store/apps/details?id=net.wanderlogue', '_blank')}
+            >
+              <Smartphone className="h-5 w-5" />
+              {t('download_android')}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="flex items-center gap-2"
+              onClick={() => window.open('https://apps.apple.com/ma/app/wanderlogue/id6538716270', '_blank')}
+            >
+              <Smartphone className="h-5 w-5" />
+              {t('download_ios')}
+            </Button>
           </div>
         </div>
 
@@ -65,7 +90,7 @@ const Index = () => {
         {/* Call to action */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground">
-            Start your journey by clicking on any continent above
+            {t('start_journey')}
           </p>
         </div>
       </section>

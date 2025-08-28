@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users, Phone, Banknote } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery, useFirestoreQueryArrayContains } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -17,6 +17,13 @@ interface CountryPageProps {
 const CountryPage = ({ countryCode }: CountryPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
   
   const { data: country, loading: countryLoading } = useFirestoreDocument<Country>(
     'Countries', 
@@ -49,7 +56,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">Country {t('notFound')}</h1>
-        <Link to={`/${language}`} className="text-primary hover:underline">
+        <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -61,7 +68,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${language}/${country.continent}`}
+          to={createLink(`/${country.continent}`)}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -135,7 +142,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           <TabsContent value="cities" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {cities.map((city) => (
-                <Link key={city.id} to={`/${language}/${city.city_code}`}>
+                <Link key={city.id} to={createLink(`/${city.city_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {city.image && (
@@ -166,7 +173,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           <TabsContent value="unesco" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {unescoSites.map((site) => (
-                <Link key={site.id} to={`/${language}/${site.id}`}>
+                <Link key={site.id} to={createLink(`/${site.id}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {site.image_url && (

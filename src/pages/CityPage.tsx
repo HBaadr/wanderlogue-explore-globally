@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Plane, Waves, Mountain, Shield, Droplets, CreditCard, Clock } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -18,6 +18,13 @@ interface CityPageProps {
 const CityPage = ({ cityCode }: CityPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
   
   const { data: city, loading: cityLoading } = useFirestoreDocument<City>(
     'Cities', 
@@ -44,7 +51,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">City {t('notFound')}</h1>
-        <Link to={`/${language}`} className="text-primary hover:underline">
+        <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -66,7 +73,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${language}/${city.country_code}`}
+          to={createLink(`/${city.country_code}`)}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -134,7 +141,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
           <TabsContent value="landmarks" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {landmarks.map((landmark) => (
-                <Link key={landmark.id} to={`/${language}/${landmark.landmark_code}`}>
+                <Link key={landmark.id} to={createLink(`/${landmark.landmark_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {landmark.image && (

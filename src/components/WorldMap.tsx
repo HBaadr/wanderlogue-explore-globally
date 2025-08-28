@@ -1,6 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import worldMapHero from '@/assets/world-map-hero.jpg';
 
 const continents = [
@@ -14,14 +15,18 @@ const continents = [
 
 export function WorldMap() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   const getContinentName = (continent: typeof continents[0]) => {
     return continent[`name_${language}` as keyof typeof continent] || continent.name_en;
   };
 
   const handleContinentClick = (continentId: string) => {
-    navigate(`/${language}/${continentId}`);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    navigate(`/${continentId}?${searchParams.toString()}`);
   };
 
   return (
@@ -48,7 +53,7 @@ export function WorldMap() {
                 {getContinentName(continent)}
               </h3>
               <p className="text-sm opacity-75">
-                {continent.countries} countries
+                {continent.countries} {t('countries_count')}
               </p>
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 
@@ -59,7 +64,7 @@ export function WorldMap() {
       
       {/* Decorative elements */}
       <div className="absolute bottom-4 left-4 text-card-foreground/60">
-        <p className="text-sm font-medium">Click on any continent to explore</p>
+        <p className="text-sm font-medium">{t('start_journey')}</p>
       </div>
     </div>
   );

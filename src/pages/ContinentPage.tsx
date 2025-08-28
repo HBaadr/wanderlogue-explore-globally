@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -16,6 +16,13 @@ interface ContinentPageProps {
 const ContinentPage = ({ continentId }: ContinentPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
   
   const { data: continent, loading: continentLoading } = useFirestoreDocument<Continent>(
     'Continents', 
@@ -47,7 +54,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">Continent {t('notFound')}</h1>
-        <Link to={`/${language}`} className="text-primary hover:underline">
+        <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -59,11 +66,11 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${language}`}
+          to={createLink('/')}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          {t('backTo')} World Map
+          {t('backTo')} {t('world_map')}
         </Link>
 
         {/* Continent header */}
@@ -79,11 +86,11 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Users className="h-5 w-5" />
-              <span>Population: {continent.population?.toLocaleString()}</span>
+              <span>{t('population')}: {continent.population?.toLocaleString()}</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
-              <span>{continent.countries_number} Countries</span>
+              <span>{continent.countries_number} {t('countries_count')}</span>
             </div>
           </div>
 
@@ -105,7 +112,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {countries.map((country) => (
-                <Link key={country.id} to={`/${language}/${country.country_code}`}>
+                <Link key={country.id} to={createLink(`/${country.country_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {country.image && (

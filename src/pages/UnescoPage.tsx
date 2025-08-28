@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Shield, AlertTriangle, ExternalLink } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -18,6 +18,13 @@ interface UnescoPageProps {
 const UnescoPage = ({ unescoId }: UnescoPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
   
   const { data: site, loading: siteLoading } = useFirestoreDocument<UnescoSite>(
     'UnescoSites', 
@@ -50,7 +57,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${language}/${site.iso_code[0]}`}
+          to={createLink(`/${site.iso_code[0]}`)}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -168,27 +175,27 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             {/* Quick facts */}
             <Card>
               <CardHeader>
-                <CardTitle>Quick Facts</CardTitle>
+                <CardTitle>{t('quick_facts')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">ID Number:</span>
+                  <span className="text-muted-foreground">{t('id_number')}:</span>
                   <span className="font-medium">#{site.id_number}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Category:</span>
+                  <span className="text-muted-foreground">{t('category')}:</span>
                   <span className="font-medium">{site.category}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Date Inscribed:</span>
+                  <span className="text-muted-foreground">{t('date_inscribed')}:</span>
                   <span className="font-medium">{site.date_inscribed}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Region:</span>
+                  <span className="text-muted-foreground">{t('region')}:</span>
                   <span className="font-medium">{site.region}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Country Code:</span>
+                  <span className="text-muted-foreground">{t('country_code')}:</span>
                   <span className="font-medium">{site.iso_code}</span>
                 </div>
                 {site.revision > 0 && (
@@ -222,15 +229,15 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             {site.latitude && site.longitude && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Coordinates</CardTitle>
+                  <CardTitle>{t('coordinates')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Latitude:</span>
+                    <span className="text-muted-foreground">{t('latitude')}:</span>
                     <span className="font-medium">{site.latitude.toFixed(6)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Longitude:</span>
+                    <span className="text-muted-foreground">{t('longitude')}:</span>
                     <span className="font-medium">{site.longitude.toFixed(6)}</span>
                   </div>
                   
@@ -266,15 +273,15 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                   </a>
                 </Button>
                 
-                <Button variant="outline" asChild className="w-full">
-                  <Link 
-                    to={`/${language}/${site.iso_code[0]}`}
-                    className="flex items-center gap-2"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    Explore {site.iso_code[0]}
-                  </Link>
-                </Button>
+                 <Button variant="outline" asChild className="w-full">
+                   <Link 
+                     to={createLink(`/${site.iso_code[0]}`)}
+                     className="flex items-center gap-2"
+                   >
+                     <MapPin className="h-4 w-4" />
+                     Explore {site.iso_code[0]}
+                   </Link>
+                 </Button>
               </CardContent>
             </Card>
           </div>

@@ -387,6 +387,118 @@ const translations: Translations = {
     ar: "كنوز التراث العالمي لليونسكو",
     es: "Tesoros del Patrimonio Mundial de la UNESCO",
     zh: "联合国教科文组织世界遗产宝藏"
+  },
+  "continents_count": {
+    en: "Continents",
+    fr: "Continents",
+    ar: "القارات",
+    es: "Continentes",
+    zh: "大洲"
+  },
+  "countries_count": {
+    en: "Countries",
+    fr: "Pays",
+    ar: "دولة",
+    es: "Países",
+    zh: "国家"
+  },
+  "explore_world": {
+    en: "Explore World",
+    fr: "Explorer le Monde",
+    ar: "استكشف العالم",
+    es: "Explorar Mundo",
+    zh: "探索世界"
+  },
+  "start_journey": {
+    en: "Start your journey by clicking on any continent above",
+    fr: "Commencez votre voyage en cliquant sur n'importe quel continent ci-dessus",
+    ar: "ابدأ رحلتك بالنقر على أي قارة أعلاه",
+    es: "Comienza tu viaje haciendo clic en cualquier continente arriba",
+    zh: "点击上面的任何大洲开始您的旅程"
+  },
+  "quick_facts": {
+    en: "Quick Facts",
+    fr: "Faits Rapides",
+    ar: "حقائق سريعة",
+    es: "Datos Rápidos",
+    zh: "快速信息"
+  },
+  "id_number": {
+    en: "ID Number",
+    fr: "Numéro d'ID",
+    ar: "رقم الهوية",
+    es: "Número de ID",
+    zh: "身份证号"
+  },
+  "date_inscribed": {
+    en: "Date Inscribed",
+    fr: "Date d'Inscription",
+    ar: "تاريخ التسجيل",
+    es: "Fecha de Inscripción",
+    zh: "登录日期"
+  },
+  "region": {
+    en: "Region",
+    fr: "Région",
+    ar: "المنطقة",
+    es: "Región",
+    zh: "地区"
+  },
+  "country_code": {
+    en: "Country Code",
+    fr: "Code Pays",
+    ar: "رمز البلد",
+    es: "Código de País",
+    zh: "国家代码"
+  },
+  "coordinates": {
+    en: "Coordinates",
+    fr: "Coordonnées",
+    ar: "الإحداثيات",
+    es: "Coordenadas",
+    zh: "坐标"
+  },
+  "latitude": {
+    en: "Latitude",
+    fr: "Latitude",
+    ar: "خط العرض",
+    es: "Latitud",
+    zh: "纬度"
+  },
+  "longitude": {
+    en: "Longitude",
+    fr: "Longitude",
+    ar: "خط الطول",
+    es: "Longitud",
+    zh: "经度"
+  },
+  "population": {
+    en: "Population",
+    fr: "Population",
+    ar: "السكان",
+    es: "Población",
+    zh: "人口"
+  },
+  "world_map": {
+    en: "World Map",
+    fr: "Carte du Monde",
+    ar: "خريطة العالم",
+    es: "Mapa del Mundo",
+    zh: "世界地图"
+  },
+  "download_android": {
+    en: "Download for Android",
+    fr: "Télécharger pour Android",
+    ar: "تحميل لنظام أندرويد",
+    es: "Descargar para Android",
+    zh: "下载安卓版"
+  },
+  "download_ios": {
+    en: "Download for iOS",
+    fr: "Télécharger pour iOS",
+    ar: "تحميل لنظام آي أو إس",
+    es: "Descargar para iOS",
+    zh: "下载iOS版"
   }
 };
 

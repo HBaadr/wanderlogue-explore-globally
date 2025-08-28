@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, ExternalLink, Camera } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -17,6 +17,13 @@ interface LandmarkPageProps {
 const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
   
   const { data: landmark, loading: landmarkLoading } = useFirestoreDocument<Landmark>(
     'Landmarks', 
@@ -37,7 +44,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold text-destructive mb-4">Landmark {t('notFound')}</h1>
-        <Link to={`/${language}`} className="text-primary hover:underline">
+        <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
       </div>
@@ -49,7 +56,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
-          to={`/${language}/${landmark.city_code}`}
+          to={createLink(`/${landmark.city_code}`)}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -182,7 +189,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             {/* Quick facts */}
             <Card>
               <CardHeader>
-                <CardTitle>Quick Facts</CardTitle>
+                <CardTitle>{t('quick_facts')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
@@ -200,11 +207,11 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                 {landmark.latitude && landmark.longitude && (
                   <>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Latitude:</span>
+                      <span className="text-muted-foreground">{t('latitude')}:</span>
                       <span className="font-medium">{landmark.latitude.toFixed(6)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Longitude:</span>
+                      <span className="text-muted-foreground">{t('longitude')}:</span>
                       <span className="font-medium">{landmark.longitude.toFixed(6)}</span>
                     </div>
                   </>
