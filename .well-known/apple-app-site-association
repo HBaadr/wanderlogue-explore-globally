@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "M9UGL6DSSK.net.wanderlogue",
+        "paths": [ "/.*" ]
+      }
+    ]
+  }
+}
