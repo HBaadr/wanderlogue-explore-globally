@@ -499,6 +499,265 @@ const translations: Translations = {
     ar: "تحميل لنظام آي أو إس",
     es: "Descargar para iOS",
     zh: "下载iOS版"
+  },
+  "countries_in": {
+    en: "Countries in",
+    fr: "Pays de",
+    ar: "دول",
+    es: "Países de",
+    zh: "国家在"
+  },
+  "back_to_country": {
+    en: "Back to Country",
+    fr: "Retour au Pays",
+    ar: "العودة إلى البلد",
+    es: "Volver al País",
+    zh: "返回国家"
+  },
+  "back_to_city": {
+    en: "Back to City",
+    fr: "Retour à la Ville",
+    ar: "العودة إلى المدينة",
+    es: "Volver a la Ciudad",
+    zh: "返回城市"
+  },
+  "location": {
+    en: "Location",
+    fr: "Localisation",
+    ar: "الموقع",
+    es: "Ubicación", 
+    zh: "位置"
+  },
+  "about": {
+    en: "About",
+    fr: "À propos",
+    ar: "حول",
+    es: "Acerca de",
+    zh: "关于"
+  },
+  "learn_more": {
+    en: "Learn More",
+    fr: "En savoir plus",
+    ar: "اعرف المزيد",
+    es: "Aprender más",
+    zh: "了解更多"
+  },
+  "unesco_official_page": {
+    en: "UNESCO Official Page",
+    fr: "Page officielle de l'UNESCO",
+    ar: "الصفحة الرسمية لليونسكو",
+    es: "Página oficial de la UNESCO",
+    zh: "联合国教科文组织官方页面"
+  },
+  "explore_country": {
+    en: "Explore",
+    fr: "Explorer",
+    ar: "استكشف",
+    es: "Explorar",
+    zh: "探索"
+  },
+  "unesco_criteria": {
+    en: "UNESCO Criteria",
+    fr: "Critères de l'UNESCO",
+    ar: "معايير اليونسكو",
+    es: "Criterios de la UNESCO",
+    zh: "联合国教科文组织标准"
+  },
+  "inscribed": {
+    en: "Inscribed",
+    fr: "Inscrit",
+    ar: "مسجل",
+    es: "Inscrito",
+    zh: "登录"
+  },
+  "transportation": {
+    en: "Transportation",
+    fr: "Transport",
+    ar: "النقل",
+    es: "Transporte",
+    zh: "交通"
+  },
+  "safety_information": {
+    en: "Safety Information",
+    fr: "Informations de sécurité",
+    ar: "معلومات السلامة",
+    es: "Información de seguridad",
+    zh: "安全信息"
+  },
+  "health_medical": {
+    en: "Health & Medical",
+    fr: "Santé et médical",
+    ar: "الصحة والطب",
+    es: "Salud y médico",
+    zh: "健康和医疗"
+  },
+  "emergency_numbers": {
+    en: "Emergency Numbers",
+    fr: "Numéros d'urgence", 
+    ar: "أرقام الطوارئ",
+    es: "Números de emergencia",
+    zh: "紧急电话"
+  },
+  "accessibility": {
+    en: "Accessibility",
+    fr: "Accessibilité",
+    ar: "إمكانية الوصول",
+    es: "Accesibilidad",
+    zh: "无障碍设施"
+  },
+  "local_languages": {
+    en: "Local Languages",
+    fr: "Langues locales",
+    ar: "اللغات المحلية",
+    es: "Idiomas locales",
+    zh: "当地语言"
+  },
+  "popular_dishes": {
+    en: "Popular Dishes",
+    fr: "Plats populaires",
+    ar: "أطباق شعبية",
+    es: "Platos populares",
+    zh: "热门菜肴"
+  },
+  "climate": {
+    en: "Climate",
+    fr: "Climat",
+    ar: "المناخ",
+    es: "Clima",
+    zh: "气候"
+  },
+  "address": {
+    en: "Address",
+    fr: "Adresse",
+    ar: "العنوان",
+    es: "Dirección",
+    zh: "地址"
+  },
+  "landmark_types": {
+    en: "Landmark Types",
+    fr: "Types de monuments",
+    ar: "أنواع المعالم",
+    es: "Tipos de monumentos",
+    zh: "地标类型"
+  },
+  "read_on_wikipedia": {
+    en: "Read on Wikipedia",
+    fr: "Lire sur Wikipédia",
+    ar: "اقرأ في ويكيبيديا",
+    es: "Leer en Wikipedia",
+    zh: "在维基百科上阅读"
+  },
+  "image_gallery": {
+    en: "Image Gallery",
+    fr: "Galerie d'images",
+    ar: "معرض الصور",
+    es: "Galería de imágenes",
+    zh: "图片库"
+  },
+  "type": {
+    en: "Type",
+    fr: "Type",
+    ar: "النوع",
+    es: "Tipo",
+    zh: "类型"
+  },
+  "city_code": {
+    en: "City Code",
+    fr: "Code ville",
+    ar: "رمز المدينة",
+    es: "Código de ciudad",
+    zh: "城市代码"
+  },
+  "country": {
+    en: "Country",
+    fr: "Pays",
+    ar: "البلد",
+    es: "País",
+    zh: "国家"
+  },
+  "map_view": {
+    en: "Map View",
+    fr: "Vue de la carte",
+    ar: "عرض الخريطة",
+    es: "Vista del mapa",
+    zh: "地图视图"
+  },
+  "in_danger": {
+    en: "In Danger",
+    fr: "En danger",
+    ar: "في خطر",
+    es: "En peligro",
+    zh: "危险中"
+  },
+  "transboundary": {
+    en: "Transboundary",
+    fr: "Transfrontalier",
+    ar: "عابر للحدود",
+    es: "Transfronterizo",
+    zh: "跨境"
+  },
+  "unesco_world_heritage_site": {
+    en: "UNESCO World Heritage Site",
+    fr: "Site du patrimoine mondial de l'UNESCO",
+    ar: "موقع التراث العالمي لليونسكو",
+    es: "Sitio del Patrimonio Mundial de la UNESCO",
+    zh: "联合国教科文组织世界遗产"
+  },
+  "justification_for_inscription": {
+    en: "Justification for Inscription",
+    fr: "Justification de l'inscription",
+    ar: "مبرر التسجيل",
+    es: "Justificación para la inscripción",
+    zh: "登录理由"
+  },
+  "revision": {
+    en: "Revision",
+    fr: "Révision",
+    ar: "مراجعة",
+    es: "Revisión",
+    zh: "修订"
+  },
+  "extension": {
+    en: "Extension",
+    fr: "Extension",
+    ar: "امتداد",
+    es: "Extensión",
+    zh: "扩展"
+  },
+  "yes": {
+    en: "Yes",
+    fr: "Oui",
+    ar: "نعم",
+    es: "Sí",
+    zh: "是"
+  },
+  "view_on_google_maps": {
+    en: "View on Google Maps",
+    fr: "Voir sur Google Maps",
+    ar: "عرض في خرائط جوجل",
+    es: "Ver en Google Maps",
+    zh: "在谷歌地图上查看"
+  },
+  "capital_city": {
+    en: "Capital City",
+    fr: "Ville capitale",
+    ar: "المدينة العاصمة",
+    es: "Ciudad capital",
+    zh: "首都"
+  },
+  "altitude": {
+    en: "Altitude",
+    fr: "Altitude",
+    ar: "الارتفاع",
+    es: "Altitud",
+    zh: "海拔"
+  },
+  "code": {
+    en: "Code",
+    fr: "Code",
+    ar: "الرمز",
+    es: "Código",
+    zh: "代码"
   }
 };
 

@@ -61,7 +61,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          {t('backTo')} Country
+          {t('back_to_country')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -76,12 +76,12 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 {site.danger && (
                   <Badge variant="destructive" className="flex items-center gap-1">
                     <AlertTriangle className="h-3 w-3" />
-                    In Danger
+                    {t('in_danger')}
                   </Badge>
                 )}
                 {site.transboundary && (
                   <Badge variant="secondary">
-                    Transboundary
+                    {t('transboundary')}
                   </Badge>
                 )}
               </div>
@@ -93,7 +93,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Calendar className="h-5 w-5" />
-                  <span>Inscribed: {site.date_inscribed}</span>
+                  <span>{t('inscribed')}: {site.date_inscribed}</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <MapPin className="h-5 w-5" />
@@ -102,7 +102,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
               </div>
 
               <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2">Location</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('location')}</h3>
                 <p className="text-muted-foreground">
                   {site.location} • {getLocalizedField('states', site)}
                 </p>
@@ -120,7 +120,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <Badge className="mb-2">
-                    UNESCO World Heritage Site #{site.id_number}
+                    {t('unesco_world_heritage_site')} #{site.id_number}
                   </Badge>
                 </div>
               </div>
@@ -129,7 +129,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             {/* Description */}
             <Card>
               <CardHeader>
-                <CardTitle>About {getLocalizedField('site', site)}</CardTitle>
+                <CardTitle>{t('about')} {getLocalizedField('site', site)}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="prose max-w-none">
@@ -139,7 +139,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                   
                   {site.justification && (
                     <div className="mt-6">
-                      <h4 className="font-semibold mb-2">Justification for Inscription</h4>
+                      <h4 className="font-semibold mb-2">{t('justification_for_inscription')}</h4>
                       <p className="text-muted-foreground">
                         <HtmlContent content={site.justification} />
                       </p>
@@ -152,12 +152,12 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             {/* Criteria */}
             <Card>
               <CardHeader>
-                <CardTitle>UNESCO Criteria</CardTitle>
+                <CardTitle>{t('unesco_criteria')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Criteria</h4>
+                    <h4 className="font-semibold mb-2">{t('criteria')}</h4>
                     <p className="text-muted-foreground mb-3">
                       <HtmlContent content={site.criteria_txt} />
                     </p>
@@ -200,26 +200,26 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 </div>
                 {site.revision > 0 && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Revision:</span>
+                    <span className="text-muted-foreground">{t('revision')}:</span>
                     <span className="font-medium">{site.revision}</span>
                   </div>
                 )}
                 {site.extension && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Extension:</span>
-                    <Badge variant="outline">Yes</Badge>
+                    <span className="text-muted-foreground">{t('extension')}:</span>
+                    <Badge variant="outline">{t('yes')}</Badge>
                   </div>
                 )}
                 {site.transboundary && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Transboundary:</span>
-                    <Badge variant="outline">Yes</Badge>
+                    <span className="text-muted-foreground">{t('transboundary')}:</span>
+                    <Badge variant="outline">{t('yes')}</Badge>
                   </div>
                 )}
                 {site.danger && (
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">In Danger:</span>
-                    <Badge variant="destructive">Yes</Badge>
+                    <span className="text-muted-foreground">{t('in_danger')}:</span>
+                    <Badge variant="destructive">{t('yes')}</Badge>
                   </div>
                 )}
               </CardContent>
@@ -241,16 +241,18 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                     <span className="font-medium">{site.longitude.toFixed(6)}</span>
                   </div>
                   
-                  {/* Map placeholder */}
-                  <div className="aspect-square bg-muted rounded-lg flex items-center justify-center mt-4">
-                    <div className="text-center text-muted-foreground">
-                      <MapPin className="h-8 w-8 mx-auto mb-2" />
-                      <p className="text-sm">Map View</p>
-                      <p className="text-xs">
-                        {site.latitude.toFixed(4)}, {site.longitude.toFixed(4)}
-                      </p>
-                    </div>
-                  </div>
+                  {/* Google Maps button */}
+                  <Button variant="outline" asChild className="w-full mt-4">
+                    <a 
+                      href={`https://www.google.com/maps?q=${site.latitude},${site.longitude}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      {t('view_on_google_maps')}
+                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             )}
@@ -258,7 +260,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             {/* External links */}
             <Card>
               <CardHeader>
-                <CardTitle>Learn More</CardTitle>
+                <CardTitle>{t('learn_more')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button variant="outline" asChild className="w-full">
@@ -269,7 +271,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                     className="flex items-center gap-2"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    UNESCO Official Page
+                    {t('unesco_official_page')}
                   </a>
                 </Button>
                 
@@ -279,7 +281,7 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                      className="flex items-center gap-2"
                    >
                      <MapPin className="h-4 w-4" />
-                     Explore {site.iso_code[0]}
+                     {t('explore_country')} {site.iso_code[0]}
                    </Link>
                  </Button>
               </CardContent>

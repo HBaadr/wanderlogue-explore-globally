@@ -60,7 +60,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
         >
           <ArrowLeft className="h-4 w-4" />
-          {t('backTo')} City
+          {t('back_to_city')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -92,7 +92,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
               {/* Address */}
               {getLocalizedField('address', landmark) && (
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-2">Address</h3>
+                  <h3 className="text-lg font-semibold mb-2">{t('address')}</h3>
                   <p className="text-muted-foreground">
                     {getLocalizedField('address', landmark)}
                   </p>
@@ -115,7 +115,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             {/* Description */}
             <Card>
               <CardHeader>
-                <CardTitle>About {getLocalizedField('name', landmark)}</CardTitle>
+                <CardTitle>{t('about')} {getLocalizedField('name', landmark)}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="prose max-w-none">
@@ -128,7 +128,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             {getLocalizedField('types', landmark) && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Landmark Types</CardTitle>
+                  <CardTitle>{t('landmark_types')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <HtmlContent content={getLocalizedField('types', landmark)} />
@@ -140,7 +140,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             {getLocalizedField('wikipedia', landmark) && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Learn More</CardTitle>
+                  <CardTitle>{t('learn_more')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" asChild className="w-full">
@@ -151,7 +151,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                       className="flex items-center gap-2"
                     >
                       <ExternalLink className="h-4 w-4" />
-                      Read on Wikipedia
+                      {t('read_on_wikipedia')}
                     </a>
                   </Button>
                 </CardContent>
@@ -167,7 +167,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Camera className="h-5 w-5" />
-                    Image Gallery
+                    {t('image_gallery')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -193,15 +193,15 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Type:</span>
+                  <span className="text-muted-foreground">{t('type')}:</span>
                   <span className="font-medium">{landmark.type}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">City Code:</span>
+                  <span className="text-muted-foreground">{t('city_code')}:</span>
                   <span className="font-medium">{landmark.city_code}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Country:</span>
+                  <span className="text-muted-foreground">{t('country')}:</span>
                   <span className="font-medium">{landmark.country_code}</span>
                 </div>
                 {landmark.latitude && landmark.longitude && (
@@ -219,22 +219,24 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
               </CardContent>
             </Card>
 
-            {/* Map placeholder - could integrate with Google Maps */}
+            {/* Google Maps button */}
             {landmark.latitude && landmark.longitude && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Location</CardTitle>
+                  <CardTitle>{t('location')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-square bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                      <MapPin className="h-8 w-8 mx-auto mb-2" />
-                      <p className="text-sm">Map View</p>
-                      <p className="text-xs">
-                        {landmark.latitude.toFixed(4)}, {landmark.longitude.toFixed(4)}
-                      </p>
-                    </div>
-                  </div>
+                  <Button variant="outline" asChild className="w-full">
+                    <a 
+                      href={`https://www.google.com/maps?q=${landmark.latitude},${landmark.longitude}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      {t('view_on_google_maps')}
+                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             )}
