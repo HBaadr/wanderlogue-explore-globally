@@ -758,6 +758,55 @@ const translations: Translations = {
     ar: "الرمز",
     es: "Código",
     zh: "代码"
+  },
+  "countries_in_continent": {
+    en: "Countries in",
+    fr: "Pays de",
+    ar: "دول",
+    es: "Países de", 
+    zh: "国家在"
+  },
+  "back_to_continent": {
+    en: "Back to",
+    fr: "Retour à",
+    ar: "العودة إلى",
+    es: "Volver a",
+    zh: "返回到"
+  },
+  "explore_country_btn": {
+    en: "Explore",
+    fr: "Explorer", 
+    ar: "استكشف",
+    es: "Explorar",
+    zh: "探索"
+  },
+  "general_info": {
+    en: "General Info",
+    fr: "Infos Générales",
+    ar: "معلومات عامة",
+    es: "Información General",
+    zh: "一般信息"
+  },
+  "practical_info": {
+    en: "Practical Info",
+    fr: "Infos Pratiques", 
+    ar: "معلومات عملية",
+    es: "Información Práctica",
+    zh: "实用信息"
+  },
+  "l_popular_dishes": {
+    en: "Discover the local culinary traditions and popular dishes of this city.",
+    fr: "Découvrez les traditions culinaires locales et les plats populaires de cette ville.",
+    ar: "اكتشف التقاليد الطهوية المحلية والأطباق الشعبية في هذه المدينة.",
+    es: "Descubre las tradiciones culinarias locales y los platos populares de esta ciudad.",
+    zh: "探索这座城市的当地烹饪传统和热门菜肴。"
+  },
+  "l_transportation": {
+    en: "Find information about public transportation, taxis, and getting around in this city.",
+    fr: "Trouvez des informations sur les transports publics, les taxis et les déplacements dans cette ville.",
+    ar: "اعثر على معلومات حول وسائل النقل العام وسيارات الأجرة والتنقل في هذه المدينة.",
+    es: "Encuentra información sobre transporte público, taxis y cómo moverse en esta ciudad.",
+    zh: "查找有关公共交通、出租车和在这座城市出行的信息。"
   }
 };
 

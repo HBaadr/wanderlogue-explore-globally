@@ -152,7 +152,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>{t('popular_dishes')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <HtmlContent content={getLocalizedField('popular_dishes', city)} />
+                  <HtmlContent content={getLocalizedField('popular_dishes', city) || t('l_popular_dishes')} />
                 </CardContent>
               </Card>
               <Card>
@@ -181,7 +181,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                   <CardTitle>{t('transportation')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <HtmlContent content={getLocalizedField('transportation', city)} />
+                  <HtmlContent content={getLocalizedField('transportation', city) || t('l_transportation')} />
                 </CardContent>
               </Card>
               <Card>
