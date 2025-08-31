@@ -125,7 +125,10 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             </Card>
 
             {/* Types - only show if has content */}
-            {getLocalizedField('types', landmark) && getLocalizedField('types', landmark).trim().length > 0 && (
+            {(() => {
+              const types = getLocalizedField('types', landmark);
+              return types && typeof types === 'string' && types.trim().length > 0;
+            })() && (
               <Card>
                 <CardHeader>
                   <CardTitle>{t('landmark_types')}</CardTitle>
