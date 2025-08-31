@@ -130,15 +130,38 @@ const CityPage = ({ cityCode }: CityPageProps) => {
         </div>
 
         {/* Tabbed content */}
-        <Tabs defaultValue="culture" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+        <Tabs defaultValue="general" className="w-full">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="general">{t('generalInfo')}</TabsTrigger>
             <TabsTrigger value="culture">{t('culture')}</TabsTrigger>
             <TabsTrigger value="practical">{t('practicalInfo')}</TabsTrigger>
             <TabsTrigger value="landmarks">{t('landmarks')}</TabsTrigger>
           </TabsList>
           
+          <TabsContent value="general" className="space-y-6">
+            {/* General Information - First and prominent */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">{t('generalInformation')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('general_infos', city)} />
+              </CardContent>
+            </Card>
+            
+            {/* Attractions and Activities */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('attractions_activities')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('attractions_activities', city)} />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           <TabsContent value="culture" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle>{t('local_languages')}</CardTitle>
@@ -149,41 +172,37 @@ const CityPage = ({ cityCode }: CityPageProps) => {
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('popular_dishes')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('popular_dishes', city) || t('l_popular_dishes')} />
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
                   <CardTitle>{t('climate')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <HtmlContent content={getLocalizedField('climate', city)} />
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('generalInformation')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('general_infos', city)} />
-                </CardContent>
-              </Card>
             </div>
+            
+            {/* Popular Dishes - Full width for better display */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('popular_dishes')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('popular_dishes', city)} />
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="practical" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('transportation')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('transportation', city) || t('l_transportation')} />
-                </CardContent>
-              </Card>
+            {/* Transportation - Full width for better display */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('transportation')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('transportation', city)} />
+              </CardContent>
+            </Card>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle>{t('safety_information')}</CardTitle>
@@ -220,32 +239,44 @@ const CityPage = ({ cityCode }: CityPageProps) => {
           </TabsContent>
 
           <TabsContent value="landmarks" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {landmarks.map((landmark) => (
-                <Link key={landmark.id} to={createLink(`/${landmark.landmark_code}`)}>
-                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48">
-                      {landmark.image && (
-                        <img
-                          src={landmark.image}
-                          alt={getLocalizedField('name', landmark)}
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-white text-lg font-semibold mb-1">
-                          {getLocalizedField('name', landmark)}
-                        </h3>
-                        <p className="text-white/80 text-sm">
-                          {landmark.type}
-                        </p>
+            {landmarksLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <Skeleton key={i} className="h-64 w-full" />
+                ))}
+              </div>
+            ) : landmarks.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {landmarks.map((landmark) => (
+                  <Link key={landmark.id} to={createLink(`/${landmark.landmark_code}`)}>
+                    <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
+                      <div className="relative h-48">
+                        {landmark.image && (
+                          <img
+                            src={landmark.image}
+                            alt={getLocalizedField('name', landmark)}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-white text-lg font-semibold mb-1">
+                            {getLocalizedField('name', landmark)}
+                          </h3>
+                          <p className="text-white/80 text-sm">
+                            {landmark.type}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-muted-foreground">{t('no_landmarks_available')}</p>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>

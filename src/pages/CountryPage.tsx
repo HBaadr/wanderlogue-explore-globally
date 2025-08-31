@@ -140,7 +140,18 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           </TabsList>
           
           <TabsContent value="info" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* General Information - First and prominent */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">{t('generalInformation')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('general_infos', country)} />
+              </CardContent>
+            </Card>
+            
+            {/* Other information in a clean layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle>{t('geography')}</CardTitle>
@@ -157,33 +168,35 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                   <HtmlContent content={getLocalizedField('history', country)} />
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('generalInformation')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('general_infos', country)} />
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('travelAdvice')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('travel_advices', country)} />
-                </CardContent>
-              </Card>
             </div>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('travelAdvice')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField('travel_advices', country)} />
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="culture" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Organized culture content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle>{t('gastronomy')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <HtmlContent content={getLocalizedField('gastronomy', country)} />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('languages')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <HtmlContent content={getLocalizedField('languages', country)} />
                 </CardContent>
               </Card>
               <Card>
@@ -200,14 +213,6 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                 </CardHeader>
                 <CardContent>
                   <HtmlContent content={getLocalizedField('religions', country)} />
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('languages')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('languages', country)} />
                 </CardContent>
               </Card>
             </div>

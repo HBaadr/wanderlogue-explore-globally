@@ -807,6 +807,20 @@ const translations: Translations = {
     ar: "اعثر على معلومات حول وسائل النقل العام وسيارات الأجرة والتنقل في هذه المدينة.",
     es: "Encuentra información sobre transporte público, taxis y cómo moverse en esta ciudad.",
     zh: "查找有关公共交通、出租车和在这座城市出行的信息。"
+  },
+  "attractions_activities": {
+    en: "Attractions & Activities",
+    fr: "Attractions et Activités",
+    ar: "المعالم والأنشطة",
+    es: "Atracciones y Actividades",
+    zh: "景点与活动"
+  },
+  "no_landmarks_available": {
+    en: "No landmarks available for this city",
+    fr: "Aucun monument disponible pour cette ville",
+    ar: "لا توجد معالم متاحة لهذه المدينة",
+    es: "No hay monumentos disponibles para esta ciudad",
+    zh: "该城市暂无可用地标"
   }
 };
 
