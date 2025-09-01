@@ -155,7 +155,18 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('attractions')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField(`l_${language}_attractions`, city)} />
+                {city[`l_${language}_attractions` as keyof typeof city] ? (
+                  <ul className="space-y-2">
+                    {(city[`l_${language}_attractions` as keyof typeof city] as string[])?.map((attraction, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        <span>{attraction}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{t('no_information_available')}</p>
+                )}
               </CardContent>
             </Card>
             
@@ -165,7 +176,18 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('activities')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField(`l_${language}_activities`, city)} />
+                {city[`l_${language}_activities` as keyof typeof city] ? (
+                  <ul className="space-y-2">
+                    {(city[`l_${language}_activities` as keyof typeof city] as string[])?.map((activity, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        <span>{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{t('no_information_available')}</p>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -196,7 +218,18 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('popular_dishes')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField(`l_${language}_popular_dishes`, city)} />
+                {city[`l_${language}_popular_dishes` as keyof typeof city] ? (
+                  <ul className="space-y-2">
+                    {(city[`l_${language}_popular_dishes` as keyof typeof city] as string[])?.map((dish, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        <span>{dish}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{t('no_information_available')}</p>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -208,7 +241,18 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('transportation')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField(`l_${language}_transportation`, city)} />
+                {city[`l_${language}_transportation` as keyof typeof city] ? (
+                  <ul className="space-y-2">
+                    {(city[`l_${language}_transportation` as keyof typeof city] as string[])?.map((transport, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        <span>{transport}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{t('no_information_available')}</p>
+                )}
               </CardContent>
             </Card>
             

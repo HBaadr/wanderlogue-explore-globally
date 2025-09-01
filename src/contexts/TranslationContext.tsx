@@ -835,6 +835,13 @@ const translations: Translations = {
     ar: "لا توجد معالم متاحة لهذه المدينة",
     es: "No hay monumentos disponibles para esta ciudad",
     zh: "该城市暂无可用地标"
+  },
+  "no_information_available": {
+    en: "No information available",
+    fr: "Aucune information disponible",
+    ar: "لا توجد معلومات متاحة",
+    es: "No hay información disponible",
+    zh: "无可用信息"
   }
 };
 
