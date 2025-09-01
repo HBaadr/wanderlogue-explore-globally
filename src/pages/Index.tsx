@@ -2,16 +2,13 @@ import React from 'react';
 import { WorldMap } from '@/components/WorldMap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
-import { useFirestoreCollection } from '@/hooks/useFirestore';
 import { Compass, Globe, MapPin, Camera, Smartphone, Plane, Mountain, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { City } from '@/types/travel';
 
 const Index = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
-  const { data: cities } = useFirestoreCollection<City>('Cities');
 
   const getLocalizedText = (key: string) => {
     const texts = {
@@ -68,7 +65,7 @@ const Index = () => {
     {
       icon: MapPin,
       title: t('cities'),
-      value: cities ? `${cities.length}+` : '...',
+      value: '1789+',
       description: {
         en: 'Cities to discover',
         fr: 'Villes à découvrir',
@@ -80,7 +77,7 @@ const Index = () => {
     {
       icon: Camera,
       title: t('unesco_sites'),
-      value: '1000+',
+      value: '1200+',
       description: {
         en: 'World Heritage Sites',
         fr: 'Sites du patrimoine mondial',
@@ -92,7 +89,7 @@ const Index = () => {
     {
       icon: Compass,
       title: t('landmarks'),
-      value: '5000+',
+      value: '14000+',
       description: {
         en: 'Amazing landmarks',
         fr: 'Monuments extraordinaires',
@@ -222,16 +219,15 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
               <Button
                 size="lg"
-                className="text-lg px-8 py-4 travel-shadow hover:glow-effect smooth-transition"
+                className="text-lg px-8 py-4 travel-shadow hover:glow-effect smooth-transition bg-green-600 hover:bg-green-700 text-white border-0"
                 onClick={() => window.open('https://play.google.com/store/apps/details?id=net.wanderlogue', '_blank')}
               >
                 <Smartphone className="h-6 w-6 mr-3" />
                 {t('download_android')}
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="text-lg px-8 py-4 border-2 hover:bg-primary hover:text-primary-foreground smooth-transition"
+                className="text-lg px-8 py-4 travel-shadow hover:glow-effect smooth-transition bg-gray-900 hover:bg-black text-white border-0"
                 onClick={() => window.open('https://apps.apple.com/ma/app/wanderlogue/id6538716270', '_blank')}
               >
                 <Smartphone className="h-6 w-6 mr-3" />
