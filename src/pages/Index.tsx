@@ -65,7 +65,7 @@ const Index = () => {
     {
       icon: MapPin,
       title: t('cities'),
-      value: '1789+',
+      value: '1780+',
       description: {
         en: 'Cities to discover',
         fr: 'Villes à découvrir',
@@ -158,9 +158,6 @@ const Index = () => {
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {/* Background with gradient overlay */}
-        <div className="absolute inset-0 travel-gradient opacity-5" />
-        
         <div className="container mx-auto px-4 py-20">
           <div className="text-center mb-16">
             {/* Main heading */}
