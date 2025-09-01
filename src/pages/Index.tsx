@@ -2,13 +2,16 @@ import React from 'react';
 import { WorldMap } from '@/components/WorldMap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { useFirestoreCollection } from '@/hooks/useFirestore';
 import { Compass, Globe, MapPin, Camera, Smartphone, Plane, Mountain, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { City } from '@/types/travel';
 
 const Index = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
+  const { data: cities } = useFirestoreCollection<City>('Cities');
 
   const getLocalizedText = (key: string) => {
     const texts = {
@@ -60,6 +63,18 @@ const Index = () => {
         ar: 'دولة وإقليم',
         es: 'Países y territorios',
         zh: '国家和地区'
+      }
+    },
+    {
+      icon: MapPin,
+      title: t('cities'),
+      value: cities ? `${cities.length}+` : '...',
+      description: {
+        en: 'Cities to discover',
+        fr: 'Villes à découvrir',
+        ar: 'مدن لاكتشافها',
+        es: 'Ciudades por descubrir',
+        zh: '城市待发现'
       }
     },
     {
@@ -172,7 +187,7 @@ const Index = () => {
             </p>
             
             {/* Feature statistics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mb-16">
               {features.map((feature, index) => (
                 <Card key={index} className="border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 smooth-transition">
                   <CardContent className="p-6 text-center">

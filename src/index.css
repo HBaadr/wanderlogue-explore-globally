@@ -129,7 +129,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Poppins', system-ui, sans-serif;
   }
 
   /* Travel-specific utility classes */
@@ -285,6 +286,6 @@
 
 /* Arabic Font Support */
 .rtl * {
-  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
   line-height: 1.7; /* Better line height for Arabic */
 }

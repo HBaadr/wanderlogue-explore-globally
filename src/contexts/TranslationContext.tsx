@@ -808,6 +808,20 @@ const translations: Translations = {
     es: "Encuentra información sobre transporte público, taxis y cómo moverse en esta ciudad.",
     zh: "查找有关公共交通、出租车和在这座城市出行的信息。"
   },
+  "attractions": {
+    en: "Attractions",
+    fr: "Attractions",
+    ar: "المعالم",
+    es: "Atracciones",
+    zh: "景点"
+  },
+  "activities": {
+    en: "Activities",
+    fr: "Activités",
+    ar: "الأنشطة",
+    es: "Actividades",
+    zh: "活动"
+  },
   "attractions_activities": {
     en: "Attractions & Activities",
     fr: "Attractions et Activités",

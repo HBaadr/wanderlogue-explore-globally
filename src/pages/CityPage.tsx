@@ -149,13 +149,23 @@ const CityPage = ({ cityCode }: CityPageProps) => {
               </CardContent>
             </Card>
             
-            {/* Attractions and Activities */}
+            {/* Attractions */}
             <Card>
               <CardHeader>
-                <CardTitle>{t('attractions_activities')}</CardTitle>
+                <CardTitle>{t('attractions')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField('attractions_activities', city)} />
+                <HtmlContent content={getLocalizedField(`l_${language}_attractions`, city)} />
+              </CardContent>
+            </Card>
+            
+            {/* Activities */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('activities')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <HtmlContent content={getLocalizedField(`l_${language}_activities`, city)} />
               </CardContent>
             </Card>
           </TabsContent>
@@ -186,7 +196,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('popular_dishes')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField('popular_dishes', city)} />
+                <HtmlContent content={getLocalizedField(`l_${language}_popular_dishes`, city)} />
               </CardContent>
             </Card>
           </TabsContent>
@@ -198,7 +208,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <CardTitle>{t('transportation')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <HtmlContent content={getLocalizedField('transportation', city)} />
+                <HtmlContent content={getLocalizedField(`l_${language}_transportation`, city)} />
               </CardContent>
             </Card>
             
