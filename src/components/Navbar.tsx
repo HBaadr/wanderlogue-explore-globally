@@ -23,7 +23,7 @@ export function Navbar() {
           <Link to={getHomeLink()} className="flex items-center gap-2 font-bold text-xl">
             <div className="p-2 rounded-lg travel-gradient">
               <img 
-                src="/images/travel-logo.png"
+                src="/public/travel-logo.png"
                 alt="Logo voyage"
                 className="h-10 w-10 object-contain"
               />
