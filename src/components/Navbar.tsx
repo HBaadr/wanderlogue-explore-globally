@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MapPin, Compass } from 'lucide-react';
+import { MapPin } from 'lucide-react'; // Retire Compass import
 import { LanguageSelector } from './LanguageSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
@@ -22,7 +22,11 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <Link to={getHomeLink()} className="flex items-center gap-2 font-bold text-xl">
             <div className="p-2 rounded-lg travel-gradient">
-              <Compass className="h-6 w-6 text-white" />
+              <img 
+                src="/images/travel-logo.png"
+                alt="Logo voyage"
+                className="h-10 w-10 object-contain"
+              />
             </div>
             <span className="travel-heading text-xl">Wanderlogue</span>
           </Link>
