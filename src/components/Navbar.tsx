@@ -29,6 +29,18 @@ export function Navbar() {
           
           <div className="flex items-center gap-4">
             <Link 
+              to="/blog"
+              className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
+            >
+              <span className="hidden md:inline">Blog</span>
+            </Link>
+            <Link 
+              to="/about"
+              className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
+            >
+              <span className="hidden md:inline">About</span>
+            </Link>
+            <Link 
               to={getHomeLink()}
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >

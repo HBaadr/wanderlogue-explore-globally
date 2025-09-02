@@ -5,6 +5,7 @@ import { useTranslation } from '@/contexts/TranslationContext';
 import { Compass, Globe, MapPin, Camera, Smartphone, Plane, Mountain, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import SEO from '@/components/SEO';
 
 const Index = () => {
   const { language } = useLanguage();
@@ -156,6 +157,13 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title="Wanderlogue 🌍 - Discover the World"
+        description="Explore 6 continents, 195+ countries, 1780+ cities, landmarks and 1200+ UNESCO World Heritage sites. Your ultimate travel companion for discovering the world."
+        keywords="travel, world map, UNESCO sites, landmarks, countries, cities, travel guide, tourism, wanderlogue, continents, heritage sites"
+        canonical="https://wanderlogue.lovable.app/"
+      />
+      
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="container mx-auto px-4 py-20">
