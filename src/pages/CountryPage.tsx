@@ -225,6 +225,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
     <TabsContent value="cities" className="space-y-6">
           <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
               {cities.map((city) => (
+                  <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
                 <Link key={city.id} to={createLink(`/${city.city_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
@@ -249,13 +250,16 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                     </div>
                   </Card>
                 </Link>
+                    </div>
               ))}
             </div>
           </TabsContent>
 
           <TabsContent value="unesco" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
               {unescoSites.map((site) => (
+                  <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+
                 <Link key={site.id} to={createLink(`/${site.id}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
@@ -278,6 +282,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                     </div>
                   </Card>
                 </Link>
+                    </div>
               ))}
             </div>
           </TabsContent>
