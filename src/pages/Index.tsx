@@ -109,7 +109,7 @@ const Index = () => {
 
   const continents = [
     {
-      id: 'africa',
+      id: 'AFRICA',
       name: {
         en: 'Africa',
         fr: 'Afrique',
@@ -133,7 +133,7 @@ const Index = () => {
       countries_count: 48
     },
     {
-      id: 'europe',
+      id: 'EUROPE',
       name: {
         en: 'Europe',
         fr: 'Europe',
@@ -145,7 +145,7 @@ const Index = () => {
       countries_count: 44
     },
     {
-      id: 'north-america',
+      id: 'NORTH_AMERICA',
       name: {
         en: 'North America',
         fr: 'Amérique du Nord',
@@ -157,7 +157,7 @@ const Index = () => {
       countries_count: 23
     },
     {
-      id: 'south-america',
+      id: 'SOUTH_AMERICA',
       name: {
         en: 'South America',
         fr: 'Amérique du Sud',
@@ -169,7 +169,7 @@ const Index = () => {
       countries_count: 12
     },
     {
-      id: 'oceania',
+      id: 'OCEANIA',
       name: {
         en: 'Oceania',
         fr: 'Océanie',
