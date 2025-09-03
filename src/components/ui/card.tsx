@@ -3,21 +3,24 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const { language } = useLanguage();
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      `rounded-lg border bg-card text-card-foreground shadow-sm ${language === 'ar' ? 'rtl' : 'ltr'}`,
-      className
-    )}
-    {...props}
-  />
-))
+>(({ className, ...props }, ref) => {
+  const { language } = useLanguage()
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        `rounded-lg border bg-card text-card-foreground shadow-sm ${language === 'ar' ? 'rtl' : 'ltr'}`,
+        className
+      )}
+      {...props}
+    />
+  )
+})
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
