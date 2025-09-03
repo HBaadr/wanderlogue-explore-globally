@@ -222,8 +222,8 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             </div>
           </TabsContent>
 
-          <TabsContent value="cities" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <TabsContent value="cities" className="space-y-6">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
               {cities.map((city) => (
                 <Link key={city.id} to={createLink(`/${city.city_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
@@ -233,7 +233,6 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                           src={city.image}
                           alt={getLocalizedField('name', city)}
                           className="w-full h-full object-cover"
-                          dir={language === 'ar' ? 'rtl' : 'ltr'}
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
