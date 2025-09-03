@@ -172,6 +172,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               </Card>
             </div>
             
+          <div className="rtl">
             <Card>
               <CardHeader>
                 <CardTitle>{t('travelAdvice')}</CardTitle>
@@ -180,6 +181,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                 <HtmlContent content={getLocalizedField('travel_advices', country)} />
               </CardContent>
             </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="culture" className="space-y-6">
@@ -187,18 +189,18 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('gastronomy')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <HtmlContent content={getLocalizedField('gastronomy', country)} />
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
                   <CardTitle>{t('languages')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <HtmlContent content={getLocalizedField('languages', country)} />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('religions')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <HtmlContent content={getLocalizedField('religions', country)} />
                 </CardContent>
               </Card>
               <Card>
@@ -211,10 +213,10 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('religions')}</CardTitle>
+                  <CardTitle>{t('gastronomy')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <HtmlContent content={getLocalizedField('religions', country)} />
+                  <HtmlContent content={getLocalizedField('gastronomy', country)} />
                 </CardContent>
               </Card>
             </div>
