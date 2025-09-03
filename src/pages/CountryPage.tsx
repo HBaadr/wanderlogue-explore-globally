@@ -141,7 +141,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           
           <TabsContent value="info" className="space-y-6">
             {/* General Information - First and prominent */}
-          <div className="rtl">
+    <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle className="text-xl">{t('generalInformation')}</CardTitle>
@@ -172,7 +172,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               </Card>
             </div>
             
-          <div className="rtl">
+    <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle>{t('travelAdvice')}</CardTitle>
