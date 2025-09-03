@@ -227,7 +227,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               {cities.map((city) => (
                 <Link key={city.id} to={createLink(`/${city.city_code}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                      <div className={`relative h-48 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
                       {city.image && (
                         <img
                           src={city.image}
@@ -258,7 +258,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               {unescoSites.map((site) => (
                 <Link key={site.id} to={createLink(`/${site.id}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                    <div className={`relative h-48 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
                       {site.image_url && (
                         <img
                           src={site.image_url}
