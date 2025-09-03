@@ -323,7 +323,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                           />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
+                        <div className="absolute bottom-4 left-4">
                           <h3 className="text-white text-lg font-semibold mb-1">
                             {getLocalizedField('name', landmark)}
                           </h3>
