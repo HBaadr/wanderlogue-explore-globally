@@ -1,6 +1,9 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const { language } = useLanguage();
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -9,7 +12,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm rtl",
+      `rounded-lg border bg-card text-card-foreground shadow-sm ${language === 'ar' ? 'rtl' : 'ltr'}`,
       className
     )}
     {...props}
