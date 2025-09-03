@@ -1,11 +1,17 @@
 import React from 'react';
-import { WorldMap } from '@/components/WorldMap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { Link } from 'react-router-dom';
 import { Compass, Globe, MapPin, Camera, Smartphone, Plane, Mountain, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
+import africaImage from '@/assets/continent-africa.jpg';
+import asiaImage from '@/assets/continent-asia.jpg';
+import europeImage from '@/assets/continent-europe.jpg';
+import northAmericaImage from '@/assets/continent-north-america.jpg';
+import southAmericaImage from '@/assets/continent-south-america.jpg';
+import oceaniaImage from '@/assets/continent-oceania.jpg';
 
 const Index = () => {
   const { language } = useLanguage();
@@ -98,6 +104,81 @@ const Index = () => {
         es: 'Monumentos increíbles',
         zh: '惊人地标'
       }
+    }
+  ];
+
+  const continents = [
+    {
+      id: 'africa',
+      name: {
+        en: 'Africa',
+        fr: 'Afrique',
+        ar: 'أفريقيا',
+        es: 'África',
+        zh: '非洲'
+      },
+      image: africaImage,
+      countries_count: 54
+    },
+    {
+      id: 'asia',
+      name: {
+        en: 'Asia',
+        fr: 'Asie',
+        ar: 'آسيا',
+        es: 'Asia',
+        zh: '亚洲'
+      },
+      image: asiaImage,
+      countries_count: 48
+    },
+    {
+      id: 'europe',
+      name: {
+        en: 'Europe',
+        fr: 'Europe',
+        ar: 'أوروبا',
+        es: 'Europa',
+        zh: '欧洲'
+      },
+      image: europeImage,
+      countries_count: 44
+    },
+    {
+      id: 'north-america',
+      name: {
+        en: 'North America',
+        fr: 'Amérique du Nord',
+        ar: 'أمريكا الشمالية',
+        es: 'América del Norte',
+        zh: '北美洲'
+      },
+      image: northAmericaImage,
+      countries_count: 23
+    },
+    {
+      id: 'south-america',
+      name: {
+        en: 'South America',
+        fr: 'Amérique du Sud',
+        ar: 'أمريكا الجنوبية',
+        es: 'América del Sur',
+        zh: '南美洲'
+      },
+      image: southAmericaImage,
+      countries_count: 12
+    },
+    {
+      id: 'oceania',
+      name: {
+        en: 'Oceania',
+        fr: 'Océanie',
+        ar: 'أوقيانوسيا',
+        es: 'Oceanía',
+        zh: '大洋洲'
+      },
+      image: oceaniaImage,
+      countries_count: 14
     }
   ];
 
@@ -243,20 +324,50 @@ const Index = () => {
         </div>
       </section>
 
-      {/* World Map Section */}
+      {/* Continents Exploration Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 travel-heading">
-            {t('world_map')}
+            {t('explore_continents')}
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
             {t('start_journey')}
           </p>
         </div>
         
-        {/* Interactive World Map */}
-        <div className="bg-card rounded-3xl p-8 travel-shadow">
-          <WorldMap />
+        {/* Continent Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {continents.map((continent) => (
+            <Link 
+              key={continent.id} 
+              to={`/${continent.id}?language=${language}`}
+              className="group"
+            >
+              <Card className="group-hover:travel-shadow smooth-transition group-hover:scale-105 overflow-hidden bg-card/50 backdrop-blur-sm border-2 border-transparent group-hover:border-primary/20">
+                <div className="relative h-48">
+                  <img
+                    src={continent.image}
+                    alt={continent.name[language] || continent.name.en}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-white text-2xl font-bold mb-2">
+                      {continent.name[language] || continent.name.en}
+                    </h3>
+                    <p className="text-white/90 text-sm">
+                      {continent.countries_count} {t('countries_count')}
+                    </p>
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      {t('discover_continent')}
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          ))}
         </div>
       </section>
 

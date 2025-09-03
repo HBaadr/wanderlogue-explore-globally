@@ -8,6 +8,7 @@ import { Continent, Country } from '@/types/travel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { HtmlContent } from '@/components/HtmlContent';
+import SEO from '@/components/SEO';
 
 interface ContinentPageProps {
   continentId: string;
@@ -63,6 +64,13 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
 
   return (
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('name', continent)} - Wanderlogue`}
+        description={`Explore ${getLocalizedField('name', continent)} with ${continent.countries_number} countries, area of ${continent.area?.toLocaleString()} km², and population of ${continent.population?.toLocaleString()}.`}
+        keywords={`${getLocalizedField('name', continent)}, travel, countries, tourism, destinations`}
+        canonical={`https://wanderlogue.lovable.app/${continentId}`}
+      />
+      
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -97,6 +105,18 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           <div className="prose max-w-none">
             <HtmlContent content={getLocalizedField('general_infos', continent)} className="text-lg" />
           </div>
+        </div>
+
+        {/* AdSense Ad */}
+        <div className="mb-8 text-center">
+          <ins 
+            className="adsbygoogle"
+            style={{display: 'block'}}
+            data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+            data-ad-slot="YOUR_AD_SLOT_ID"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
         </div>
 
         {/* Countries grid */}

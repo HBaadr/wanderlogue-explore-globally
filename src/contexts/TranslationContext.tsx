@@ -842,6 +842,84 @@ const translations: Translations = {
     ar: "لا توجد معلومات متاحة",
     es: "No hay información disponible",
     zh: "无可用信息"
+  },
+  // Blog/About page translations
+  "blog": {
+    en: "Blog",
+    fr: "Blog", 
+    ar: "المدونة",
+    es: "Blog",
+    zh: "博客"
+  },
+  "about_us": {
+    en: "About Us",
+    fr: "À Propos",
+    ar: "من نحن",
+    es: "Acerca de Nosotros",
+    zh: "关于我们"
+  },
+  "contact": {
+    en: "Contact",
+    fr: "Contact",
+    ar: "اتصل بنا",
+    es: "Contacto",
+    zh: "联系我们"
+  },
+  "read_more": {
+    en: "Read More",
+    fr: "Lire Plus",
+    ar: "اقرأ المزيد", 
+    es: "Leer Más",
+    zh: "阅读更多"
+  },
+  "share_article": {
+    en: "Share Article",
+    fr: "Partager l'Article",
+    ar: "شارك المقال",
+    es: "Compartir Artículo", 
+    zh: "分享文章"
+  },
+  "related_articles": {
+    en: "Related Articles",
+    fr: "Articles Connexes",
+    ar: "مقالات ذات صلة",
+    es: "Artículos Relacionados",
+    zh: "相关文章"
+  },
+  "download_our_app": {
+    en: "Download Our App",
+    fr: "Téléchargez Notre App",
+    ar: "تحميل تطبيقنا",
+    es: "Descarga Nuestra App",
+    zh: "下载我们的应用"
+  },
+  "explore_continents": {
+    en: "Explore Continents",
+    fr: "Explorer les Continents",
+    ar: "استكشف القارات",
+    es: "Explorar Continentes",
+    zh: "探索大洲"
+  },
+  "discover_continent": {
+    en: "Discover",
+    fr: "Découvrir",
+    ar: "اكتشف",
+    es: "Descubrir",
+    zh: "发现"
+  },
+  "travel_guides": {
+    en: "Travel Guides",
+    fr: "Guides de Voyage",
+    ar: "أدلة السفر",
+    es: "Guías de Viaje",
+    zh: "旅行指南"
+  },
+  "latest_articles": {
+    en: "Latest Travel Articles",
+    fr: "Derniers Articles de Voyage",
+    ar: "أحدث مقالات السفر",
+    es: "Últimos Artículos de Viaje",
+    zh: "最新旅行文章"
   }
 };
 
