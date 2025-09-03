@@ -258,7 +258,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               {unescoSites.map((site) => (
                 <Link key={site.id} to={createLink(`/${site.id}`)}>
                   <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48">
+                    <div className={`relative h-48 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
                       {site.image_url && (
                         <img
                           src={site.image_url}
@@ -266,7 +266,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                           className="w-full h-full object-cover"
                         />
                       )}
-                      <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute bottom-4 left-4 right-4">
                         <h3 className="text-white text-lg font-semibold mb-1">
                           {getLocalizedField('site', site)}
