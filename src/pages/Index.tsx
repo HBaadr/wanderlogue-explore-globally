@@ -121,7 +121,7 @@ const Index = () => {
       countries_count: 54
     },
     {
-      id: 'asia',
+      id: 'ASIA',
       name: {
         en: 'Asia',
         fr: 'Asie',
