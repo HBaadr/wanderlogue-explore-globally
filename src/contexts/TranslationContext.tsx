@@ -199,6 +199,13 @@ const translations: Translations = {
     es: "Volver a",
     zh: "返回到"
   },
+  "backToHome": {
+    en: "Back to Home",
+    fr: "Retour à l'Accueil",
+    ar: "العودة إلى الرئيسية",
+    es: "Volver a la página de inicio",
+    zh: "返回首页"
+  },
   "home": {
     en: "Home",
     fr: "Accueil",
