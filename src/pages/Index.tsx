@@ -325,7 +325,7 @@ const Index = () => {
       </section>
 
       {/* Continents Exploration Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16 pb-16 pt-0">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 travel-heading">
             {t('explore_continents')}
