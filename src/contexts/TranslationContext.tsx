@@ -192,12 +192,12 @@ const translations: Translations = {
     zh: "被列为联合国教科文组织世界遗产"
   },
   // Legacy keys for backward compatibility
-  "backTo": {
-    en: "Back to",
-    fr: "Retour à",
-    ar: "العودة إلى",
-    es: "Volver a",
-    zh: "返回到"
+  "backToContinent": {
+    en: "Back to Continent",
+    fr: "Retour au continent",
+    ar: "العودة إلى القارة",
+    es: "De vuelta al continente",
+    zh: "回到大陆"
   },
   "backToHome": {
     en: "Back to Home",
