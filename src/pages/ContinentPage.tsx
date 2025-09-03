@@ -143,7 +143,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
+                      <div className="absolute bottom-4 left-4">
                         <div className="flex items-center gap-2 mb-2">
                           {country.flag && (
                             <img src={country.flag} alt="Flag" className="w-8 h-6 rounded" />
