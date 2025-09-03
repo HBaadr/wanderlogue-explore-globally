@@ -140,6 +140,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
           
           <TabsContent value="general" className="space-y-6">
             {/* General Information - First and prominent */}
+          <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle className="text-xl">{t('generalInformation')}</CardTitle>
@@ -148,8 +149,10 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 <HtmlContent content={getLocalizedField('general_infos', city)} />
               </CardContent>
             </Card>
+          </div>
             
             {/* Attractions */}
+          <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle>{t('attractions')}</CardTitle>
@@ -169,8 +172,10 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 )}
               </CardContent>
             </Card>
+          </div>
             
             {/* Activities */}
+          <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle>{t('activities')}</CardTitle>
@@ -190,7 +195,8 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 )}
               </CardContent>
             </Card>
-          </TabsContent>
+          </div>
+        </TabsContent>
 
           <TabsContent value="culture" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -213,6 +219,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
             </div>
             
             {/* Popular Dishes - Full width for better display */}
+          <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle>{t('popular_dishes')}</CardTitle>
@@ -232,10 +239,12 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 )}
               </CardContent>
             </Card>
-          </TabsContent>
+          </div>
+        </TabsContent>
 
           <TabsContent value="practical" className="space-y-6">
             {/* Transportation - Full width for better display */}
+          <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
             <Card>
               <CardHeader>
                 <CardTitle>{t('transportation')}</CardTitle>
@@ -255,6 +264,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
                 )}
               </CardContent>
             </Card>
+          </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
