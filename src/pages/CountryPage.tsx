@@ -261,7 +261,8 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                   <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
 
                 <Link key={site.id} to={createLink(`/${site.id}`)}>
-                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
+                                  <div className={`${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
                     <div className="relative h-48">
                       {site.image_url && (
                         <img
@@ -281,7 +282,8 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                       </div>
                     </div>
                   </Card>
-                </Link>
+                                   </div>
+ </Link>
                     </div>
               ))}
             </div>
