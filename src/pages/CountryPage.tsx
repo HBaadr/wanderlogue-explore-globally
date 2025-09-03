@@ -141,6 +141,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
           
           <TabsContent value="info" className="space-y-6">
             {/* General Information - First and prominent */}
+          <div className="rtl">
             <Card>
               <CardHeader>
                 <CardTitle className="text-xl">{t('generalInformation')}</CardTitle>
@@ -149,6 +150,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
                 <HtmlContent content={getLocalizedField('general_infos', country)} />
               </CardContent>
             </Card>
+          </div>
             
             {/* Other information in a clean layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
