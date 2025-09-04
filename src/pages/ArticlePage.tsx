@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, Share2, Bookmark, MapPin, Camera, Compass } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
 import SEO from '@/components/SEO';
 import NotFound from './NotFound';
 
@@ -292,9 +293,10 @@ const ArticlePage = () => {
       {/* AdSense Ad */}
       <div className="container mx-auto px-4 py-8">
         <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500 mb-8">
-          <p className="text-sm font-medium">AdSense Display Ad (728x90 Leaderboard)</p>
+          <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
           <div className="mt-2 text-xs text-gray-400">
-            This space will contain Google AdSense advertisement
+            Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
+            Ad Unit: {ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE}
           </div>
         </div>
       </div>
@@ -307,16 +309,6 @@ const ArticlePage = () => {
               dangerouslySetInnerHTML={{ __html: article.content }}
               className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
             />
-          </div>
-
-          {/* In-Article AdSense Ad */}
-          <div className="my-12">
-            <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500">
-              <p className="text-sm font-medium">AdSense In-Article Ad (300x250)</p>
-              <div className="mt-2 text-xs text-gray-400">
-                Google AdSense advertisement will appear here
-              </div>
-            </div>
           </div>
 
           {/* App Download CTA */}
@@ -379,18 +371,9 @@ const ArticlePage = () => {
                 ))}
             </div>
           </div>
+
         </div>
       </section>
-
-      {/* Final AdSense Ad */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500">
-          <p className="text-sm font-medium">AdSense Display Ad (728x90 Leaderboard)</p>
-          <div className="mt-2 text-xs text-gray-400">
-            This space will contain Google AdSense advertisement
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

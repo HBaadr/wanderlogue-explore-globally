@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
 import SEO from '@/components/SEO';
 
 const BlogPage = () => {
@@ -57,31 +58,20 @@ const BlogPage = () => {
       <section className="py-20 travel-gradient">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Travel Blog & Guides
+            {t('blog_title')}
           </h1>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Discover expert travel insights, destination guides, and tips to make your adventures unforgettable. 
-            Explore the world with confidence using our comprehensive travel resources.
+            {t('blog_description')}
           </p>
         </div>
       </section>
 
-      {/* AdSense Ad Placement */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500 mb-12">
-          <p className="text-sm font-medium">AdSense Display Ad (728x90 Leaderboard)</p>
-          <div className="mt-2 text-xs text-gray-400">
-            This space will contain Google AdSense advertisement
-          </div>
-        </div>
-      </div>
-
       {/* Articles Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-4 travel-heading">Latest Travel Articles</h2>
+          <h2 className="text-3xl font-bold mb-4 travel-heading">{t('latest_articles')}</h2>
           <p className="text-lg text-muted-foreground">
-            Stay updated with the latest travel trends, destination guides, and expert tips from around the world.
+            {t('stay_updated')}
           </p>
         </div>
 
@@ -122,20 +112,21 @@ const BlogPage = () => {
                   </p>
                   <Button variant="outline" asChild className="group">
                     <Link to={`/blog/${article.id}`}>
-                      Read Full Article
+                      {t('read_full_article')}
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 smooth-transition" />
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* AdSense In-Article Ad after every article */}
-              {index < articles.length - 1 && (
+              {/* Single AdSense Ad after first article */}
+              {index === 0 && (
                 <div className="my-12">
                   <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500">
-                    <p className="text-sm font-medium">AdSense In-Article Ad (300x250)</p>
+                    <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
                     <div className="mt-2 text-xs text-gray-400">
-                      Google AdSense advertisement will appear here
+                      Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
+                      Ad Unit: {ADSENSE_CONFIG.AD_UNITS.BLOG_PAGE}
                     </div>
                   </div>
                 </div>
@@ -146,9 +137,9 @@ const BlogPage = () => {
 
         {/* Newsletter Signup */}
         <div className="mt-16 bg-card rounded-2xl p-8 text-center travel-shadow">
-          <h3 className="text-2xl font-bold mb-4">Stay Updated with Travel Tips</h3>
+          <h3 className="text-2xl font-bold mb-4">{t('newsletter_signup')}</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Get the latest travel guides, destination recommendations, and exclusive tips delivered to your inbox.
+            {t('newsletter_description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
@@ -157,16 +148,6 @@ const BlogPage = () => {
               className="flex-1 px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <Button className="sm:w-auto">Subscribe</Button>
-          </div>
-        </div>
-
-        {/* Final AdSense Ad */}
-        <div className="mt-12">
-          <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500">
-            <p className="text-sm font-medium">AdSense Display Ad (728x90 Leaderboard)</p>
-            <div className="mt-2 text-xs text-gray-400">
-              This space will contain Google AdSense advertisement
-            </div>
           </div>
         </div>
       </section>

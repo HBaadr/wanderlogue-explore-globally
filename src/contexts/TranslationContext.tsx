@@ -766,8 +766,14 @@ const translations: Translations = {
     es: "Código",
     zh: "代码"
   },
-  "countries_in_continent": {
-    en: "Countries in",
+    download_description: {
+      en: 'Take your travel companion wherever you go. Download Wanderlogue on your mobile device and start exploring the world with confidence.',
+      fr: 'Emportez votre compagnon de voyage partout où vous allez. Téléchargez Wanderlogue sur votre appareil mobile et commencez à explorer le monde en toute confiance.',
+      ar: 'خذ رفيق سفرك أينما ذهبت. حمل دليل الرحلات على جهازك المحمول وابدأ في استكشاف العالم بثقة.',
+      es: 'Lleva tu compañero de viaje donde quiera que vayas. Descarga Wanderlogue en tu dispositivo móvil y comienza a explorar el mundo con confianza.',
+      zh: '无论走到哪里都带着您的旅行伴侣。在您的移动设备上下载游记，开始自信地探索世界。'
+    }
+  };
     fr: "Pays de",
     ar: "دول",
     es: "Países de", 
