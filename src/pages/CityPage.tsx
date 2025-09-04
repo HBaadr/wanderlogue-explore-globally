@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Plane, Waves, Mountain, Shield, Droplets, CreditCard, Clock } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HtmlContent } from '@/components/HtmlContent';
+import SEO from '@/components/SEO';
 
 interface CityPageProps {
   cityCode: string;
@@ -19,6 +20,11 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
   const location = useLocation();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [cityCode]);
   
   const createLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);
@@ -70,6 +76,13 @@ const CityPage = ({ cityCode }: CityPageProps) => {
 
   return (
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('name', city)} - City Guide | Wanderlogue`}
+        description={`Explore ${getLocalizedField('name', city)} - discover attractions, landmarks, and local culture. Complete city travel guide with practical information.`}
+        keywords={`${getLocalizedField('name', city)}, city guide, travel, attractions, landmarks`}
+        canonical={`https://wanderlogue.lovable.app/${cityCode}`}
+      />
+      
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -127,6 +140,18 @@ const CityPage = ({ cityCode }: CityPageProps) => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           )}
+        </div>
+
+        {/* AdSense Ad */}
+        <div className="mb-8 text-center">
+          <ins 
+            className="adsbygoogle"
+            style={{display: 'block'}}
+            data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+            data-ad-slot="YOUR_AD_SLOT_ID"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
         </div>
 
         {/* Tabbed content */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, ExternalLink, Camera } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { HtmlContent } from '@/components/HtmlContent';
+import SEO from '@/components/SEO';
 
 interface LandmarkPageProps {
   landmarkCode: string;
@@ -18,6 +19,11 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
   const location = useLocation();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [landmarkCode]);
   
   const createLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);
@@ -53,6 +59,13 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
 
   return (
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('name', landmark)} - Landmark Guide | Wanderlogue`}
+        description={`Discover ${getLocalizedField('name', landmark)}, a ${landmark.type} landmark. Explore detailed information, images and location details.`}
+        keywords={`${getLocalizedField('name', landmark)}, landmark, ${landmark.type}, travel, tourism`}
+        canonical={`https://wanderlogue.lovable.app/${landmarkCode}`}
+      />
+      
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -111,6 +124,18 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
             )}
+
+            {/* AdSense Ad */}
+            <div className="mb-8 text-center">
+              <ins 
+                className="adsbygoogle"
+                style={{display: 'block'}}
+                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              />
+            </div>
 
             {/* Description */}
             <Card>

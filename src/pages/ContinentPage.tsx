@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Users } from 'lucide-react';
 import { useFirestoreDocument, useFirestoreQuery } from '@/hooks/useFirestore';
@@ -18,6 +18,11 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
   const location = useLocation();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [continentId]);
   
   const createLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);

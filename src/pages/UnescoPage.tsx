@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Shield, AlertTriangle, ExternalLink } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { HtmlContent } from '@/components/HtmlContent';
+import SEO from '@/components/SEO';
 
 interface UnescoPageProps {
   unescoId: string;
@@ -19,6 +20,11 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
   const location = useLocation();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [unescoId]);
   
   const createLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);
@@ -54,6 +60,13 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
 
   return (
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('site', site)} - UNESCO World Heritage Site | Wanderlogue`}
+        description={`Explore ${getLocalizedField('site', site)}, a UNESCO World Heritage Site inscribed in ${site.date_inscribed}. Discover its history and cultural significance.`}
+        keywords={`${getLocalizedField('site', site)}, UNESCO, World Heritage Site, ${site.category}, cultural heritage`}
+        canonical={`https://wanderlogue.lovable.app/${unescoId}`}
+      />
+      
       <div className="container mx-auto px-4 py-8">
         {/* Back navigation */}
         <Link 
@@ -125,6 +138,18 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
                 </div>
               </div>
             )}
+
+            {/* AdSense Ad */}
+            <div className="mb-8 text-center">
+              <ins 
+                className="adsbygoogle"
+                style={{display: 'block'}}
+                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              />
+            </div>
 
             {/* Description */}
             <Card>
