@@ -773,13 +773,6 @@ const translations: Translations = {
     es: 'Lleva tu compañero de viaje donde quiera que vayas. Descarga Wanderlogue en tu dispositivo móvil y comienza a explorar el mundo con confianza.',
     zh: '无论走到哪里都带着您的旅行伴侣。在您的移动设备上下载游记，开始自信地探索世界。'
   },
-  "countries_of": {
-    en: "Pays de",
-    fr: "Countries of",
-    ar: "دول",
-    es: "Países de",
-    zh: "国家在"
-  },
   "back_to_continent": {
     en: "Back to",
     fr: "Retour à",
@@ -864,6 +857,118 @@ const translations: Translations = {
     ar: "المدونة",
     es: "Blog",
     zh: "博客"
+  },
+  "blog_title": {
+    en: "Travel Blog & Guides",
+    fr: "Blog de Voyage & Guides",
+    ar: "مدونة السفر والأدلة",
+    es: "Blog de Viajes y Guías",
+    zh: "旅行博客和指南"
+  },
+  "blog_description": {
+    en: "Discover expert travel insights, destination guides, and tips to make your adventures unforgettable.",
+    fr: "Découvrez des conseils d'experts en voyage, des guides de destinations et des astuces pour rendre vos aventures inoubliables.",
+    ar: "اكتشف رؤى السفر من الخبراء ودلائل الوجهات ونصائح لجعل مغامراتك لا تُنسى.",
+    es: "Descubre conocimientos expertos en viajes, guías de destinos y consejos para hacer tus aventuras inolvidables.",
+    zh: "发现专业的旅行见解、目的地指南和技巧，让您的冒险难忘。"
+  },
+  "stay_updated": {
+    en: "Stay updated with the latest travel trends, destination insights, and practical tips from our expert team.",
+    fr: "Restez informé des dernières tendances de voyage, des aperçus de destinations et des conseils pratiques de notre équipe d'experts.",
+    ar: "ابق على اطلاع بأحدث اتجاهات السفر ورؤى الوجهات والنصائح العملية من فريق الخبراء لدينا.",
+    es: "Mantente actualizado con las últimas tendencias de viaje, conocimientos de destinos y consejos prácticos de nuestro equipo experto.",
+    zh: "了解我们专家团队提供的最新旅行趋势、目的地见解和实用技巧。"
+  },
+  "read_full_article": {
+    en: "Read Full Article",
+    fr: "Lire l'Article Complet",
+    ar: "اقرأ المقال كاملاً",
+    es: "Leer Artículo Completo",
+    zh: "阅读完整文章"
+  },
+  "newsletter_signup": {
+    en: "Stay Connected with Our Newsletter",
+    fr: "Restez Connecté avec Notre Newsletter",
+    ar: "ابق على تواصل مع نشرتنا الإخبارية",
+    es: "Mantente Conectado con Nuestro Newsletter",
+    zh: "通过我们的新闻通讯保持联系"
+  },
+  "newsletter_description": {
+    en: "Get the latest travel tips, destination guides, and exclusive content delivered straight to your inbox.",
+    fr: "Recevez les derniers conseils de voyage, guides de destinations et contenu exclusif directement dans votre boîte de réception.",
+    ar: "احصل على أحدث نصائح السفر ودلائل الوجهات والمحتوى الحصري مباشرة في صندوق الوارد الخاص بك.",
+    es: "Recibe los últimos consejos de viaje, guías de destinos y contenido exclusivo directamente en tu bandeja de entrada.",
+    zh: "获取最新的旅行提示、目的地指南和独家内容，直接送到您的收件箱。"
+  },
+  "about_title": {
+    en: "About Wanderlogue",
+    fr: "À Propos de Wanderlogue",
+    ar: "حول دليل الرحلات",
+    es: "Acerca de Wanderlogue",
+    zh: "关于游记"
+  },
+  "about_subtitle": {
+    en: "Your ultimate travel companion for exploring the world's most incredible destinations, UNESCO World Heritage Sites, and hidden gems across 6 continents.",
+    fr: "Votre compagnon de voyage ultime pour explorer les destinations les plus incroyables du monde, les sites du patrimoine mondial de l'UNESCO et les joyaux cachés à travers 6 continents.",
+    ar: "رفيق السفر الأمثل لاستكشاف أروع وجهات العالم ومواقع التراث العالمي لليونسكو والجواهر المخفية عبر 6 قارات.",
+    es: "Tu compañero de viaje definitivo para explorar los destinos más increíbles del mundo, sitios del Patrimonio Mundial de la UNESCO y gemas ocultas en 6 continentes.",
+    zh: "您探索世界最令人难以置信的目的地、联合国教科文组织世界遗产地和6大洲隐藏宝石的终极旅行伴侣。"
+  },
+  "why_choose_wanderlogue": {
+    en: "Why Choose Wanderlogue?",
+    fr: "Pourquoi Choisir Wanderlogue?",
+    ar: "لماذا تختار دليل الرحلات؟",
+    es: "¿Por Qué Elegir Wanderlogue?",
+    zh: "为什么选择游记？"
+  },
+  "by_the_numbers": {
+    en: "By the Numbers",
+    fr: "En Chiffres",
+    ar: "بالأرقام",
+    es: "En Números",
+    zh: "数据统计"
+  },
+  "get_in_touch": {
+    en: "Get in Touch",
+    fr: "Contactez-nous",
+    ar: "تواصل معنا",
+    es: "Ponte en Contacto",
+    zh: "联系我们"
+  },
+  "contact_description": {
+    en: "Have questions, suggestions, or just want to share your travel experiences? We'd love to hear from you!",
+    fr: "Vous avez des questions, des suggestions, ou voulez juste partager vos expériences de voyage? Nous aimerions avoir de vos nouvelles!",
+    ar: "هل لديك أسئلة أو اقتراحات أو تريد فقط مشاركة تجارب السفر الخاصة بك؟ نحن نحب أن نسمع منك!",
+    es: "¿Tienes preguntas, sugerencias, o simplemente quieres compartir tus experiencias de viaje? ¡Nos encantaría saber de ti!",
+    zh: "有问题、建议，或只是想分享您的旅行经历？我们很乐意听取您的意见！"
+  },
+  "email_us": {
+    en: "Email Us",
+    fr: "Nous Envoyer un Email",
+    ar: "راسلنا عبر البريد الإلكتروني",
+    es: "Envíanos un Email",
+    zh: "给我们发邮件"
+  },
+  "visit_website": {
+    en: "Visit Website",
+    fr: "Visiter le Site Web",
+    ar: "زيارة الموقع الإلكتروني",
+    es: "Visitar Sitio Web",
+    zh: "访问网站"
+  },
+  "global_reach": {
+    en: "Global Reach",
+    fr: "Portée Mondiale",
+    ar: "نطاق عالمي",
+    es: "Alcance Global",
+    zh: "全球覆盖"
+  },
+  "download_today": {
+    en: "Download Wanderlogue Today",
+    fr: "Téléchargez Wanderlogue Aujourd'hui",
+    ar: "حمل دليل الرحلات اليوم",
+    es: "Descarga Wanderlogue Hoy",
+    zh: "今天下载游记"
   },
   "about_us": {
     en: "About Us",
