@@ -22,7 +22,7 @@ const AboutPage = () => {
   const features = [
     {
       icon: Globe,
-      title: 'Global Coverage',
+      title: t('global_coverage'),
       description: 'Explore 6 continents, 195+ countries, 1780+ cities, and thousands of landmarks worldwide.'
     },
     {
@@ -32,7 +32,7 @@ const AboutPage = () => {
     },
     {
       icon: Users,
-      title: 'Community Driven',
+      title: t('community_driven'),
       description: 'Join millions of travelers sharing experiences and recommendations from around the globe.'
     },
     {
@@ -198,7 +198,7 @@ const AboutPage = () => {
                   <h3 className="font-semibold mb-2">{t('visit_website')}</h3>
                   <p className="text-muted-foreground text-sm mb-4">Explore destinations online</p>
                   <Button variant="outline" size="sm" asChild>
-                    <a href="/" target="_blank" rel="noopener noreferrer">wanderlogue.com</a>
+                    <a href="/" target="_blank" rel="noopener noreferrer">{t('website_url')}</a>
                   </Button>
                 </CardContent>
               </Card>

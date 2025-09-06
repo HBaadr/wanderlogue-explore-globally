@@ -4,11 +4,15 @@ import { Calendar, Clock, ArrowLeft, Share2, Bookmark, MapPin, Camera, Compass }
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
 import SEO from '@/components/SEO';
 import NotFound from './NotFound';
 
 const ArticlePage = () => {
   const { articleId } = useParams<{ articleId: string }>();
+  const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
 
   const articles = {
     'ultimate-guide-world-heritage-sites': {
@@ -56,7 +60,7 @@ const ArticlePage = () => {
       `,
       readTime: '8 min read',
       date: '2024-01-15',
-      category: 'Travel Guide',
+      category: t('travel_guide'),
       icon: Camera,
       author: 'Wanderlogue Travel Team'
     },
@@ -126,7 +130,7 @@ const ArticlePage = () => {
       `,
       readTime: '6 min read',
       date: '2024-01-10',
-      category: 'Sustainable Travel',
+      category: t('sustainable_travel'),
       icon: MapPin,
       author: 'Wanderlogue Sustainability Team'
     },
@@ -205,7 +209,7 @@ const ArticlePage = () => {
       `,
       readTime: '10 min read',
       date: '2024-01-05',
-      category: 'Digital Nomad',
+      category: t('digital_nomad'),
       icon: Compass,
       author: 'Wanderlogue Remote Work Team'
     }

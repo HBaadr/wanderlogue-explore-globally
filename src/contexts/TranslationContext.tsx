@@ -1039,6 +1039,112 @@ const translations: Translations = {
     ar: "أحدث مقالات السفر",
     es: "Últimos Artículos de Viaje",
     zh: "最新旅行文章"
+  },
+
+  // Add missing translation for logo_alt
+  logo_alt: {
+    en: "Travel Logo",
+    fr: "Logo de voyage", 
+    ar: "شعار السفر",
+    es: "Logo de viaje",
+    zh: "旅游标志"
+  },
+
+  // City page labels
+  mountains: {
+    en: "Mountains",
+    fr: "Montagnes",
+    ar: "الجبال",
+    es: "Montañas",
+    zh: "山脉"
+  },
+  historical_sites: {
+    en: "Historical Sites",
+    fr: "Sites historiques",
+    ar: "المواقع التاريخية",
+    es: "Sitios históricos",
+    zh: "历史遗迹"
+  },
+  low_crime_rate: {
+    en: "Low Crime Rate",
+    fr: "Faible taux de criminalité",
+    ar: "معدل جريمة منخفض",
+    es: "Baja tasa de criminalidad",
+    zh: "低犯罪率"
+  },
+  safe_drinking_water: {
+    en: "Safe Drinking Water",
+    fr: "Eau potable sûre",
+    ar: "مياه شرب آمنة",
+    es: "Agua potable segura",
+    zh: "安全饮用水"
+  },
+  atms_available: {
+    en: "ATMs Available",
+    fr: "Distributeurs disponibles",
+    ar: "أجهزة صراف آلي متوفرة",
+    es: "Cajeros automáticos disponibles",
+    zh: "自动取款机可用"
+  },
+
+  // Article categories
+  travel_guide: {
+    en: "Travel Guide",
+    fr: "Guide de voyage",
+    ar: "دليل السفر",
+    es: "Guía de viaje",
+    zh: "旅行指南"
+  },
+  sustainable_travel: {
+    en: "Sustainable Travel",
+    fr: "Voyage durable",
+    ar: "السفر المستدام",
+    es: "Viaje sostenible",
+    zh: "可持续旅行"
+  },
+  digital_nomad: {
+    en: "Digital Nomad",
+    fr: "Nomade numérique",
+    ar: "الرحل الرقمي",
+    es: "Nómada digital",
+    zh: "数字游民"
+  },
+
+  // About page content
+  global_coverage: {
+    en: "Global Coverage",
+    fr: "Couverture mondiale",
+    ar: "تغطية عالمية",
+    es: "Cobertura global",
+    zh: "全球覆盖"
+  },
+  community_driven: {
+    en: "Community Driven",
+    fr: "Communauté participative",
+    ar: "يحركها المجتمع",
+    es: "Impulsado por la comunidad",
+    zh: "社区驱动"
+  },
+  comprehensive_database: {
+    en: "Comprehensive Database",
+    fr: "Base de données complète",
+    ar: "قاعدة بيانات شاملة",
+    es: "Base de datos integral",
+    zh: "综合数据库"
+  },
+  our_mission: {
+    en: "Our Mission",
+    fr: "Notre Mission",
+    ar: "مهمتنا",
+    es: "Nuestra Misión",
+    zh: "我们的使命"
+  },
+  website_url: {
+    en: "wanderlogue.com",
+    fr: "wanderlogue.com",
+    ar: "wanderlogue.com",
+    es: "wanderlogue.com",
+    zh: "wanderlogue.com"
   }
 };
 

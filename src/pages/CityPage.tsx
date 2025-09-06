@@ -67,11 +67,11 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   const cityFeatures = [
     { icon: Plane, label: 'Airport', value: city.have_airport },
     { icon: Waves, label: 'Beach', value: city.have_beach },
-    { icon: Mountain, label: 'Mountains', value: city.have_mountains },
-    { icon: Clock, label: 'Historical Sites', value: city.have_historical_sites },
-    { icon: Shield, label: 'Low Crime Rate', value: city.have_low_crime_rate },
-    { icon: Droplets, label: 'Safe Drinking Water', value: city.have_safe_drinking_water },
-    { icon: CreditCard, label: 'ATMs Available', value: city.is_atms_available },
+    { icon: Mountain, label: t('mountains'), value: city.have_mountains },
+    { icon: Clock, label: t('historical_sites'), value: city.have_historical_sites },
+    { icon: Shield, label: t('low_crime_rate'), value: city.have_low_crime_rate },
+    { icon: Droplets, label: t('safe_drinking_water'), value: city.have_safe_drinking_water },
+    { icon: CreditCard, label: t('atms_available'), value: city.is_atms_available },
   ];
 
   return (

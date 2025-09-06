@@ -19,7 +19,7 @@ const BlogPage = () => {
       excerpt: 'Discover the most breathtaking UNESCO World Heritage Sites around the globe, from ancient wonders to natural marvels that showcase humanity\'s greatest achievements.',
       readTime: '8 min read',
       date: '2024-01-15',
-      category: 'Travel Guide',
+      category: t('travel_guide'),
       icon: Camera,
       featured: true
     },
@@ -29,7 +29,7 @@ const BlogPage = () => {
       excerpt: 'Learn essential tips for eco-friendly travel that protects destinations while creating meaningful experiences. Discover how to minimize your carbon footprint while maximizing adventure.',
       readTime: '6 min read',
       date: '2024-01-10',
-      category: 'Sustainable Travel',
+      category: t('sustainable_travel'),
       icon: MapPin,
       featured: false
     },
@@ -39,7 +39,7 @@ const BlogPage = () => {
       excerpt: 'Explore the best cities worldwide for digital nomads, featuring reliable internet, affordable living costs, vibrant communities, and incredible experiences.',
       readTime: '10 min read',
       date: '2024-01-05',
-      category: 'Digital Nomad',
+      category: t('digital_nomad'),
       icon: Compass,
       featured: false
     }

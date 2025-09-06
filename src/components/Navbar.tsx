@@ -21,9 +21,9 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to={getHomeLink()} className="flex items-center gap-2 font-bold text-xl">
-              <img 
+            <img 
                 src="/travel-logo.png"
-                alt="Logo voyage"
+                alt={t('logo_alt')}
                 className="h-10 w-10 object-contain"
               />
             <span className="travel-heading text-xl">Wanderlogue</span>
@@ -34,13 +34,13 @@ export function Navbar() {
               to="/blog"
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >
-              <span className="hidden md:inline">Blog</span>
+              <span className="hidden md:inline">{t('blog')}</span>
             </Link>
             <Link 
               to="/about"
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >
-              <span className="hidden md:inline">About</span>
+              <span className="hidden md:inline">{t('about')}</span>
             </Link>
             <Link 
               to={getHomeLink()}
