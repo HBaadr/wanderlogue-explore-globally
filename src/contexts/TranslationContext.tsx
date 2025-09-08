@@ -1300,7 +1300,7 @@ const translations: Translations = {
     zh: "由旅行爱好者为旅行爱好者精心制作，确保每个目的地都得到美丽的呈现。"
   },
 
-  // Blog page translations
+  // Article page translations
   subscribe: {
     en: "Subscribe",
     fr: "S'abonner",
@@ -1337,6 +1337,83 @@ const translations: Translations = {
     ar: "المؤلف",
     es: "Autor",
     zh: "作者"
+  },
+
+  // Article 1: UNESCO World Heritage Sites
+  article_1_title: {
+    en: "The Ultimate Guide to UNESCO World Heritage Sites: Hidden Gems You Must Visit",
+    fr: "Le Guide Ultime des Sites du Patrimoine Mondial de l'UNESCO : Joyaux Cachés à Découvrir",
+    ar: "الدليل الشامل لمواقع التراث العالمي لليونسكو: الجواهر المخفية التي يجب زيارتها",
+    es: "La Guía Definitiva de los Sitios del Patrimonio Mundial de la UNESCO: Gemas Ocultas que Debes Visitar",
+    zh: "联合国教科文组织世界遗产地终极指南：您必须参观的隐藏宝石"
+  },
+  article_1_excerpt: {
+    en: "Discover the most breathtaking UNESCO World Heritage Sites around the globe, from ancient wonders to natural marvels that showcase humanity's greatest achievements.",
+    fr: "Découvrez les sites du patrimoine mondial de l'UNESCO les plus époustouflants à travers le globe, des merveilles antiques aux merveilles naturelles qui présentent les plus grandes réalisations de l'humanité.",
+    ar: "اكتشف أروع مواقع التراث العالمي لليونسكو حول العالم، من العجائب القديمة إلى العجائب الطبيعية التي تعرض أعظم إنجازات البشرية.",
+    es: "Descubre los sitios del Patrimonio Mundial de la UNESCO más impresionantes del mundo, desde maravillas antiguas hasta maravillas naturales que muestran los mayores logros de la humanidad.",
+    zh: "发现全球最令人惊叹的联合国教科文组织世界遗产地，从古代奇观到展示人类最伟大成就的自然奇迹。"
+  },
+  article_1_content_h1: {
+    en: "Discover the World's Most Precious Treasures",
+    fr: "Découvrez les Trésors les Plus Précieux du Monde",
+    ar: "اكتشف أثمن كنوز العالم",
+    es: "Descubre los Tesoros Más Preciosos del Mundo",
+    zh: "发现世界上最珍贵的宝藏"
+  },
+  article_1_content_p1: {
+    en: "UNESCO World Heritage Sites represent the pinnacle of human achievement and natural wonder. These extraordinary locations have been carefully selected and protected for their outstanding universal value to humanity. With over 1,200 sites across the globe, these destinations offer travelers the chance to witness history, culture, and nature at their most magnificent.",
+    fr: "Les sites du patrimoine mondial de l'UNESCO représentent l'apogée des réalisations humaines et des merveilles naturelles. Ces lieux extraordinaires ont été soigneusement sélectionnés et protégés pour leur valeur universelle exceptionnelle pour l'humanité. Avec plus de 1 200 sites à travers le globe, ces destinations offrent aux voyageurs la chance de témoigner de l'histoire, de la culture et de la nature dans leur plus grande magnificence.",
+    ar: "تمثل مواقع التراث العالمي لليونسكو قمة الإنجاز البشري والعجائب الطبيعية. تم اختيار هذه المواقع الاستثنائية وحمايتها بعناية لقيمتها العالمية الاستثنائية للبشرية. مع أكثر من 1200 موقع عبر العالم، تقدم هذه الوجهات للمسافرين فرصة مشاهدة التاريخ والثقافة والطبيعة في أروع صورها.",
+    es: "Los sitios del Patrimonio Mundial de la UNESCO representan la cúspide del logro humano y la maravilla natural. Estos lugares extraordinarios han sido cuidadosamente seleccionados y protegidos por su valor universal excepcional para la humanidad. Con más de 1,200 sitios en todo el mundo, estos destinos ofrecen a los viajeros la oportunidad de presenciar la historia, la cultura y la naturaleza en su forma más magnífica.",
+    zh: "联合国教科文组织世界遗产地代表了人类成就和自然奇观的顶峰。这些非凡的地点经过精心挑选和保护，因其对人类的杰出普遍价值而闻名。全球有1200多个遗址，这些目的地为旅行者提供了见证历史、文化和自然最壮丽时刻的机会。"
+  },
+
+  // Article 2: Sustainable Travel
+  article_2_title: {
+    en: "Sustainable Travel in 2024: How to Explore the World Responsibly",
+    fr: "Voyage Durable en 2024 : Comment Explorer le Monde de Manière Responsable",
+    ar: "السفر المستدام في 2024: كيفية استكشاف العالم بمسؤولية",
+    es: "Viaje Sostenible en 2024: Cómo Explorar el Mundo de Manera Responsable",
+    zh: "2024年可持续旅行：如何负责任地探索世界"
+  },
+  article_2_excerpt: {
+    en: "Learn essential tips for eco-friendly travel that protects destinations while creating meaningful experiences. Discover how to minimize your carbon footprint while maximizing adventure.",
+    fr: "Apprenez des conseils essentiels pour un voyage respectueux de l'environnement qui protège les destinations tout en créant des expériences significatives. Découvrez comment minimiser votre empreinte carbone tout en maximisant l'aventure.",
+    ar: "تعلم النصائح الأساسية للسفر الصديق للبيئة الذي يحمي الوجهات مع خلق تجارب ذات معنى. اكتشف كيفية تقليل بصمتك الكربونية مع تعظيم المغامرة.",
+    es: "Aprende consejos esenciales para viajes ecológicos que protegen los destinos mientras crean experiencias significativas. Descubre cómo minimizar tu huella de carbono mientras maximizas la aventura.",
+    zh: "学习生态友好旅行的基本技巧，既保护目的地又创造有意义的体验。了解如何在最大化冒险的同时最小化碳足迹。"
+  },
+
+  // Article 3: Digital Nomad
+  article_3_title: {
+    en: "Top 15 Digital Nomad Destinations for Remote Workers in 2024",
+    fr: "Top 15 des Destinations Nomades Numériques pour Travailleurs à Distance en 2024",
+    ar: "أفضل 15 وجهة للرحل الرقميين للعمال عن بُعد في 2024",
+    es: "Top 15 Destinos Nómadas Digitales para Trabajadores Remotos en 2024",
+    zh: "2024年远程工作者的15个顶级数字游民目的地"
+  },
+  article_3_excerpt: {
+    en: "Explore the best cities worldwide for digital nomads, featuring reliable internet, affordable living costs, vibrant communities, and incredible experiences.",
+    fr: "Explorez les meilleures villes du monde pour les nomades numériques, avec un internet fiable, des coûts de vie abordables, des communautés dynamiques et des expériences incroyables.",
+    ar: "استكشف أفضل المدن في العالم للرحل الرقميين، بما يتميز بالإنترنت الموثوق وتكاليف المعيشة المعقولة والمجتمعات النابضة بالحياة والتجارب المذهلة.",
+    es: "Explora las mejores ciudades del mundo para nómadas digitales, con internet confiable, costos de vida asequibles, comunidades vibrantes y experiencias increíbles.",
+    zh: "探索全球数字游民的最佳城市，具有可靠的互联网、经济实惠的生活成本、充满活力的社区和令人难以置信的体验。"
+  },
+
+  explore_more_wanderlogue: {
+    en: "Explore More with Wanderlogue",
+    fr: "Explorez Plus avec Wanderlogue",
+    ar: "استكشف المزيد مع دليل الرحلات",
+    es: "Explora Más con Wanderlogue",
+    zh: "用游记探索更多"
+  },
+  download_app_description: {
+    en: "Discover thousands of destinations, UNESCO sites, and travel guides with our mobile app. Plan your next adventure with confidence using Wanderlogue's comprehensive travel resources.",
+    fr: "Découvrez des milliers de destinations, sites UNESCO et guides de voyage avec notre application mobile. Planifiez votre prochaine aventure en toute confiance grâce aux ressources de voyage complètes de Wanderlogue.",
+    ar: "اكتشف آلاف الوجهات ومواقع اليونسكو وأدلة السفر مع تطبيقنا المحمول. خطط لمغامرتك القادمة بثقة باستخدام موارد السفر الشاملة لدليل الرحلات.",
+    es: "Descubre miles de destinos, sitios UNESCO y guías de viaje con nuestra aplicación móvil. Planifica tu próxima aventura con confianza usando los recursos de viaje integrales de Wanderlogue.",
+    zh: "通过我们的移动应用程序发现数千个目的地、联合国教科文组织遗址和旅行指南。使用游记的综合旅行资源，自信地规划您的下一次冒险。"
   }
 };
 

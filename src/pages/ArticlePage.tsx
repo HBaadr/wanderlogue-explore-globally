@@ -20,11 +20,11 @@ const ArticlePage = () => {
 
   const articles = {
     'ultimate-guide-world-heritage-sites': {
-      title: 'The Ultimate Guide to UNESCO World Heritage Sites: Hidden Gems You Must Visit',
-      excerpt: 'Discover the most breathtaking UNESCO World Heritage Sites around the globe, from ancient wonders to natural marvels that showcase humanity\'s greatest achievements.',
+      title: t('article_1_title'),
+      excerpt: t('article_1_excerpt'),
       content: `
-        <h2>Discover the World's Most Precious Treasures</h2>
-        <p>UNESCO World Heritage Sites represent the pinnacle of human achievement and natural wonder. These extraordinary locations have been carefully selected and protected for their outstanding universal value to humanity. With over 1,200 sites across the globe, these destinations offer travelers the chance to witness history, culture, and nature at their most magnificent.</p>
+        <h2>${t('article_1_content_h1')}</h2>
+        <p>${t('article_1_content_p1')}</p>
 
         <h3>What Makes a UNESCO World Heritage Site Special?</h3>
         <p>To be inscribed on the UNESCO World Heritage List, a site must meet at least one of ten specific criteria that demonstrate outstanding universal value. These criteria range from representing a masterpiece of human creative genius to containing the most important and significant natural habitats for in-situ conservation of biological diversity.</p>
@@ -69,8 +69,8 @@ const ArticlePage = () => {
       author: 'Wanderlogue Travel Team'
     },
     'sustainable-travel-tips-2024': {
-      title: 'Sustainable Travel in 2024: How to Explore the World Responsibly',
-      excerpt: 'Learn essential tips for eco-friendly travel that protects destinations while creating meaningful experiences. Discover how to minimize your carbon footprint while maximizing adventure.',
+      title: t('article_2_title'),
+      excerpt: t('article_2_excerpt'),
       content: `
         <h2>The Future of Travel is Sustainable</h2>
         <p>As global awareness of environmental issues grows, sustainable travel has evolved from a niche concern to a fundamental responsibility for modern travelers. In 2024, eco-conscious tourism isn't just about reducing your carbon footprint—it's about creating positive impacts for destinations, communities, and cultures worldwide.</p>
@@ -139,8 +139,8 @@ const ArticlePage = () => {
       author: 'Wanderlogue Sustainability Team'
     },
     'digital-nomad-destinations-guide': {
-      title: 'Top 15 Digital Nomad Destinations for Remote Workers in 2024',
-      excerpt: 'Explore the best cities worldwide for digital nomads, featuring reliable internet, affordable living costs, vibrant communities, and incredible experiences.',
+      title: t('article_3_title'),
+      excerpt: t('article_3_excerpt'),
       content: `
         <h2>The Digital Nomad Revolution Continues</h2>
         <p>The digital nomad lifestyle has transformed from a niche phenomenon to a mainstream way of working and living. In 2024, more destinations than ever are actively courting remote workers with special visas, co-working spaces, and digital nomad-friendly infrastructure. Whether you're a seasoned location-independent professional or considering your first nomadic adventure, these destinations offer the perfect blend of work-life balance, community, and affordability.</p>
@@ -173,34 +173,7 @@ const ArticlePage = () => {
         Cape Town's stunning natural beauty, favorable exchange rates, and excellent infrastructure make it increasingly popular among digital nomads. The city offers a perfect work-life balance with world-class wine regions, beautiful beaches, and mountain hiking just minutes away. Co-working spaces like Workshop17 provide professional environments with spectacular views.</p>
 
         <p><strong>8. Montevideo, Uruguay</strong><br>
-        Uruguay's progressive policies and high quality of life make Montevideo an attractive nomad destination. The country offers excellent internet connectivity, political stability, and a relaxed lifestyle. While Spanish proficiency helps, many locals speak English, and the expat community is welcoming and supportive.</p>
-
-        <h3>Asian Nomad Havens</h3>
-        
-        <p><strong>9. Chiang Mai, Thailand</strong><br>
-        A longtime nomad favorite, Chiang Mai continues to attract remote workers with its incredibly low costs, reliable internet, and strong community. The city offers ancient temples, excellent street food, and easy access to nature. Numerous co-working spaces and regular nomad meetups create abundant networking opportunities.</p>
-
-        <p><strong>10. Ho Chi Minh City, Vietnam</strong><br>
-        Vietnam's economic boom has transformed Ho Chi Minh City into a modern metropolis while maintaining its unique character. The city offers excellent value for money, delicious cuisine, and improving infrastructure. The bustling energy and entrepreneurial spirit create an exciting environment for digital nomads.</p>
-
-        <p><strong>11. Kuala Lumpur, Malaysia</strong><br>
-        Malaysia's MM2H program and DE Rantau nomad pass make long-term stays easier. Kuala Lumpur offers excellent infrastructure, multicultural experiences, and affordable living costs. The city serves as a perfect base for exploring Southeast Asia while maintaining high urban amenities.</p>
-
-        <h3>European Gems</h3>
-        
-        <p><strong>12. Prague, Czech Republic</strong><br>
-        Prague's fairy-tale architecture, rich history, and central European location make it increasingly popular among nomads. The city offers excellent value for money compared to Western European capitals, reliable internet, and a growing startup scene. The zivno visa allows for long-term freelance work residence.</p>
-
-        <p><strong>13. Tallinn, Estonia</strong><br>
-        Estonia's digital nomad visa and tech-forward government policies create an ideal environment for remote workers. Tallinn offers medieval charm with modern infrastructure, excellent internet connectivity, and easy access to the rest of Europe. The e-Residency program provides additional business opportunities.</p>
-
-        <h3>American Adventures</h3>
-        
-        <p><strong>14. Buenos Aires, Argentina</strong><br>
-        Argentina's economic challenges create opportunities for digital nomads with foreign income. Buenos Aires offers European sophistication at South American prices, with incredible food, culture, and nightlife. The city's large expat community and excellent co-working infrastructure support remote workers.</p>
-
-        <p><strong>15. Playa del Carmen, Mexico</strong><br>
-        This Caribbean coastal town offers the perfect balance of beach life and work productivity. Excellent internet, numerous co-working spaces, and a large nomad community create ideal working conditions. The proximity to Mayan ruins, cenotes, and other attractions provides endless weekend adventure opportunities.</p>
+        Uruguay's stable political climate, excellent internet infrastructure, and progressive digital nomad policies make Montevideo an attractive South American base. The city offers a relaxed pace of life, beautiful beaches, and a growing tech scene. The peso's favorable exchange rate makes it surprisingly affordable for international remote workers.</p>
 
         <h3>Choosing Your Perfect Destination</h3>
         <p>The best digital nomad destination depends on your individual priorities, work requirements, and lifestyle preferences. Consider factors like time zones relative to your clients, visa requirements, healthcare quality, safety levels, and community presence when making your decision.</p>
@@ -269,71 +242,71 @@ const ArticlePage = () => {
                 <article.icon className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium text-sm">
-                  {article.category}
-                </span>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
+                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                    {article.category}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" />
+                    <span>{new Date(article.date).toLocaleDateString()}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{article.readTime}</span>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {t('author')}: {article.author}
+                </p>
               </div>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
               {article.title}
             </h1>
             
-            <div className="flex items-center gap-6 text-muted-foreground mb-8">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>{new Date(article.date).toLocaleDateString()}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>{article.readTime}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>By {article.author}</span>
-              </div>
-            </div>
+            <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+              {article.excerpt}
+            </p>
             
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm">
                 <Share2 className="h-4 w-4 mr-2" />
-                Share
+                {t('share_article')}
               </Button>
               <Button variant="outline" size="sm">
                 <Bookmark className="h-4 w-4 mr-2" />
-                Save
+                Bookmark
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* AdSense Ad */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500 mb-8">
-          <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
-          <div className="mt-2 text-xs text-gray-400">
-            Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
-            Ad Unit: {ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE}
-          </div>
-        </div>
-      </div>
-
       {/* Article Content */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="prose prose-lg max-w-none">
+          <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500 mb-12">
+            <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
+            <div className="mt-2 text-xs text-gray-400">
+              Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
+              Ad Unit: {ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE}
+            </div>
+          </div>
+          
+          <article>
             <div 
               dangerouslySetInnerHTML={{ __html: article.content }}
               className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
             />
-          </div>
+          </article>
 
           {/* App Download CTA */}
           <Card className="mt-12 bg-primary/5 border-primary/20">
             <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">{t('download_our_app')}</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('explore_more_wanderlogue')}</h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                {t('download_description')}
+                {t('download_app_description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Button
@@ -353,41 +326,6 @@ const ArticlePage = () => {
               </div>
             </CardContent>
           </Card>
-
-          {/* Related Articles */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold mb-8">Related Articles</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {Object.entries(articles)
-                .filter(([id]) => id !== articleId)
-                .slice(0, 2)
-                .map(([id, relatedArticle]) => (
-                  <Card key={id} className="hover:shadow-md smooth-transition">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                          <relatedArticle.icon className="h-4 w-4 text-primary" />
-                        </div>
-                        <span className="text-sm text-primary font-medium">{relatedArticle.category}</span>
-                      </div>
-                      <h4 className="font-semibold mb-2 line-clamp-2">
-                        <Link to={`/blog/${id}`} className="hover:text-primary smooth-transition">
-                          {relatedArticle.title}
-                        </Link>
-                      </h4>
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                        {relatedArticle.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span>{new Date(relatedArticle.date).toLocaleDateString()}</span>
-                        <span>{relatedArticle.readTime}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-            </div>
-          </div>
-
         </div>
       </section>
     </div>

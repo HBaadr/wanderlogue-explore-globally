@@ -19,8 +19,8 @@ const BlogPage = () => {
   const articles = [
     {
       id: 'ultimate-guide-world-heritage-sites',
-      title: 'The Ultimate Guide to UNESCO World Heritage Sites: Hidden Gems You Must Visit',
-      excerpt: 'Discover the most breathtaking UNESCO World Heritage Sites around the globe, from ancient wonders to natural marvels that showcase humanity\'s greatest achievements.',
+      title: t('article_1_title'),
+      excerpt: t('article_1_excerpt'),
       readTime: '8 min read',
       date: '2024-01-15',
       category: t('travel_guide'),
@@ -29,8 +29,8 @@ const BlogPage = () => {
     },
     {
       id: 'sustainable-travel-tips-2024',
-      title: 'Sustainable Travel in 2024: How to Explore the World Responsibly',
-      excerpt: 'Learn essential tips for eco-friendly travel that protects destinations while creating meaningful experiences. Discover how to minimize your carbon footprint while maximizing adventure.',
+      title: t('article_2_title'),
+      excerpt: t('article_2_excerpt'),
       readTime: '6 min read',
       date: '2024-01-10',
       category: t('sustainable_travel'),
@@ -39,8 +39,8 @@ const BlogPage = () => {
     },
     {
       id: 'digital-nomad-destinations-guide',
-      title: 'Top 15 Digital Nomad Destinations for Remote Workers in 2024',
-      excerpt: 'Explore the best cities worldwide for digital nomads, featuring reliable internet, affordable living costs, vibrant communities, and incredible experiences.',
+      title: t('article_3_title'),
+      excerpt: t('article_3_excerpt'),
       readTime: '10 min read',
       date: '2024-01-05',
       category: t('digital_nomad'),
