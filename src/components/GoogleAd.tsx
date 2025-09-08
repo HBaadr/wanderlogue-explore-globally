@@ -27,4 +27,4 @@ const GoogleAd = ({ adSlot }) => {
   );
 };
 
-export default GoogleAd;
+export { GoogleAd }
