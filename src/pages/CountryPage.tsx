@@ -9,6 +9,8 @@ import { HtmlContent } from '@/components/HtmlContent';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
+
 import SEO from '@/components/SEO';
 
 interface CountryPageProps {
