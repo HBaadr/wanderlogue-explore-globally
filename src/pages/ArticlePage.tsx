@@ -32,67 +32,7 @@ const ArticlePage = () => {
     'sustainable-travel-tips-2024': {
       title: t('article_2_title'),
       excerpt: t('article_2_excerpt'),
-      content: `
-        <h2>The Future of Travel is Sustainable</h2>
-        <p>As global awareness of environmental issues grows, sustainable travel has evolved from a niche concern to a fundamental responsibility for modern travelers. In 2024, eco-conscious tourism isn't just about reducing your carbon footprint—it's about creating positive impacts for destinations, communities, and cultures worldwide.</p>
-
-        <p>Sustainable travel encompasses environmental protection, cultural preservation, and economic benefits for local communities. It's about making thoughtful choices that ensure the places we love to visit remain beautiful and authentic for future generations while providing meaningful livelihoods for local people.</p>
-
-        <h3>Reducing Your Carbon Footprint</h3>
-        <p>Transportation typically accounts for the largest portion of travel-related carbon emissions. While avoiding air travel entirely isn't realistic for most international travelers, you can make smarter choices to minimize your impact.</p>
-
-        <p><strong>Choose Direct Routes:</strong> Direct flights produce significantly fewer emissions than connecting flights. The takeoff and landing phases of flights consume the most fuel, so reducing the number of these phases per journey makes a substantial difference.</p>
-
-        <p><strong>Stay Longer:</strong> Instead of taking multiple short trips, consider fewer but longer journeys. Spending two weeks in one destination instead of taking four weekend getaways dramatically reduces your per-day carbon footprint while allowing for deeper cultural immersion.</p>
-
-        <p><strong>Overland Alternatives:</strong> For regional travel, trains and buses often provide more sustainable alternatives to flying. Many countries have invested heavily in high-speed rail networks that make overland travel both efficient and enjoyable.</p>
-
-        <p><strong>Carbon Offsetting:</strong> While not a complete solution, verified carbon offset programs can help neutralize unavoidable emissions. Choose programs that support renewable energy projects or forest conservation in the regions you're visiting.</p>
-
-        <h3>Choosing Sustainable Accommodations</h3>
-        <p>Where you stay has a significant impact on local communities and environments. Look for accommodations that have implemented genuine sustainability practices, not just greenwashing marketing.</p>
-
-        <p>Eco-certified hotels and lodges often feature renewable energy systems, water conservation measures, waste reduction programs, and partnerships with local suppliers. Many also contribute directly to conservation projects or community development initiatives.</p>
-
-        <p>Consider alternative accommodations like locally-owned guesthouses, eco-lodges, or farm stays that provide authentic experiences while directly benefiting local families. These options often have smaller environmental footprints and offer more meaningful cultural interactions.</p>
-
-        <h3>Supporting Local Communities</h3>
-        <p>Sustainable travel prioritizes local economic development and cultural preservation. Your spending decisions can significantly impact destination communities, either positively or negatively.</p>
-
-        <p><strong>Local Guides and Services:</strong> Hire local guides, use local transportation services, and book tours through community-based operators. These choices ensure your tourism dollars directly benefit the people who call your destination home.</p>
-
-        <p><strong>Authentic Dining:</strong> Eat at locally-owned restaurants and try regional specialties made from local ingredients. This supports local farmers and producers while reducing food miles and packaging waste associated with imported foods.</p>
-
-        <p><strong>Responsible Souvenir Shopping:</strong> Purchase handicrafts directly from artisans or certified fair-trade shops. Avoid products made from endangered species, ancient artifacts, or items that contribute to environmental degradation.</p>
-
-        <h3>Minimizing Environmental Impact</h3>
-        <p>Small daily choices during your travels can collectively make a significant environmental difference. Sustainable travelers adopt practices that minimize waste, conserve resources, and protect natural habitats.</p>
-
-        <p>Bring reusable water bottles, shopping bags, and utensils to reduce single-use plastic consumption. Many destinations now have excellent tap water or reliable refilling stations, making plastic bottles unnecessary.</p>
-
-        <p>Respect wildlife and natural habitats by maintaining appropriate distances, not feeding animals, and sticking to designated trails. Choose wildlife experiences that prioritize animal welfare and conservation over entertainment.</p>
-
-        <h3>Technology for Sustainable Travel</h3>
-        <p>Modern technology offers powerful tools for making more sustainable travel choices. Apps can help you find eco-friendly accommodations, calculate carbon footprints, locate sustainable dining options, and connect with responsible tour operators.</p>
-
-        <p>Digital resources like Wanderlogue provide comprehensive destination information that helps you make informed choices about activities, accommodations, and transportation options that align with sustainable travel principles.</p>
-
-        <p>Use digital tickets and confirmations to reduce paper waste, and consider using shared mobility apps for urban transportation instead of private vehicles or taxis.</p>
-
-        <h3>Cultural Sensitivity and Respect</h3>
-        <p>Sustainable travel extends beyond environmental concerns to include cultural sensitivity and respect for local customs, traditions, and values. This aspect of sustainability ensures that tourism preserves rather than erodes cultural heritage.</p>
-
-        <p>Research local customs, dress codes, and etiquette before visiting. Learn basic phrases in the local language, understand tipping practices, and familiarize yourself with cultural taboos to avoid inadvertent offense.</p>
-
-        <p>Be mindful when taking photographs, especially of people or religious sites. Always ask permission before photographing individuals, and respect areas where photography is prohibited.</p>
-
-        <h3>The Long-term Vision</h3>
-        <p>Sustainable travel is ultimately about creating a tourism industry that regenerates rather than depletes the destinations we love. By making conscious choices as travelers, we can ensure that future generations will have the opportunity to experience the world's incredible diversity of cultures, landscapes, and wildlife.</p>
-
-        <p>Every sustainable choice you make—from the flight you book to the restaurant you choose—contributes to a larger movement toward responsible tourism. These individual actions collectively create powerful market signals that encourage the entire travel industry to adopt more sustainable practices.</p>
-
-        <p>Start implementing these sustainable travel practices on your next adventure. The planet, local communities, and future travelers will thank you for your commitment to exploring the world responsibly.</p>
-      `,
+      content: t('article_2_content'),
       readTime: '6 min read',
       date: '2024-01-10',
       category: t('sustainable_travel'),
