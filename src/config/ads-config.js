@@ -13,7 +13,7 @@ export const ADSENSE_CONFIG = {
     
     // Travel destination pages
     CONTINENT_PAGE: '',
-    COUNTRY_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567895',
+    COUNTRY_PAGE: '6896369114',
     CITY_PAGE: '',
     LANDMARK_PAGE: '',
     UNESCO_PAGE: ''
