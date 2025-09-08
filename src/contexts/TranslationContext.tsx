@@ -991,6 +991,13 @@ const translations: Translations = {
     es: "Leer Más",
     zh: "阅读更多"
   },
+  "bookmark": {
+    "en": "Bookmark",
+    "fr": "Marquer",
+    "ar": "حفظ",
+    "es": "Marcador",
+    "zh": "书签"
+  },
   "share_article": {
     en: "Share Article",
     fr: "Partager l'Article",
