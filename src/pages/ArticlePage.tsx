@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowLeft, Share2, Bookmark, MapPin, Camera, Compass }
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/contexts/TranslationContext';
 import SEO from '@/components/SEO';
@@ -144,14 +145,10 @@ const ArticlePage = () => {
 
       {/* Article Content */}
       <section className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500 mb-12">
-            <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
-            <div className="mt-2 text-xs text-gray-400">
-              Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
-              Ad Unit: {ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE}
-            </div>
-          </div>
+
+        <div className="mb-8 text-center">
+          <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE} />
+        </div>
           
           <article>
             <div 
