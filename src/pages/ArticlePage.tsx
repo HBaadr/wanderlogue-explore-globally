@@ -145,10 +145,10 @@ const ArticlePage = () => {
 
       {/* Article Content */}
       <section className="container mx-auto px-4 py-16">
-
-        <div className="mb-8 text-center">
-          <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE} />
-        </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-8 text-center">
+            <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.ARTICLE_PAGE} />
+          </div>
           
           <article>
             <div 
