@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
 
 import SEO from '@/components/SEO';
 
@@ -147,14 +148,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
 
         {/* AdSense Ad */}
         <div className="mb-8 text-center">
-          <ins 
-            className="adsbygoogle"
-            style={{display: 'block'}}
-            data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-            data-ad-slot="YOUR_AD_SLOT_ID"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.COUNTRY_PAGE} />
         </div>
 
         {/* Tabbed content */}
