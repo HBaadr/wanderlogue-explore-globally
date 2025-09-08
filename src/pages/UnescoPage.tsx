@@ -10,6 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { HtmlContent } from '@/components/HtmlContent';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
 import SEO from '@/components/SEO';
 
 interface UnescoPageProps {
@@ -140,16 +142,9 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
             )}
 
             {/* AdSense Ad */}
-            <div className="mb-8 text-center">
-              <ins 
-                className="adsbygoogle"
-                style={{display: 'block'}}
-                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-                data-ad-slot="YOUR_AD_SLOT_ID"
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-              />
-            </div>
+              <div className="mb-8 text-center">
+                <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.UNESCO_PAGE} />
+              </div>
 
             {/* Description */}
             <Card>
