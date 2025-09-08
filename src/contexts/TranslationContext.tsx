@@ -1375,20 +1375,6 @@ const translations: Translations = {
     es: "Descubre los sitios del Patrimonio Mundial de la UNESCO más impresionantes del mundo, desde maravillas antiguas hasta maravillas naturales que muestran los mayores logros de la humanidad.",
     zh: "发现全球最令人惊叹的联合国教科文组织世界遗产地，从古代奇观到展示人类最伟大成就的自然奇迹。"
   },
-  article_1_content_h1: {
-    en: "Discover the World's Most Precious Treasures",
-    fr: "Découvrez les Trésors les Plus Précieux du Monde",
-    ar: "اكتشف أثمن كنوز العالم",
-    es: "Descubre los Tesoros Más Preciosos del Mundo",
-    zh: "发现世界上最珍贵的宝藏"
-  },
-  article_1_content_p1: {
-    en: "UNESCO World Heritage Sites represent the pinnacle of human achievement and natural wonder. These extraordinary locations have been carefully selected and protected for their outstanding universal value to humanity. With over 1,200 sites across the globe, these destinations offer travelers the chance to witness history, culture, and nature at their most magnificent.",
-    fr: "Les sites du patrimoine mondial de l'UNESCO représentent l'apogée des réalisations humaines et des merveilles naturelles. Ces lieux extraordinaires ont été soigneusement sélectionnés et protégés pour leur valeur universelle exceptionnelle pour l'humanité. Avec plus de 1 200 sites à travers le globe, ces destinations offrent aux voyageurs la chance de témoigner de l'histoire, de la culture et de la nature dans leur plus grande magnificence.",
-    ar: "تمثل مواقع التراث العالمي لليونسكو قمة الإنجاز البشري والعجائب الطبيعية. تم اختيار هذه المواقع الاستثنائية وحمايتها بعناية لقيمتها العالمية الاستثنائية للبشرية. مع أكثر من 1200 موقع عبر العالم، تقدم هذه الوجهات للمسافرين فرصة مشاهدة التاريخ والثقافة والطبيعة في أروع صورها.",
-    es: "Los sitios del Patrimonio Mundial de la UNESCO representan la cúspide del logro humano y la maravilla natural. Estos lugares extraordinarios han sido cuidadosamente seleccionados y protegidos por su valor universal excepcional para la humanidad. Con más de 1,200 sitios en todo el mundo, estos destinos ofrecen a los viajeros la oportunidad de presenciar la historia, la cultura y la naturaleza en su forma más magnífica.",
-    zh: "联合国教科文组织世界遗产地代表了人类成就和自然奇观的顶峰。这些非凡的地点经过精心挑选和保护，因其对人类的杰出普遍价值而闻名。全球有1200多个遗址，这些目的地为旅行者提供了见证历史、文化和自然最壮丽时刻的机会。"
-  },
 
   // Article 2: Sustainable Travel
   article_2_title: {
