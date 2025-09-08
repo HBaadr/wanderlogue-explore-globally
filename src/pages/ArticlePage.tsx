@@ -23,7 +23,7 @@ const ArticlePage = () => {
       title: t('article_1_title'),
       excerpt: t('article_1_excerpt'),
       content: t('article_1_content'),
-      readTime: '8 min read',
+      readTime: t('min_read_8'),
       date: '2024-01-15',
       category: t('travel_guide'),
       icon: Camera,
@@ -33,7 +33,7 @@ const ArticlePage = () => {
       title: t('article_2_title'),
       excerpt: t('article_2_excerpt'),
       content: t('article_2_content'),
-      readTime: '6 min read',
+      readTime: t('min_read_6'),
       date: '2024-01-10',
       category: t('sustainable_travel'),
       icon: MapPin,
@@ -85,7 +85,7 @@ const ArticlePage = () => {
 
         <p>The digital nomad lifestyle offers incredible opportunities for personal and professional growth while exploring the world. Choose destinations that inspire you, support your work requirements, and align with your budget to create unforgettable nomadic experiences.</p>
       `,
-      readTime: '10 min read',
+      readTime: t('min_read_10'),
       date: '2024-01-05',
       category: t('digital_nomad'),
       icon: Compass,
