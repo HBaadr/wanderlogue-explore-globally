@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
 import africaImage from '@/assets/continent-africa.jpg';
 import asiaImage from '@/assets/continent-asia.jpg';
 import europeImage from '@/assets/continent-europe.jpg';
@@ -373,15 +374,9 @@ const Index = () => {
       </section>
 
       {/* AdSense Ad */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center text-gray-500">
-          <p className="text-sm font-medium">AdSense Display Ad (728x90)</p>
-          <div className="mt-2 text-xs text-gray-400">
-            Client ID: {ADSENSE_CONFIG.CLIENT_ID}<br />
-            Ad Unit: {ADSENSE_CONFIG.AD_UNITS.HOME_PAGE}
-          </div>
+        <div className="mb-8 text-center">
+          <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.HOME_PAGE} />
         </div>
-      </div>
 
       {/* CTA Section */}
       <section className="py-20 travel-gradient">
