@@ -6,17 +6,17 @@ export const ADSENSE_CONFIG = {
   // Ad Unit IDs for different page types
   AD_UNITS: {
     // Main pages
-    HOME_PAGE: '',
-    BLOG_PAGE: '', 
-    ABOUT_PAGE: '',
-    ARTICLE_PAGE: '',
+    HOME_PAGE: '5244376096',
+    BLOG_PAGE: '2510116135', 
+    ABOUT_PAGE: '2618212755',
+    ARTICLE_PAGE: '3847248530',
     
     // Travel destination pages
-    CONTINENT_PAGE: '',
+    CONTINENT_PAGE: '7650762174',
     COUNTRY_PAGE: '6896369114',
-    CITY_PAGE: '',
-    LANDMARK_PAGE: '',
-    UNESCO_PAGE: ''
+    CITY_PAGE: '1304845674',
+    LANDMARK_PAGE: '3711517163',
+    UNESCO_PAGE: '8249527976'
   }
 };
 
