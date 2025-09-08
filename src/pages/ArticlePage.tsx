@@ -67,7 +67,7 @@ const ArticlePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <SEO
         title={article.title}
         description={article.excerpt}
