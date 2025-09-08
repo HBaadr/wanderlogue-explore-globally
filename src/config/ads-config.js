@@ -1,22 +1,22 @@
 // AdSense Configuration
 export const ADSENSE_CONFIG = {
   // Client ID for all AdSense ads
-  CLIENT_ID: 'ca-pub-XXXXXXXXXXXXXXXXX', // Replace with your actual AdSense client ID
+  CLIENT_ID: 'ca-pub-8136444506955242',
   
   // Ad Unit IDs for different page types
   AD_UNITS: {
     // Main pages
-    HOME_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567890',
-    BLOG_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567891', 
-    ABOUT_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567892',
-    ARTICLE_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567893',
+    HOME_PAGE: '',
+    BLOG_PAGE: '', 
+    ABOUT_PAGE: '',
+    ARTICLE_PAGE: '',
     
     // Travel destination pages
-    CONTINENT_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567894',
+    CONTINENT_PAGE: '',
     COUNTRY_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567895',
-    CITY_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567896',
-    LANDMARK_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567897',
-    UNESCO_PAGE: 'ca-pub-XXXXXXXXXXXXXXXXX/1234567898'
+    CITY_PAGE: '',
+    LANDMARK_PAGE: '',
+    UNESCO_PAGE: ''
   }
 };
 
