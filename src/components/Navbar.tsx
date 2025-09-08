@@ -10,17 +10,17 @@ export function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const getHomeLink = () => {
+  const getNavigationLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('language', language);
-    return `/?${searchParams.toString()}`;
+    return `${path}?${searchParams.toString()}`;
   };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to={getHomeLink()} className="flex items-center gap-2 font-bold text-xl">
+          <Link to={getNavigationLink('/')} className="flex items-center gap-2 font-bold text-xl">
             <img 
                 src="/travel-logo.png"
                 alt={t('logo_alt')}
@@ -31,19 +31,19 @@ export function Navbar() {
           
           <div className="flex items-center gap-4">
             <Link 
-              to="/blog"
+              to={getNavigationLink('/blog')}
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >
               <span className="hidden md:inline">{t('blog')}</span>
             </Link>
             <Link 
-              to="/about"
+              to={getNavigationLink('/about')}
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >
               <span className="hidden md:inline">{t('about')}</span>
             </Link>
             <Link 
-              to={getHomeLink()}
+              to={getNavigationLink('/')}
               className="flex items-center gap-2 text-sm font-medium hover:text-primary smooth-transition"
             >
               <MapPin className="h-4 w-4" />

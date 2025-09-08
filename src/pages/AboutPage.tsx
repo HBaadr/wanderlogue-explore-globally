@@ -23,22 +23,22 @@ const AboutPage = () => {
     {
       icon: Globe,
       title: t('global_coverage'),
-      description: 'Explore 6 continents, 195+ countries, 1780+ cities, and thousands of landmarks worldwide.'
+      description: t('global_coverage_description')
     },
     {
       icon: Award,
-      title: 'UNESCO Heritage Sites',
-      description: 'Discover over 1200 UNESCO World Heritage Sites with detailed information and travel tips.'
+      title: t('unesco_heritage_sites'),
+      description: t('unesco_heritage_description')
     },
     {
       icon: Users,
       title: t('community_driven'),
-      description: 'Join millions of travelers sharing experiences and recommendations from around the globe.'
+      description: t('community_driven_description')
     },
     {
       icon: Heart,
-      title: 'Made with Love',
-      description: 'Crafted by travel lovers for travel lovers, ensuring every destination is presented beautifully.'
+      title: t('made_with_love'),
+      description: t('made_with_love_description')
     }
   ];
 
@@ -83,42 +83,30 @@ const AboutPage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
-              <h2 className="text-3xl font-bold mb-6 travel-heading">Our Mission</h2>
+              <h2 className="text-3xl font-bold mb-6 travel-heading">{t('our_mission')}</h2>
               <div className="prose prose-lg text-muted-foreground space-y-4">
                 <p>
-                  At Wanderlogue, we believe that travel is one of life's greatest gifts. Our mission is to make world exploration 
-                  accessible, informative, and inspiring for every traveler, whether you're planning your first international trip 
-                  or you're a seasoned globetrotter seeking new adventures.
+                  {t('mission_paragraph_1')}
                 </p>
                 <p>
-                  We've created a comprehensive travel platform that combines detailed destination information with practical travel 
-                  resources, helping you discover not just where to go, but how to make the most of every journey. From bustling 
-                  metropolitan cities to remote natural wonders, from ancient UNESCO World Heritage Sites to modern architectural marvels.
+                  {t('mission_paragraph_2')}
                 </p>
                 <p>
-                  Our team of travel enthusiasts and local experts work tirelessly to curate accurate, up-to-date information about 
-                  destinations worldwide. We understand that great travel starts with great planning, and we're here to be your trusted 
-                  companion every step of the way.
+                  {t('mission_paragraph_3')}
                 </p>
               </div>
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-6 travel-heading">What We Offer</h2>
+              <h2 className="text-3xl font-bold mb-6 travel-heading">{t('what_we_offer')}</h2>
               <div className="prose prose-lg text-muted-foreground space-y-4">
                 <p>
-                  Wanderlogue is more than just a travel app – it's your gateway to the world. We provide comprehensive information 
-                  about destinations across all six continents, including detailed guides for countries, cities, landmarks, and 
-                  UNESCO World Heritage Sites.
+                  {t('what_we_offer_paragraph_1')}
                 </p>
                 <p>
-                  Our platform features interactive world maps, cultural insights, practical travel tips, local cuisine recommendations, 
-                  transportation guides, and curated lists of must-see attractions and activities. Whether you're interested in 
-                  historical sites, natural wonders, cultural experiences, or modern attractions, we have something for every type of traveler.
+                  {t('what_we_offer_paragraph_2')}
                 </p>
                 <p>
-                  Available on both Android and iOS, Wanderlogue ensures you have access to reliable travel information wherever your 
-                  adventures take you. Our multilingual support means language barriers won't limit your exploration – discover the 
-                  world in English, French, Arabic, Spanish, or Chinese.
+                  {t('what_we_offer_paragraph_3')}
                 </p>
               </div>
             </div>
@@ -152,19 +140,19 @@ const AboutPage = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">6</div>
-                <div className="text-sm text-muted-foreground font-medium">Continents</div>
+                <div className="text-sm text-muted-foreground font-medium">{t('continents_label')}</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">195+</div>
-                <div className="text-sm text-muted-foreground font-medium">Countries</div>
+                <div className="text-sm text-muted-foreground font-medium">{t('countries_label')}</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">1780+</div>
-                <div className="text-sm text-muted-foreground font-medium">Cities</div>
+                <div className="text-sm text-muted-foreground font-medium">{t('cities_label')}</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary mb-2">14000+</div>
-                <div className="text-sm text-muted-foreground font-medium">Landmarks</div>
+                <div className="text-sm text-muted-foreground font-medium">{t('landmarks_label')}</div>
               </div>
             </div>
           </div>
@@ -185,7 +173,7 @@ const AboutPage = () => {
                 <CardContent className="p-6 text-center">
                   <Mail className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">{t('email_us')}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">General inquiries and support</p>
+                  <p className="text-muted-foreground text-sm mb-4">{t('general_inquiries_support')}</p>
                   <Button variant="outline" size="sm" asChild>
                     <a href="mailto:contact@wanderlogue.com">contact@wanderlogue.com</a>
                   </Button>
@@ -196,7 +184,7 @@ const AboutPage = () => {
                 <CardContent className="p-6 text-center">
                   <Globe className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">{t('visit_website')}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">Explore destinations online</p>
+                  <p className="text-muted-foreground text-sm mb-4">{t('explore_destinations_online')}</p>
                   <Button variant="outline" size="sm" asChild>
                     <a href="/" target="_blank" rel="noopener noreferrer">{t('website_url')}</a>
                   </Button>
@@ -207,9 +195,9 @@ const AboutPage = () => {
                 <CardContent className="p-6 text-center">
                   <MapPin className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">{t('global_reach')}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">Available worldwide</p>
+                  <p className="text-muted-foreground text-sm mb-4">{t('available_worldwide')}</p>
                   <div className="text-sm text-muted-foreground">
-                    Serving travelers globally
+                    {t('serving_travelers_globally')}
                   </div>
                 </CardContent>
               </Card>
@@ -228,7 +216,7 @@ const AboutPage = () => {
                   onClick={() => window.open('https://play.google.com/store/apps/details?id=net.wanderlogue', '_blank')}
                 >
                   <Smartphone className="h-6 w-6 mr-3" />
-                  Download for Android
+                  {t('download_android')}
                 </Button>
                 <Button
                   size="lg"
@@ -236,7 +224,7 @@ const AboutPage = () => {
                   onClick={() => window.open('https://apps.apple.com/ma/app/wanderlogue/id6538716270', '_blank')}
                 >
                   <Smartphone className="h-6 w-6 mr-3" />
-                  Download for iOS
+                  {t('download_ios')}
                 </Button>
               </div>
             </div>

@@ -1145,6 +1145,198 @@ const translations: Translations = {
     ar: "wanderlogue.com",
     es: "wanderlogue.com",
     zh: "wanderlogue.com"
+  },
+
+  // Additional About page translations
+  what_we_offer: {
+    en: "What We Offer",
+    fr: "Ce que Nous Offrons",
+    ar: "ما نقدمه",
+    es: "Lo Que Ofrecemos",
+    zh: "我们提供什么"
+  },
+  continents_label: {
+    en: "Continents",
+    fr: "Continents",
+    ar: "القارات",
+    es: "Continentes",
+    zh: "大洲"
+  },
+  countries_label: {
+    en: "Countries",
+    fr: "Pays",
+    ar: "دول",
+    es: "Países",
+    zh: "国家"
+  },
+  cities_label: {
+    en: "Cities",
+    fr: "Villes",
+    ar: "مدن",
+    es: "Ciudades",
+    zh: "城市"
+  },
+  landmarks_label: {
+    en: "Landmarks",
+    fr: "Monuments",
+    ar: "معالم",
+    es: "Monumentos",
+    zh: "地标"
+  },
+  available_worldwide: {
+    en: "Available worldwide",
+    fr: "Disponible dans le monde entier",
+    ar: "متاح في جميع أنحاء العالم",
+    es: "Disponible en todo el mundo",
+    zh: "全球可用"
+  },
+  serving_travelers_globally: {
+    en: "Serving travelers globally",
+    fr: "Au service des voyageurs du monde entier",
+    ar: "نخدم المسافرين عالميًا",
+    es: "Sirviendo a viajeros globalmente",
+    zh: "为全球旅行者服务"
+  },
+  unesco_heritage_sites: {
+    en: "UNESCO Heritage Sites",
+    fr: "Sites du patrimoine UNESCO",
+    ar: "مواقع التراث العالمي لليونسكو",
+    es: "Sitios del Patrimonio UNESCO",
+    zh: "联合国教科文组织遗产地"
+  },
+  made_with_love: {
+    en: "Made with Love",
+    fr: "Fait avec Amour",
+    ar: "صنع بحب",
+    es: "Hecho con Amor",
+    zh: "用爱制作"
+  },
+  general_inquiries_support: {
+    en: "General inquiries and support",
+    fr: "Demandes générales et support",
+    ar: "الاستفسارات العامة والدعم",
+    es: "Consultas generales y soporte",
+    zh: "一般咨询和支持"
+  },
+  explore_destinations_online: {
+    en: "Explore destinations online",
+    fr: "Explorez les destinations en ligne",
+    ar: "استكشف الوجهات عبر الإنترنت",
+    es: "Explora destinos en línea",
+    zh: "在线探索目的地"
+  },
+
+  // Mission and content paragraphs
+  mission_paragraph_1: {
+    en: "At Wanderlogue, we believe that travel is one of life's greatest gifts. Our mission is to make world exploration accessible, informative, and inspiring for every traveler, whether you're planning your first international trip or you're a seasoned globetrotter seeking new adventures.",
+    fr: "Chez Wanderlogue, nous croyons que le voyage est l'un des plus grands cadeaux de la vie. Notre mission est de rendre l'exploration du monde accessible, informative et inspirante pour chaque voyageur, que vous planifiez votre premier voyage international ou que vous soyez un globe-trotter expérimenté à la recherche de nouvelles aventures.",
+    ar: "في دليل الرحلات، نؤمن أن السفر هو أحد أعظم هدايا الحياة. مهمتنا هي جعل استكشاف العالم في متناول الجميع ومفيدًا وملهمًا لكل مسافر، سواء كنت تخطط لرحلتك الدولية الأولى أو كنت مسافرًا محنكًا تبحث عن مغامرات جديدة.",
+    es: "En Wanderlogue, creemos que viajar es uno de los regalos más grandes de la vida. Nuestra misión es hacer que la exploración del mundo sea accesible, informativa e inspiradora para cada viajero, ya sea que estés planeando tu primer viaje internacional o seas un trotamundos experimentado buscando nuevas aventuras.",
+    zh: "在游记中，我们相信旅行是人生最大的礼物之一。我们的使命是让世界探索对每位旅行者都是可获得的、信息丰富的和鼓舞人心的，无论您是在计划第一次国际旅行，还是经验丰富的环球旅行者寻求新的冒险。"
+  },
+  mission_paragraph_2: {
+    en: "We've created a comprehensive travel platform that combines detailed destination information with practical travel resources, helping you discover not just where to go, but how to make the most of every journey. From bustling metropolitan cities to remote natural wonders, from ancient UNESCO World Heritage Sites to modern architectural marvels.",
+    fr: "Nous avons créé une plateforme de voyage complète qui combine des informations détaillées sur les destinations avec des ressources de voyage pratiques, vous aidant à découvrir non seulement où aller, mais comment tirer le meilleur parti de chaque voyage. Des villes métropolitaines animées aux merveilles naturelles reculées, des anciens sites du patrimoine mondial de l'UNESCO aux merveilles architecturales modernes.",
+    ar: "لقد أنشأنا منصة سفر شاملة تجمع بين معلومات تفصيلية عن الوجهات وموارد السفر العملية، مما يساعدك على اكتشاف ليس فقط إلى أين تذهب، ولكن كيفية الاستفادة القصوى من كل رحلة. من المدن الحضرية الصاخبة إلى العجائب الطبيعية النائية، من مواقع التراث العالمي القديمة لليونسكو إلى العجائب المعمارية الحديثة.",
+    es: "Hemos creado una plataforma de viajes integral que combina información detallada de destinos con recursos prácticos de viaje, ayudándote a descubrir no solo dónde ir, sino cómo aprovechar al máximo cada viaje. Desde ciudades metropolitanas bulliciosas hasta maravillas naturales remotas, desde antiguos sitios del Patrimonio Mundial de la UNESCO hasta maravillas arquitectónicas modernas.",
+    zh: "我们创建了一个综合的旅行平台，将详细的目的地信息与实用的旅行资源相结合，帮助您发现不仅去哪里，还有如何充分利用每次旅程。从繁华的大都市到偏远的自然奇观，从古老的联合国教科文组织世界遗产地到现代建筑奇迹。"
+  },
+  mission_paragraph_3: {
+    en: "Our team of travel enthusiasts and local experts work tirelessly to curate accurate, up-to-date information about destinations worldwide. We understand that great travel starts with great planning, and we're here to be your trusted companion every step of the way.",
+    fr: "Notre équipe d'enthousiastes du voyage et d'experts locaux travaille sans relâche pour rassembler des informations précises et à jour sur les destinations du monde entier. Nous comprenons qu'un grand voyage commence par une grande planification, et nous sommes là pour être votre compagnon de confiance à chaque étape du chemin.",
+    ar: "يعمل فريقنا من عشاق السفر والخبراء المحليين بلا كلل لتجميع معلومات دقيقة ومحدثة حول الوجهات في جميع أنحاء العالم. نحن نفهم أن السفر الرائع يبدأ بالتخطيط الرائع، ونحن هنا لنكون رفيقكم الموثوق في كل خطوة على الطريق.",
+    es: "Nuestro equipo de entusiastas de los viajes y expertos locales trabaja incansablemente para curar información precisa y actualizada sobre destinos de todo el mundo. Entendemos que los grandes viajes comienzan con una gran planificación, y estamos aquí para ser tu compañero de confianza en cada paso del camino.",
+    zh: "我们的旅行爱好者和当地专家团队不懈努力，策划世界各地目的地的准确、最新信息。我们理解伟大的旅行始于伟大的规划，我们在这里成为您在每一步旅程中值得信赖的伴侣。"
+  },
+  what_we_offer_paragraph_1: {
+    en: "Wanderlogue is more than just a travel app – it's your gateway to the world. We provide comprehensive information about destinations across all six continents, including detailed guides for countries, cities, landmarks, and UNESCO World Heritage Sites.",
+    fr: "Wanderlogue est plus qu'une simple application de voyage - c'est votre passerelle vers le monde. Nous fournissons des informations complètes sur les destinations des six continents, y compris des guides détaillés pour les pays, les villes, les monuments et les sites du patrimoine mondial de l'UNESCO.",
+    ar: "دليل الرحلات أكثر من مجرد تطبيق سفر - إنه بوابتك إلى العالم. نقدم معلومات شاملة حول الوجهات عبر القارات الست جميعها، بما في ذلك أدلة مفصلة للبلدان والمدن والمعالم ومواقع التراث العالمي لليونسكو.",
+    es: "Wanderlogue es más que solo una aplicación de viajes: es tu puerta de entrada al mundo. Proporcionamos información integral sobre destinos en los seis continentes, incluyendo guías detalladas para países, ciudades, monumentos y sitios del Patrimonio Mundial de la UNESCO.",
+    zh: "游记不仅仅是一个旅行应用程序——它是您通往世界的门户。我们提供关于所有六大洲目的地的全面信息，包括国家、城市、地标和联合国教科文组织世界遗产地的详细指南。"
+  },
+  what_we_offer_paragraph_2: {
+    en: "Our platform features interactive world maps, cultural insights, practical travel tips, local cuisine recommendations, transportation guides, and curated lists of must-see attractions and activities. Whether you're interested in historical sites, natural wonders, cultural experiences, or modern attractions, we have something for every type of traveler.",
+    fr: "Notre plateforme propose des cartes du monde interactives, des aperçus culturels, des conseils de voyage pratiques, des recommandations de cuisine locale, des guides de transport et des listes organisées d'attractions et d'activités incontournables. Que vous soyez intéressé par les sites historiques, les merveilles naturelles, les expériences culturelles ou les attractions modernes, nous avons quelque chose pour chaque type de voyageur.",
+    ar: "تتميز منصتنا بخرائط عالمية تفاعلية ورؤى ثقافية ونصائح سفر عملية وتوصيات للمأكولات المحلية وأدلة النقل وقوائم منسقة من الأماكن والأنشطة التي يجب رؤيتها. سواء كنت مهتمًا بالمواقع التاريخية أو العجائب الطبيعية أو التجارب الثقافية أو المعالم الحديثة، لدينا شيء لكل نوع من المسافرين.",
+    es: "Nuestra plataforma cuenta con mapas mundiales interactivos, conocimientos culturales, consejos prácticos de viaje, recomendaciones de cocina local, guías de transporte y listas curadas de atracciones y actividades imperdibles. Ya sea que estés interesado en sitios históricos, maravillas naturales, experiencias culturales o atracciones modernas, tenemos algo para cada tipo de viajero.",
+    zh: "我们的平台具有互动世界地图、文化见解、实用旅行贴士、当地美食推荐、交通指南和精心策划的必看景点和活动清单。无论您对历史遗址、自然奇观、文化体验还是现代景点感兴趣，我们都有适合每种类型旅行者的内容。"
+  },
+  what_we_offer_paragraph_3: {
+    en: "Available on both Android and iOS, Wanderlogue ensures you have access to reliable travel information wherever your adventures take you. Our multilingual support means language barriers won't limit your exploration – discover the world in English, French, Arabic, Spanish, or Chinese.",
+    fr: "Disponible sur Android et iOS, Wanderlogue vous garantit un accès à des informations de voyage fiables où que vos aventures vous mènent. Notre support multilingue signifie que les barrières linguistiques ne limiteront pas votre exploration - découvrez le monde en anglais, français, arabe, espagnol ou chinois.",
+    ar: "متوفر على أندرويد و iOS، يضمن لك دليل الرحلات الوصول إلى معلومات السفر الموثوقة أينما تأخذك مغامراتك. دعمنا متعدد اللغات يعني أن حواجز اللغة لن تحد من استكشافك - اكتشف العالم باللغة الإنجليزية أو الفرنسية أو العربية أو الإسبانية أو الصينية.",
+    es: "Disponible en Android e iOS, Wanderlogue asegura que tengas acceso a información confiable de viajes donde sea que te lleven tus aventuras. Nuestro soporte multilingüe significa que las barreras del idioma no limitarán tu exploración: descubre el mundo en inglés, francés, árabe, español o chino.",
+    zh: "游记在安卓和iOS上都可用，确保您无论冒险带您到哪里都能获得可靠的旅行信息。我们的多语言支持意味着语言障碍不会限制您的探索——用英语、法语、阿拉伯语、西班牙语或中文发现世界。"
+  },
+
+  // Feature descriptions
+  global_coverage_description: {
+    en: "Explore 6 continents, 195+ countries, 1780+ cities, and thousands of landmarks worldwide.",
+    fr: "Explorez 6 continents, 195+ pays, 1780+ villes et des milliers de monuments dans le monde.",
+    ar: "استكشف 6 قارات و195+ دولة و1780+ مدينة وآلاف المعالم في جميع أنحاء العالم.",
+    es: "Explora 6 continentes, 195+ países, 1780+ ciudades y miles de monumentos en todo el mundo.",
+    zh: "探索6大洲、195+个国家、1780+个城市和全世界数千个地标。"
+  },
+  unesco_heritage_description: {
+    en: "Discover over 1200 UNESCO World Heritage Sites with detailed information and travel tips.",
+    fr: "Découvrez plus de 1200 sites du patrimoine mondial de l'UNESCO avec des informations détaillées et des conseils de voyage.",
+    ar: "اكتشف أكثر من 1200 موقع للتراث العالمي لليونسكو مع معلومات مفصلة ونصائح السفر.",
+    es: "Descubre más de 1200 sitios del Patrimonio Mundial de la UNESCO con información detallada y consejos de viaje.",
+    zh: "发现超过1200个联合国教科文组织世界遗产地，提供详细信息和旅行贴士。"
+  },
+  community_driven_description: {
+    en: "Join millions of travelers sharing experiences and recommendations from around the globe.",
+    fr: "Rejoignez des millions de voyageurs partageant des expériences et des recommandations du monde entier.",
+    ar: "انضم إلى ملايين المسافرين الذين يشاركون التجارب والتوصيات من جميع أنحاء العالم.",
+    es: "Únete a millones de viajeros compartiendo experiencias y recomendaciones de todo el mundo.",
+    zh: "加入数百万旅行者，分享来自全球各地的经验和推荐。"
+  },
+  made_with_love_description: {
+    en: "Crafted by travel lovers for travel lovers, ensuring every destination is presented beautifully.",
+    fr: "Conçu par des amoureux du voyage pour des amoureux du voyage, garantissant que chaque destination soit présentée magnifiquement.",
+    ar: "صُنع بواسطة عشاق السفر لعشاق السفر، مما يضمن تقديم كل وجهة بشكل جميل.",
+    es: "Creado por amantes de los viajes para amantes de los viajes, asegurando que cada destino se presente hermosamente.",
+    zh: "由旅行爱好者为旅行爱好者精心制作，确保每个目的地都得到美丽的呈现。"
+  },
+
+  // Blog page translations
+  subscribe: {
+    en: "Subscribe",
+    fr: "S'abonner",
+    ar: "اشترك",
+    es: "Suscribirse",
+    zh: "订阅"
+  },
+  enter_email: {
+    en: "Enter your email",
+    fr: "Entrez votre email",
+    ar: "أدخل بريدك الإلكتروني",
+    es: "Ingresa tu email",
+    zh: "输入您的邮箱"
+  },
+
+  // Article page translations
+  article_not_found: {
+    en: "Article not found",
+    fr: "Article non trouvé",
+    ar: "المقال غير موجود",
+    es: "Artículo no encontrado",
+    zh: "文章未找到"
+  },
+  back_to_blog: {
+    en: "Back to Blog",
+    fr: "Retour au Blog",
+    ar: "العودة إلى المدونة",
+    es: "Volver al Blog",
+    zh: "返回博客"
+  },
+  author: {
+    en: "Author",
+    fr: "Auteur",
+    ar: "المؤلف",
+    es: "Autor",
+    zh: "作者"
   }
 };
 

@@ -12,6 +12,10 @@ const BlogPage = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
 
+  const getNavigationLink = (path: string) => {
+    return `${path}?language=${language}`;
+  };
+
   const articles = [
     {
       id: 'ultimate-guide-world-heritage-sites',
@@ -103,7 +107,7 @@ const BlogPage = () => {
                 </CardHeader>
                 <CardContent>
                   <h3 className="text-2xl font-bold mb-4 leading-tight hover:text-primary smooth-transition">
-                    <Link to={`/blog/${article.id}`}>
+                    <Link to={getNavigationLink(`/blog/${article.id}`)}>
                       {article.title}
                     </Link>
                   </h3>
@@ -111,7 +115,7 @@ const BlogPage = () => {
                     {article.excerpt}
                   </p>
                   <Button variant="outline" asChild className="group">
-                    <Link to={`/blog/${article.id}`}>
+                    <Link to={getNavigationLink(`/blog/${article.id}`)}>
                       {t('read_full_article')}
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 smooth-transition" />
                     </Link>
@@ -144,10 +148,10 @@ const BlogPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('enter_email')}
               className="flex-1 px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <Button className="sm:w-auto">Subscribe</Button>
+            <Button className="sm:w-auto">{t('subscribe')}</Button>
           </div>
         </div>
       </section>

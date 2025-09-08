@@ -14,6 +14,10 @@ const ArticlePage = () => {
   const { language, getLocalizedField } = useLanguage();
   const { t } = useTranslation();
 
+  const getNavigationLink = (path: string) => {
+    return `${path}?language=${language}`;
+  };
+
   const articles = {
     'ultimate-guide-world-heritage-sites': {
       title: 'The Ultimate Guide to UNESCO World Heritage Sites: Hidden Gems You Must Visit',
@@ -218,7 +222,16 @@ const ArticlePage = () => {
   const article = articleId ? articles[articleId as keyof typeof articles] : null;
 
   if (!article) {
-    return <NotFound />;
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">{t('article_not_found')}</h1>
+          <Button asChild>
+            <Link to={getNavigationLink('/blog')}>{t('back_to_blog')}</Link>
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -244,9 +257,9 @@ const ArticlePage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
               <Button variant="ghost" size="sm" asChild>
-                <Link to="/blog">
+                <Link to={getNavigationLink('/blog')}>
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Blog
+                  {t('back_to_blog')}
                 </Link>
               </Button>
             </div>
@@ -318,10 +331,9 @@ const ArticlePage = () => {
           {/* App Download CTA */}
           <Card className="mt-12 bg-primary/5 border-primary/20">
             <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">Explore More with Wanderlogue</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('download_our_app')}</h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Discover thousands of destinations, UNESCO sites, and travel guides with our mobile app. 
-                Plan your next adventure with confidence using Wanderlogue's comprehensive travel resources.
+                {t('download_description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Button
@@ -329,14 +341,14 @@ const ArticlePage = () => {
                   className="bg-green-600 hover:bg-green-700 text-white"
                   onClick={() => window.open('https://play.google.com/store/apps/details?id=net.wanderlogue', '_blank')}
                 >
-                  Download for Android
+                  {t('download_android')}
                 </Button>
                 <Button
                   size="lg"
                   className="bg-gray-900 hover:bg-black text-white"
                   onClick={() => window.open('https://apps.apple.com/ma/app/wanderlogue/id6538716270', '_blank')}
                 >
-                  Download for iOS
+                  {t('download_ios')}
                 </Button>
               </div>
             </CardContent>
