@@ -1338,6 +1338,27 @@ const translations: Translations = {
     es: "Autor",
     zh: "作者"
   },
+  min_read_6: {
+    en: "6 min read",
+    fr: "lecture de 6 min",
+    ar: "قراءة لمدة 6 دقائق",
+    es: "Lectura de 6 min",
+    zh: "阅读需6分钟"
+  },
+  min_read_8: {
+    en: "8 min read",
+    fr: "lecture de 8 min",
+    ar: "قراءة لمدة 8 دقائق",
+    es: "Lectura de 8 min",
+    zh: "阅读需8分钟"
+  },
+  min_read_10: {
+    en: "10 min read",
+    fr: "lecture de 10 min",
+    ar: "قراءة لمدة 10 دقائق",
+    es: "Lectura de 10 min",
+    zh: "阅读需10分钟"
+  },
 
   // Article 1: UNESCO World Heritage Sites
   article_1_title: {
