@@ -23,8 +23,8 @@ const ArticlePage = () => {
       title: t('article_1_title'),
       excerpt: t('article_1_excerpt'),
       content: `
-        <h2>${t('article_1_content_h1')}</h2>
-        <p>${t('article_1_content_p1')}</p>
+        <h2>Discover the World's Most Precious Treasures</h2>
+        <p>UNESCO World Heritage Sites represent the pinnacle of human achievement and natural wonder. These extraordinary locations have been carefully selected and protected for their outstanding universal value to humanity. With over 1,200 sites across the globe, these destinations offer travelers the chance to witness history, culture, and nature at their most magnificent.</p>
 
         <h3>What Makes a UNESCO World Heritage Site Special?</h3>
         <p>To be inscribed on the UNESCO World Heritage List, a site must meet at least one of ten specific criteria that demonstrate outstanding universal value. These criteria range from representing a masterpiece of human creative genius to containing the most important and significant natural habitats for in-situ conservation of biological diversity.</p>
