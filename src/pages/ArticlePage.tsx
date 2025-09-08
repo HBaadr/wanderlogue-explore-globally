@@ -22,46 +22,7 @@ const ArticlePage = () => {
     'ultimate-guide-world-heritage-sites': {
       title: t('article_1_title'),
       excerpt: t('article_1_excerpt'),
-      content: `
-        <h2>Discover the World's Most Precious Treasures</h2>
-        <p>UNESCO World Heritage Sites represent the pinnacle of human achievement and natural wonder. These extraordinary locations have been carefully selected and protected for their outstanding universal value to humanity. With over 1,200 sites across the globe, these destinations offer travelers the chance to witness history, culture, and nature at their most magnificent.</p>
-
-        <h3>What Makes a UNESCO World Heritage Site Special?</h3>
-        <p>To be inscribed on the UNESCO World Heritage List, a site must meet at least one of ten specific criteria that demonstrate outstanding universal value. These criteria range from representing a masterpiece of human creative genius to containing the most important and significant natural habitats for in-situ conservation of biological diversity.</p>
-
-        <p>The selection process is rigorous and scientific, involving extensive documentation, evaluation by international experts, and approval by the World Heritage Committee. This ensures that only the most exceptional sites receive this prestigious designation, making each one a must-visit destination for discerning travelers.</p>
-
-        <h3>Hidden Gems: Lesser-Known World Heritage Sites</h3>
-        <p>While famous sites like Machu Picchu, the Great Wall of China, and the Pyramids of Giza attract millions of visitors annually, there are countless hidden gems waiting to be discovered. These lesser-known treasures offer equally spectacular experiences with fewer crowds and more authentic encounters.</p>
-
-        <p><strong>Socotra Archipelago, Yemen:</strong> Often called the "Galapagos of the Indian Ocean," this remote island chain hosts unique flora and fauna found nowhere else on Earth. Over one-third of its plant species are endemic, creating an otherworldly landscape that feels like stepping onto an alien planet.</p>
-
-        <p><strong>Wooden Churches of Southern Little Poland:</strong> These six Gothic wooden churches showcase medieval engineering and artistry at its finest. Built without using a single nail, these architectural marvels demonstrate the incredible skill of Polish craftsmen from the 15th and 16th centuries.</p>
-
-        <p><strong>Los Glaciares National Park, Argentina:</strong> Home to the spectacular Perito Moreno Glacier and the dramatic granite peaks of the Fitz Roy range, this Patagonian paradise offers some of the world's most breathtaking mountain and ice scenery.</p>
-
-        <h3>Planning Your World Heritage Site Adventure</h3>
-        <p>Visiting UNESCO World Heritage Sites requires careful planning to ensure you can fully appreciate their significance while respecting their protected status. Many sites have strict visitor limits, seasonal access restrictions, or require advance booking through authorized tour operators.</p>
-
-        <p>Before visiting, research the site's cultural and historical significance. Understanding the story behind each location enhances your experience immeasurably. Consider hiring local guides who can provide insights and stories that you won't find in guidebooks.</p>
-
-        <p>Remember that these sites are protected for future generations. Follow all guidelines, stay on designated paths, don't touch ancient structures or artifacts, and be mindful of your environmental impact. Photography restrictions may apply at certain sites, so check regulations beforehand.</p>
-
-        <h3>The Impact of Responsible Tourism</h3>
-        <p>Your visit to UNESCO World Heritage Sites can contribute positively to their preservation and to local communities. Entry fees often fund conservation efforts, while responsible tourism provides economic opportunities for local people, creating incentives for protection rather than exploitation.</p>
-
-        <p>Choose accommodations and tour operators that support conservation efforts and employ local people. Purchase souvenirs from local artisans rather than mass-produced items. Your travel choices can make a meaningful difference in preserving these treasures for future generations.</p>
-
-        <h3>Digital Resources and Planning Tools</h3>
-        <p>Modern technology has revolutionized how we explore and appreciate World Heritage Sites. Apps like Wanderlogue provide comprehensive information about each site, including practical travel tips, cultural context, and interactive maps that help you navigate these complex locations.</p>
-
-        <p>Virtual reality experiences and detailed online resources allow you to preview sites before visiting, helping you prioritize your time and understand what you're seeing. Many sites now offer augmented reality experiences that overlay historical information and reconstructions onto the current landscape.</p>
-
-        <h3>Conclusion: A Lifetime of Discovery</h3>
-        <p>UNESCO World Heritage Sites offer endless opportunities for discovery and wonder. Whether you're drawn to ancient civilizations, natural marvels, or architectural masterpieces, these protected treasures provide transformative travel experiences that connect you to the broader human story and the natural world's incredible diversity.</p>
-
-        <p>Start planning your World Heritage Site adventures today. With over 1,200 sites to explore across all continents, you have a lifetime of extraordinary destinations waiting to be discovered. Each visit contributes to the preservation of these irreplaceable treasures while enriching your understanding of our shared human and natural heritage.</p>
-      `,
+      content: t('article_1_content'),
       readTime: '8 min read',
       date: '2024-01-15',
       category: t('travel_guide'),
