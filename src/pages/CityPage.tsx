@@ -10,6 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HtmlContent } from '@/components/HtmlContent';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
 import SEO from '@/components/SEO';
 
 interface CityPageProps {
@@ -144,15 +146,9 @@ const CityPage = ({ cityCode }: CityPageProps) => {
 
         {/* AdSense Ad */}
         <div className="mb-8 text-center">
-          <ins 
-            className="adsbygoogle"
-            style={{display: 'block'}}
-            data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-            data-ad-slot="YOUR_AD_SLOT_ID"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.CITY_PAGE} />
         </div>
+
 
         {/* Tabbed content */}
         <Tabs defaultValue="general" className="w-full">
