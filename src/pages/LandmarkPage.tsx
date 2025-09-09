@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, ExternalLink, Camera } from 'lucide-react';
 import { useFirestoreDocument } from '@/hooks/useFirestore';
@@ -22,11 +22,14 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  // Scroll to top when page loads
+  // NEW: state for main image
+  const [mainImage, setMainImage] = useState<string | undefined>();
+
+  // Scroll to top when page loads and reset main image
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [landmarkCode]);
-  
+
   const createLink = (path: string) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('language', language);
@@ -37,6 +40,13 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
     'Landmarks', 
     landmarkCode
   );
+
+  // NEW: update mainImage when landmark changes
+  useEffect(() => {
+    if (landmark) {
+      setMainImage(landmark.image);
+    }
+  }, [landmark]);
 
   if (landmarkLoading) {
     return (
@@ -116,10 +126,10 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
             </div>
 
             {/* Main image */}
-            {landmark.image && (
+            {mainImage && (
               <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden travel-shadow">
                 <img
-                  src={landmark.image}
+                  src={mainImage}
                   alt={getLocalizedField('name', landmark)}
                   className="w-full h-full object-cover"
                 />
@@ -196,12 +206,20 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-2">
                     {landmark.images.slice(0, 6).map((image, index) => (
-                      <div key={index} className="relative aspect-square rounded-lg overflow-hidden">
+                      <div
+                        key={index}
+                        className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group"
+                        onClick={() => setMainImage(image)}
+                      >
                         <img
                           src={image}
                           alt={`${getLocalizedField('name', landmark)} - Image ${index + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 smooth-transition"
+                          className={`w-full h-full object-cover hover:scale-105 smooth-transition ${mainImage === image ? 'ring-4 ring-primary' : ''}`}
                         />
+                        {/* Optional: highlight selected */}
+                        {mainImage === image && (
+                          <div className="absolute inset-0 border-4 border-primary rounded-lg pointer-events-none" />
+                        )}
                       </div>
                     ))}
                   </div>
