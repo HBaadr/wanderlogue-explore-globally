@@ -73,7 +73,7 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
     <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <SEO
         title={`${getLocalizedField('name', continent)} - Wanderlogue`}
-        description={`Explore ${getLocalizedField('name', continent)} with ${continent.countries_number} countries, area of ${continent.area?.toLocaleString()} km², and population of ${continent.population?.toLocaleString()}.`}
+        description={`Explore ${getLocalizedField('name', continent)} with ${continent.countries_number} countries, area of ${continent.area?.toLocaleString()} {t('area_metric')}, and population of ${continent.population?.toLocaleString()}.`}
         keywords={`${getLocalizedField('name', continent)}, travel, countries, tourism, destinations`}
         canonical={`https://wanderlogue.lovable.app/${continentId}`}
       />
