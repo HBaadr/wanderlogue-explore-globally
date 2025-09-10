@@ -1093,6 +1093,20 @@ const translations: Translations = {
     es: "Cajeros automáticos disponibles",
     zh: "自动取款机可用"
   },
+  airport: {
+    en: "Airport",
+    fr: "Aéroport",
+    ar: "مطار",
+    es: "Aeropuerto",
+    zh: "机场"
+  },
+  beach: {
+    en: "Beach",
+    fr: "Plage",
+    ar: "شاطئ",
+    es: "Playa",
+    zh: "海滩"
+  },
 
   // Article categories
   travel_guide: {
