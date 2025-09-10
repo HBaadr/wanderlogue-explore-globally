@@ -128,7 +128,7 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
               <MapPin className="h-5 w-5" />
               <div>
                 <p className="text-sm">{t('area')}</p>
-                <p className="font-medium">{country.area?.toLocaleString()} km²</p>
+                <p className="font-medium">{country.area?.toLocaleString()} {t('area_metric')}</p>
               </div>
             </div>
           </div>
