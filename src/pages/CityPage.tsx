@@ -67,8 +67,8 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   }
 
   const cityFeatures = [
-    { icon: Plane, label: 'Airport', value: city.have_airport },
-    { icon: Waves, label: 'Beach', value: city.have_beach },
+    { icon: Plane, label: t('airport'), value: city.have_airport },
+    { icon: Waves, label: t('beach'), value: city.have_beach },
     { icon: Mountain, label: t('mountains'), value: city.have_mountains },
     { icon: Clock, label: t('historical_sites'), value: city.have_historical_sites },
     { icon: Shield, label: t('low_crime_rate'), value: city.have_low_crime_rate },
