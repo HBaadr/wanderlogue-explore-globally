@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { TranslationProvider } from "./contexts/TranslationContext";
 import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer"; 
 import Index from "./pages/Index";
 import DetailPage from "./pages/DetailPage";
 import BlogPage from "./pages/BlogPage";
@@ -35,6 +36,7 @@ const App = () => (
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <Footer />
             </TooltipProvider>
           </TranslationProvider>
         </LanguageProvider>
