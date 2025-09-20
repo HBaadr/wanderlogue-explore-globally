@@ -1534,14 +1534,6 @@ const translations: Translations = {
     ar: "العودة للرئيسية",
     zh: "返回首页"
   },
-  "show_morocco": {
-    en: "Show Morocco",
-    fr: "Voir le Maroc",
-    es: "Ver Marruecos",
-    ar: "عرض المغرب",
-    zh: "显示摩洛哥"
-  }
-
 };
 
 interface TranslationContextType {
