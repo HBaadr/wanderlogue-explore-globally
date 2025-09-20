@@ -61,7 +61,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
   if (!landmark) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">Landmark {t('notFound')}</h1>
+        <h1 className="text-4xl font-bold text-foreground">{t('landmark_not_found')}</h1>
         <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
@@ -104,7 +104,7 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <MapPin className="h-5 w-5" />
-                  <span>Code: {landmark.landmark_code}</span>
+                  <span className="text-sm text-muted-foreground">{t('code_label')} {landmark.landmark_code}</span>
                 </div>
                 {landmark.latitude && landmark.longitude && (
                   <div className="flex items-center gap-2 text-muted-foreground">
