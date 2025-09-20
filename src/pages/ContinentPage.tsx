@@ -165,25 +165,6 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
         </div>
       </div>
     </div>
-    <div className="flex gap-4 justify-center mt-4">
-      <a
-        href="https://play.google.com/store/apps/details?id=net.wanderlogue"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-      >
-        "Download for Android"
-      </a>
-      <a
-        href="https://apps.apple.com/ma/app/wanderlogue/id6538716270"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
-        "Download for iOS"
-      </a>
-    </div>
-
   );
 };
 
