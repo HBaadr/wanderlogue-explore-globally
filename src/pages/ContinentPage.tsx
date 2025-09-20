@@ -165,7 +165,9 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
           )}
         </div>
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
