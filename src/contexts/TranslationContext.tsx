@@ -1484,6 +1484,34 @@ const translations: Translations = {
     ar: "حمّل من آب ستور",
     es: "Descargar en App Store",
     zh: "在 App Store 下载"
+  },
+  "city_not_found": {
+    en: "City not found",
+    fr: "Ville introuvable",
+    ar: "المدينة غير موجودة",
+    es: "Ciudad no encontrada",
+    zh: "城市未找到"
+  },
+  "landmark_not_found": {
+    en: "Landmark not found",
+    fr: "Monument introuvable", 
+    ar: "المعلم غير موجود",
+    es: "Monumento no encontrado",
+    zh: "地标未找到"
+  },
+  "meters_unit": {
+    en: "m",
+    fr: "m",
+    ar: "م",
+    es: "m", 
+    zh: "米"
+  },
+  "code_label": {
+    en: "Code:",
+    fr: "Code :",
+    ar: "الرمز:",
+    es: "Código:",
+    zh: "代码："
   }
 };
 
