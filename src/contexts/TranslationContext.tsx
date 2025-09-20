@@ -1463,6 +1463,27 @@ const translations: Translations = {
     ar: "اكتشف آلاف الوجهات ومواقع اليونسكو وأدلة السفر مع تطبيقنا المحمول. خطط لمغامرتك القادمة بثقة باستخدام موارد السفر الشاملة لدليل الرحلات.",
     es: "Descubre miles de destinos, sitios UNESCO y guías de viaje con nuestra aplicación móvil. Planifica tu próxima aventura con confianza usando los recursos de viaje integrales de Wanderlogue.",
     zh: "通过我们的移动应用程序发现数千个目的地、联合国教科文组织遗址和旅行指南。使用游记的综合旅行资源，自信地规划您的下一次冒险。"
+  },
+  "footer_copyright": {
+    en: "© 2025 Wanderlogue. All rights reserved.",
+    fr: "© 2025 Wanderlogue. Tous droits réservés.",
+    ar: "© 2025 دليل الرحلات. جميع الحقوق محفوظة.",
+    es: "© 2025 Wanderlogue. Todos los derechos reservados.",
+    zh: "© 2025 游记。版权所有。"
+  },
+  "get_google_play": {
+    en: "Get it on Google Play",
+    fr: "Disponible sur Google Play",
+    ar: "احصل عليه من جوجل بلاي",
+    es: "Disponible en Google Play",
+    zh: "在 Google Play 获取"
+  },
+  "download_app_store": {
+    en: "Download on App Store",
+    fr: "Télécharger sur l'App Store",
+    ar: "حمّل من آب ستور",
+    es: "Descargar en App Store",
+    zh: "在 App Store 下载"
   }
 };
 
