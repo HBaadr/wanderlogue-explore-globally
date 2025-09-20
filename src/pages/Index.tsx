@@ -302,26 +302,6 @@ const Index = () => {
                 </div>
               ))}
             </div>
-            
-            {/* Download buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-4 travel-shadow hover:glow-effect smooth-transition bg-green-600 hover:bg-green-700 text-white border-0"
-                onClick={() => window.open('https://play.google.com/store/apps/details?id=net.wanderlogue', '_blank')}
-              >
-                <Smartphone className="h-6 w-6 mr-3" />
-                {t('download_android')}
-              </Button>
-              <Button
-                size="lg"
-                className="text-lg px-8 py-4 travel-shadow hover:glow-effect smooth-transition bg-gray-900 hover:bg-black text-white border-0"
-                onClick={() => window.open('https://apps.apple.com/ma/app/wanderlogue/id6538716270', '_blank')}
-              >
-                <Smartphone className="h-6 w-6 mr-3" />
-                {t('download_ios')}
-              </Button>
-            </div>
           </div>
         </div>
       </section>
