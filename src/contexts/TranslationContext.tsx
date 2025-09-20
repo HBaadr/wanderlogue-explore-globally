@@ -1512,7 +1512,36 @@ const translations: Translations = {
     ar: "الرمز:",
     es: "Código:",
     zh: "代码："
+  },
+    "error_404": {
+    en: "404",
+    fr: "404",
+    es: "404",
+    ar: "404",
+    zh: "404"
+  },
+  "page_not_found": {
+    en: "Oops! Page not found",
+    fr: "Oups ! Page introuvable",
+    es: "¡Ups! Página no encontrada",
+    ar: "عذراً! الصفحة غير موجودة",
+    zh: "哎呀！页面未找到"
+  },
+  "return_home": {
+    en: "Return to Home",
+    fr: "Retour à l'accueil",
+    es: "Volver al inicio",
+    ar: "العودة للرئيسية",
+    zh: "返回首页"
+  },
+  "show_morocco": {
+    en: "Show Morocco",
+    fr: "Voir le Maroc",
+    es: "Ver Marruecos",
+    ar: "عرض المغرب",
+    zh: "显示摩洛哥"
   }
+
 };
 
 interface TranslationContextType {
