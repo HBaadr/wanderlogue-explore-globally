@@ -58,7 +58,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
   if (!city) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold text-destructive mb-4">City {t('notFound')}</h1>
+        <h1 className="text-4xl font-bold text-foreground">{t('city_not_found')}</h1>
         <Link to={createLink('/')} className="text-primary hover:underline">
           {t('returnToHome')}
         </Link>
@@ -111,7 +111,7 @@ const CityPage = ({ cityCode }: CityPageProps) => {
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
-              <span>{t('altitude')}: {city.altitude}m</span>
+              <span className="text-sm text-muted-foreground">{t('altitude')}: {city.altitude}{t('meters_unit')}</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
