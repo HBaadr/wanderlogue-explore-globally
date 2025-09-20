@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { HtmlContent } from '@/components/HtmlContent';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
-import { Footer } from './components/Footer';
+import { Footer } from '@/components/Footer';
 import SEO from '@/components/SEO';
 
 interface ContinentPageProps {
