@@ -20,38 +20,31 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <LanguageProvider>
-            <TranslationProvider>
-              <AnalyticsProvider>
-                <div className="min-h-screen flex flex-col">
-                  <Navbar />
-                  <PageViewTracker />
-                  <main className="flex-grow">
-                    <Routes>
-                      <Route path="/" element={<Navigate to="/en" replace />} />
-                      <Route path="/:lang" element={<Index />} />
-                      <Route path="/:lang/detail/:slug" element={<DetailPage />} />
-                      <Route path="/:lang/blog" element={<BlogPage />} />
-                      <Route path="/:lang/blog/:id" element={<ArticlePage />} />
-                      <Route path="/:lang/about" element={<AboutPage />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </main>
-                  <Footer />
-                </div>
-              </AnalyticsProvider>
-            </TranslationProvider>
-          </LanguageProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </HelmetProvider>
+  <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
+      <BrowserRouter>
+        <LanguageProvider>
+          <TranslationProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:articleId" element={<ArticlePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/:id" element={<DetailPage />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </TooltipProvider>
+          </TranslationProvider>
+        </LanguageProvider>
+      </BrowserRouter>
+    </HelmetProvider>
+  </QueryClientProvider>
 );
 
 export default App;
