@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { TranslationProvider } from "./contexts/TranslationContext";
+import { AnalyticsProvider } from "./contexts/AnalyticsContext";
+import { PageViewTracker } from "./components/PageViewTracker";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer"; 
 import Index from "./pages/Index";
@@ -18,31 +20,38 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <BrowserRouter>
-        <LanguageProvider>
-          <TranslationProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:articleId" element={<ArticlePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/:id" element={<DetailPage />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </TooltipProvider>
-          </TranslationProvider>
-        </LanguageProvider>
-      </BrowserRouter>
-    </HelmetProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <LanguageProvider>
+            <TranslationProvider>
+              <AnalyticsProvider>
+                <div className="min-h-screen flex flex-col">
+                  <Navbar />
+                  <PageViewTracker />
+                  <main className="flex-grow">
+                    <Routes>
+                      <Route path="/" element={<Navigate to="/en" replace />} />
+                      <Route path="/:lang" element={<Index />} />
+                      <Route path="/:lang/detail/:slug" element={<DetailPage />} />
+                      <Route path="/:lang/blog" element={<BlogPage />} />
+                      <Route path="/:lang/blog/:id" element={<ArticlePage />} />
+                      <Route path="/:lang/about" element={<AboutPage />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </main>
+                  <Footer />
+                </div>
+              </AnalyticsProvider>
+            </TranslationProvider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
