@@ -10,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Language } from '@/types/travel';
-import { useAnalytics } from '@/contexts/AnalyticsContext';
 
 const languages = [
   { code: 'en' as Language, name: 'language_english', flag: '🇺🇸' },
@@ -25,17 +24,6 @@ export function LanguageSelector() {
   const { t } = useTranslation();
 
   const currentLanguage = languages.find(lang => lang.code === language);
-  const { trackLanguageChange } = useAnalytics();
-
-  const handleLanguageChange = (newLanguage: string) => {
-  const previousLanguage = currentLanguage; // your current language state
-  
-  // Your existing language change logic
-  setCurrentLanguage(newLanguage);
-  
-  // Track the language change
-  trackLanguageChange(newLanguage, previousLanguage);
-};
 
   return (
     <DropdownMenu>
