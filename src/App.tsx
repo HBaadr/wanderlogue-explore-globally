@@ -6,8 +6,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { TranslationProvider } from "./contexts/TranslationContext";
-import { AnalyticsProvider } from "./contexts/AnalyticsContext";
-import { PageViewTracker } from "./components/PageViewTracker";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer"; 
 import Index from "./pages/Index";
