@@ -4,17 +4,20 @@ import { ADSENSE_CONFIG } from '@/config/ads-config';
 
 const GoogleAd = ({ adSlot }) => {
   useEffect(() => {
-    try {
-      if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
-        window.adsbygoogle.push({});
+    const timer = setTimeout(() => {
+      try {
+        if (typeof window !== 'undefined' && window.adsbygoogle) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      } catch (e) {
+        console.warn("AdSense error:", e);
       }
-    } catch (e) {
-      console.error("AdSense error:", e);
-    }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [adSlot]);
 
   return (
-    <div className="mb-8 text-center">
       <ins
         className="adsbygoogle"
         style={{ display: "block", textAlign: "center" }}
@@ -23,7 +26,6 @@ const GoogleAd = ({ adSlot }) => {
         data-ad-format="fluid"
         data-ad-layout="in-article"
       ></ins>
-    </div>
   );
 };
 
