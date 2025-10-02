@@ -15,16 +15,16 @@ const TrendingDestinations = () => {
 
   const trendingCities = useMemo(() => {
     const allCities = [
-      { name: { en: 'Paris', fr: 'Paris', ar: 'باريس', es: 'París', zh: '巴黎' }, code: 'FRPA' },
-      { name: { en: 'Tokyo', fr: 'Tokyo', ar: 'طوكيو', es: 'Tokio', zh: '东京' }, code: 'JPTO' },
-      { name: { en: 'New York', fr: 'New York', ar: 'نيويورك', es: 'Nueva York', zh: '纽约' }, code: 'USNY' },
-      { name: { en: 'Dubai', fr: 'Dubaï', ar: 'دبي', es: 'Dubái', zh: '迪拜' }, code: 'AEDU' },
-      { name: { en: 'Barcelona', fr: 'Barcelone', ar: 'برشلونة', es: 'Barcelona', zh: '巴塞罗那' }, code: 'ESBA' },
-      { name: { en: 'London', fr: 'Londres', ar: 'لندن', es: 'Londres', zh: '伦敦' }, code: 'GBLO' },
-      { name: { en: 'Rome', fr: 'Rome', ar: 'روما', es: 'Roma', zh: '罗马' }, code: 'ITRO' },
-      { name: { en: 'Istanbul', fr: 'Istanbul', ar: 'اسطنبول', es: 'Estambul', zh: '伊斯坦布尔' }, code: 'TRIS' },
-      { name: { en: 'Bangkok', fr: 'Bangkok', ar: 'بانكوك', es: 'Bangkok', zh: '曼谷' }, code: 'THBA' },
-      { name: { en: 'Singapore', fr: 'Singapour', ar: 'سنغافورة', es: 'Singapur', zh: '新加坡' }, code: 'SGSI' }
+      { name: { en: 'Paris', fr: 'Paris', ar: 'باريس', es: 'París', zh: '巴黎' }, code: 'FR01' },
+      { name: { en: 'Tokyo', fr: 'Tokyo', ar: 'طوكيو', es: 'Tokio', zh: '东京' }, code: 'JP01' },
+      { name: { en: 'New York', fr: 'New York', ar: 'نيويورك', es: 'Nueva York', zh: '纽约' }, code: 'US05' },
+      { name: { en: 'Dubai', fr: 'Dubaï', ar: 'دبي', es: 'Dubái', zh: '迪拜' }, code: 'AE02' },
+      { name: { en: 'Barcelona', fr: 'Barcelone', ar: 'برشلونة', es: 'Barcelona', zh: '巴塞罗那' }, code: 'ES02' },
+      { name: { en: 'London', fr: 'Londres', ar: 'لندن', es: 'Londres', zh: '伦敦' }, code: 'GB01' },
+      { name: { en: 'Rome', fr: 'Rome', ar: 'روما', es: 'Roma', zh: '罗马' }, code: 'IT01' },
+      { name: { en: 'Istanbul', fr: 'Istanbul', ar: 'اسطنبول', es: 'Estambul', zh: '伊斯坦布尔' }, code: 'TR02' },
+      { name: { en: 'Bangkok', fr: 'Bangkok', ar: 'بانكوك', es: 'Bangkok', zh: '曼谷' }, code: 'TH01' },
+      { name: { en: 'Singapore', fr: 'Singapour', ar: 'سنغافورة', es: 'Singapur', zh: '新加坡' }, code: 'SG01' }
     ];
     
     // Shuffle and pick 5
