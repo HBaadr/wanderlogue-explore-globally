@@ -117,10 +117,10 @@ const SearchBar = () => {
         if (searchResults.length >= 10) break;
 
         const [cities, countries, landmarks, unescoSites] = await Promise.all([
-          searchFromFirestore('cities', searchText, lang, 'city'),
-          searchFromFirestore('countries', searchText, lang, 'country'),
-          searchFromFirestore('landmarks', searchText, lang, 'landmark'),
-          searchFromFirestore('unesco_sites', searchText, lang, 'unesco')
+          searchFromFirestore('Cities', searchText, lang, 'city'),
+          searchFromFirestore('Countries', searchText, lang, 'country'),
+          searchFromFirestore('Landmarks', searchText, lang, 'landmark'),
+          searchFromFirestore('UnescoSites', searchText, lang, 'unesco')
         ]);
 
         searchResults.push(...cities, ...countries, ...landmarks, ...unescoSites);
