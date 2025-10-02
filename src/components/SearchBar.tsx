@@ -3,7 +3,8 @@ import { Search, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { useFirestoreCollection } from '@/hooks/useFirestore';
+import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import type { City, Country, Landmark, UnescoSite, Language } from '@/types/travel';
 
 interface SearchResult {
@@ -16,18 +17,13 @@ interface SearchResult {
 }
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const { language } = useLanguage();
   const navigate = useNavigate();
   const searchRef = useRef<HTMLDivElement>(null);
-  
-  const { data: cities } = useFirestoreCollection<City>('cities');
-  const { data: countries } = useFirestoreCollection<Country>('countries');
-  const { data: landmarks } = useFirestoreCollection<Landmark>('landmarks');
-  const { data: unescoSites } = useFirestoreCollection<UnescoSite>('unesco_sites');
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,30 +36,65 @@ const SearchBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const searchInLanguages = useCallback((text: string, item: any, type: string) => {
-    const searchText = text.toLowerCase();
-    const languages: Language[] = [language, 'en', 'fr', 'ar', 'es', 'zh'];
-    
-    // Search in current language first, then others
-    for (const lang of languages) {
-      const nameField = `l_${lang}_name`;
-      const siteField = `l_${lang}_site`;
+  const searchInCollection = async (
+    collectionName: string,
+    searchText: string,
+    lang: string,
+    type: 'city' | 'country' | 'landmark' | 'unesco'
+  ): Promise<SearchResult[]> => {
+    try {
+      const fieldName = type === 'unesco' ? `l_${lang}_site` : `l_${lang}_name`;
+      const collectionRef = collection(db, collectionName);
       
-      if (type === 'unesco' && item[siteField]) {
-        if (item[siteField].toLowerCase().includes(searchText)) {
-          return true;
-        }
-      } else if (item[nameField]) {
-        if (item[nameField].toLowerCase().includes(searchText)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }, [language]);
+      const q = query(
+        collectionRef,
+        where(fieldName, '>=', searchText),
+        where(fieldName, '<=', searchText + '\uf8ff'),
+        orderBy(fieldName),
+        limit(3)
+      );
 
-  const performSearch = useCallback((searchQuery: string) => {
-    if (!searchQuery || searchQuery.length < 2) {
+      const querySnapshot = await getDocs(q);
+      
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data();
+        let result: SearchResult = {
+          id: doc.id,
+          name: data[`l_${language}_name`] || data[`l_${lang}_name`] || data.l_en_name,
+          type,
+          code: '',
+          image: data.image || data.image_lq || data.image_url
+        };
+
+        switch (type) {
+          case 'city':
+            result.code = data.city_code;
+            result.country = data.country_code;
+            break;
+          case 'country':
+            result.code = data.country_code;
+            break;
+          case 'landmark':
+            result.code = data.landmark_code;
+            result.country = data.country_code;
+            break;
+          case 'unesco':
+            result.name = data[`l_${language}_site`] || data[`l_${lang}_site`] || data.l_en_site;
+            result.code = data.id_number?.toString();
+            result.country = data.iso_code;
+            break;
+        }
+
+        return result;
+      });
+    } catch (error) {
+      console.error(`Error searching ${collectionName}:`, error);
+      return [];
+    }
+  };
+
+  const performSearch = useCallback(async (searchText: string) => {
+    if (!searchText || searchText.length < 2) {
       setResults([]);
       setShowResults(false);
       return;
@@ -72,86 +103,43 @@ const SearchBar = () => {
     setIsSearching(true);
     const searchResults: SearchResult[] = [];
 
-    // Search cities
-    if (cities) {
-      cities.forEach(city => {
-        if (searchInLanguages(searchQuery, city, 'city')) {
-          searchResults.push({
-            id: city.id,
-            name: city[`l_${language}_name`] || city.l_en_name,
-            type: 'city',
-            code: city.city_code,
-            image: city.image_lq || city.image,
-            country: city.country_code
-          });
-        }
-      });
+    // Search in current language first, then English as fallback
+    const languages: Language[] = language !== 'en' ? [language, 'en'] : ['en'];
+
+    for (const lang of languages) {
+      if (searchResults.length >= 10) break;
+
+      const [cities, countries, landmarks, unescoSites] = await Promise.all([
+        searchInCollection('cities', searchText, lang, 'city'),
+        searchInCollection('countries', searchText, lang, 'country'),
+        searchInCollection('landmarks', searchText, lang, 'landmark'),
+        searchInCollection('unesco_sites', searchText, lang, 'unesco')
+      ]);
+
+      searchResults.push(...cities, ...countries, ...landmarks, ...unescoSites);
     }
 
-    // Search countries
-    if (countries) {
-      countries.forEach(country => {
-        if (searchInLanguages(searchQuery, country, 'country')) {
-          searchResults.push({
-            id: country.id,
-            name: country[`l_${language}_name`] || country.l_en_name,
-            type: 'country',
-            code: country.country_code,
-            image: country.image_lq || country.image
-          });
-        }
-      });
-    }
+    // Remove duplicates and limit to 10
+    const uniqueResults = Array.from(
+      new Map(searchResults.map(item => [`${item.type}-${item.id}`, item])).values()
+    ).slice(0, 10);
 
-    // Search landmarks
-    if (landmarks) {
-      landmarks.forEach(landmark => {
-        if (searchInLanguages(searchQuery, landmark, 'landmark')) {
-          searchResults.push({
-            id: landmark.id,
-            name: landmark[`l_${language}_name`] || landmark.l_en_name,
-            type: 'landmark',
-            code: landmark.landmark_code,
-            image: landmark.image,
-            country: landmark.country_code
-          });
-        }
-      });
-    }
-
-    // Search UNESCO sites
-    if (unescoSites) {
-      unescoSites.forEach(site => {
-        if (searchInLanguages(searchQuery, site, 'unesco')) {
-          searchResults.push({
-            id: site.id,
-            name: site[`l_${language}_site`] || site.l_en_site,
-            type: 'unesco',
-            code: site.id_number.toString(),
-            image: site.image_url,
-            country: site.iso_code
-          });
-        }
-      });
-    }
-
-    // Limit results to 10
-    setResults(searchResults.slice(0, 10));
+    setResults(uniqueResults);
     setShowResults(true);
     setIsSearching(false);
-  }, [cities, countries, landmarks, unescoSites, language, searchInLanguages]);
+  }, [language]);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
-      performSearch(query);
+      performSearch(searchQuery);
     }, 300);
 
     return () => clearTimeout(debounceTimer);
-  }, [query, performSearch]);
+  }, [searchQuery, performSearch]);
 
   const handleResultClick = (result: SearchResult) => {
     setShowResults(false);
-    setQuery('');
+    setSearchQuery('');
     
     switch (result.type) {
       case 'city':
@@ -192,9 +180,9 @@ const SearchBar = () => {
             language === 'zh' ? '搜索城市、国家、地标...' :
             'Search cities, countries, landmarks...'
           }
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => query.length >= 2 && setShowResults(true)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onFocus={() => searchQuery.length >= 2 && setShowResults(true)}
           className="pl-12 pr-12 py-6 text-lg rounded-full border-2 border-primary/20 focus:border-primary"
         />
         {isSearching && (
@@ -226,7 +214,7 @@ const SearchBar = () => {
         </div>
       )}
 
-      {showResults && query.length >= 2 && results.length === 0 && !isSearching && (
+      {showResults && searchQuery.length >= 2 && results.length === 0 && !isSearching && (
         <div className="absolute z-50 w-full mt-2 bg-card border-2 border-primary/20 rounded-2xl shadow-xl p-4 text-center text-muted-foreground">
           {language === 'fr' ? 'Aucun résultat trouvé' :
            language === 'ar' ? 'لم يتم العثور على نتائج' :
