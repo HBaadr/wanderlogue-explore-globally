@@ -2,6 +2,12 @@
 import { useEffect } from "react";
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
 const GoogleAd = ({ adSlot }) => {
   useEffect(() => {
     const timer = setTimeout(() => {

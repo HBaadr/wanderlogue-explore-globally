@@ -8,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
+import SearchBar from '@/components/SearchBar';
+import TrendingDestinations from '@/components/TrendingDestinations';
 import africaImage from '@/assets/continent-africa.jpg';
 import asiaImage from '@/assets/continent-asia.jpg';
 import europeImage from '@/assets/continent-europe.jpg';
@@ -304,6 +306,16 @@ const Index = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Search Bar Section */}
+      <section className="container mx-auto px-4 py-16">
+        <SearchBar />
+      </section>
+
+      {/* Trending Destinations Section */}
+      <section className="container mx-auto px-4 pb-16">
+        <TrendingDestinations />
       </section>
 
       {/* Continents Exploration Section */}
