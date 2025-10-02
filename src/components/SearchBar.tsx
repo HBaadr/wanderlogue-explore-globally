@@ -3,7 +3,7 @@ import { Search, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
-import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
+import { collection, query, orderBy, startAt, endAt, getDocs, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import type { City, Country, Landmark, UnescoSite, Language } from '@/types/travel';
 
@@ -46,49 +46,126 @@ const SearchBar = () => {
       const fieldName = type === 'unesco' ? `l_${lang}_site` : `l_${lang}_name`;
       const collectionRef = collection(db, collectionName);
       
+      // Using startAt/endAt approach instead of where + orderBy to avoid composite indexes
+      const searchTextLower = searchText.toLowerCase();
       const q = query(
         collectionRef,
-        where(fieldName, '>=', searchText),
-        where(fieldName, '<=', searchText + '\uf8ff'),
         orderBy(fieldName),
-        limit(3)
+        startAt(searchTextLower),
+        endAt(searchTextLower + '\uf8ff'),
+        limit(5)
       );
 
       const querySnapshot = await getDocs(q);
       
-      return querySnapshot.docs.map(doc => {
-        const data = doc.data();
-        let result: SearchResult = {
-          id: doc.id,
-          name: data[`l_${language}_name`] || data[`l_${lang}_name`] || data.l_en_name,
-          type,
-          code: '',
-          image: data.image || data.image_lq || data.image_url
-        };
+      return querySnapshot.docs
+        .map(doc => {
+          const data = doc.data();
+          const fieldValue = data[fieldName]?.toLowerCase() || '';
+          
+          // Client-side filtering for better match accuracy
+          if (!fieldValue.includes(searchTextLower)) {
+            return null;
+          }
 
-        switch (type) {
-          case 'city':
-            result.code = data.city_code;
-            result.country = data.country_code;
-            break;
-          case 'country':
-            result.code = data.country_code;
-            break;
-          case 'landmark':
-            result.code = data.landmark_code;
-            result.country = data.country_code;
-            break;
-          case 'unesco':
-            result.name = data[`l_${language}_site`] || data[`l_${lang}_site`] || data.l_en_site;
-            result.code = data.id_number?.toString();
-            result.country = data.iso_code;
-            break;
-        }
+          let result: SearchResult = {
+            id: doc.id,
+            name: data[`l_${language}_name`] || data[`l_${lang}_name`] || data.l_en_name,
+            type,
+            code: '',
+            image: data.image || data.image_lq || data.image_url
+          };
 
-        return result;
-      });
+          switch (type) {
+            case 'city':
+              result.code = data.city_code;
+              result.country = data.country_code;
+              break;
+            case 'country':
+              result.code = data.country_code;
+              break;
+            case 'landmark':
+              result.code = data.landmark_code;
+              result.country = data.country_code;
+              break;
+            case 'unesco':
+              result.name = data[`l_${language}_site`] || data[`l_${lang}_site`] || data.l_en_site;
+              result.code = data.id_number?.toString();
+              result.country = data.iso_code;
+              break;
+          }
+
+          return result;
+        })
+        .filter((result): result is SearchResult => result !== null)
+        .slice(0, 3);
     } catch (error) {
       console.error(`Error searching ${collectionName}:`, error);
+      
+      // Fallback: Try simple collection fetch with client-side filtering
+      return await fallbackSearch(collectionName, searchText, lang, type);
+    }
+  };
+
+  const fallbackSearch = async (
+    collectionName: string,
+    searchText: string,
+    lang: string,
+    type: 'city' | 'country' | 'landmark' | 'unesco'
+  ): Promise<SearchResult[]> => {
+    try {
+      const fieldName = type === 'unesco' ? `l_${lang}_site` : `l_${lang}_name`;
+      const collectionRef = collection(db, collectionName);
+      
+      // Simple query without complex filtering
+      const q = query(collectionRef, limit(50));
+      const querySnapshot = await getDocs(q);
+      
+      const searchTextLower = searchText.toLowerCase();
+      
+      return querySnapshot.docs
+        .map(doc => {
+          const data = doc.data();
+          const fieldValue = data[fieldName]?.toLowerCase() || '';
+          
+          // Client-side text matching
+          if (!fieldValue.includes(searchTextLower)) {
+            return null;
+          }
+
+          let result: SearchResult = {
+            id: doc.id,
+            name: data[`l_${language}_name`] || data[`l_${lang}_name`] || data.l_en_name,
+            type,
+            code: '',
+            image: data.image || data.image_lq || data.image_url
+          };
+
+          switch (type) {
+            case 'city':
+              result.code = data.city_code;
+              result.country = data.country_code;
+              break;
+            case 'country':
+              result.code = data.country_code;
+              break;
+            case 'landmark':
+              result.code = data.landmark_code;
+              result.country = data.country_code;
+              break;
+            case 'unesco':
+              result.name = data[`l_${language}_site`] || data[`l_${lang}_site`] || data.l_en_site;
+              result.code = data.id_number?.toString();
+              result.country = data.iso_code;
+              break;
+          }
+
+          return result;
+        })
+        .filter((result): result is SearchResult => result !== null)
+        .slice(0, 3);
+    } catch (error) {
+      console.error(`Fallback search failed for ${collectionName}:`, error);
       return [];
     }
   };
@@ -106,27 +183,34 @@ const SearchBar = () => {
     // Search in current language first, then English as fallback
     const languages: Language[] = language !== 'en' ? [language, 'en'] : ['en'];
 
-    for (const lang of languages) {
-      if (searchResults.length >= 10) break;
+    try {
+      for (const lang of languages) {
+        if (searchResults.length >= 10) break;
 
-      const [cities, countries, landmarks, unescoSites] = await Promise.all([
-        searchInCollection('cities', searchText, lang, 'city'),
-        searchInCollection('countries', searchText, lang, 'country'),
-        searchInCollection('landmarks', searchText, lang, 'landmark'),
-        searchInCollection('unesco_sites', searchText, lang, 'unesco')
-      ]);
+        const [cities, countries, landmarks, unescoSites] = await Promise.all([
+          searchInCollection('cities', searchText, lang, 'city'),
+          searchInCollection('countries', searchText, lang, 'country'),
+          searchInCollection('landmarks', searchText, lang, 'landmark'),
+          searchInCollection('unesco_sites', searchText, lang, 'unesco')
+        ]);
 
-      searchResults.push(...cities, ...countries, ...landmarks, ...unescoSites);
+        searchResults.push(...cities, ...countries, ...landmarks, ...unescoSites);
+      }
+
+      // Remove duplicates and limit to 10
+      const uniqueResults = Array.from(
+        new Map(searchResults.map(item => [`${item.type}-${item.id}`, item])).values()
+      ).slice(0, 10);
+
+      setResults(uniqueResults);
+      setShowResults(true);
+    } catch (error) {
+      console.error('Search failed:', error);
+      setResults([]);
+      setShowResults(false);
+    } finally {
+      setIsSearching(false);
     }
-
-    // Remove duplicates and limit to 10
-    const uniqueResults = Array.from(
-      new Map(searchResults.map(item => [`${item.type}-${item.id}`, item])).values()
-    ).slice(0, 10);
-
-    setResults(uniqueResults);
-    setShowResults(true);
-    setIsSearching(false);
   }, [language]);
 
   useEffect(() => {
