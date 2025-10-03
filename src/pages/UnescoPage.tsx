@@ -1,251 +1,313 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowLeft, MapPin, Calendar, Shield, AlertTriangle, ExternalLink } from 'lucide-react';
+import { useFirestoreDocument } from '@/hooks/useFirestore';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
+import { UnescoSite } from '@/types/travel';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { HtmlContent } from '@/components/HtmlContent';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
+import SEO from '@/components/SEO';
 
-interface UnescoSite {
-  id: string;
-  name: string;
-  image: string;
-  country: string;
-  region: string;
-  category: 'cultural' | 'natural' | 'mixed';
-  inscriptionYear: number;
-  description: string;
-  criteria: string[];
-  threats?: string[];
-  area?: number;
-  significance: string;
-  visitorsInfo: {
-    accessibility: 'easy' | 'moderate' | 'difficult';
-    bestTime: string;
-    averageVisitors: number;
-  };
+interface UnescoPageProps {
+  unescoId: string;
 }
 
-const UnescoPage: React.FC = () => {
-  const [sites, setSites] = useState<UnescoSite[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedRegion, setSelectedRegion] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'name' | 'year' | 'visitors'>('name');
-  const [loading, setLoading] = useState(true);
+const UnescoPage = ({ unescoId }: UnescoPageProps) => {
+  const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
+  const location = useLocation();
 
-  const categories = [
-    { id: 'all', label: 'Tous les Sites', icon: '🌍', color: 'bg-blue-500' },
-    { id: 'cultural', label: 'Culturel', icon: '🏛️', color: 'bg-purple-500' },
-    { id: 'natural', label: 'Naturel', icon: '🌿', color: 'bg-green-500' },
-    { id: 'mixed', label: 'Mixte', icon: '🏞️', color: 'bg-indigo-500' }
-  ];
-
-  const regions = ['all', 'Europe', 'Asia', 'Africa', 'Americas', 'Oceania'];
-
+  // Scroll to top when page loads
   useEffect(() => {
-    fetchUnescoSites();
-  }, []);
-
-  const fetchUnescoSites = async () => {
-    try {
-      // API call here
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching UNESCO sites:', error);
-      setLoading(false);
-    }
+    window.scrollTo(0, 0);
+  }, [unescoId]);
+  
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
   };
+  
+  const { data: site, loading: siteLoading } = useFirestoreDocument<UnescoSite>(
+    'UnescoSites', 
+    unescoId
+  );
 
-  const getCategoryStyle = (category: string) => {
-    const styles: Record<string, string> = {
-      cultural: 'bg-purple-100 text-purple-700 border-purple-200',
-      natural: 'bg-green-100 text-green-700 border-green-200',
-      mixed: 'bg-indigo-100 text-indigo-700 border-indigo-200'
-    };
-    return styles[category] || 'bg-gray-100 text-gray-700 border-gray-200';
-  };
-
-  const getAccessibilityInfo = (accessibility: string) => {
-    const info = {
-      easy: { icon: '🟢', text: 'Facile', color: 'text-green-600' },
-      moderate: { icon: '🟡', text: 'Modéré', color: 'text-yellow-600' },
-      difficult: { icon: '🔴', text: 'Difficile', color: 'text-red-600' }
-    };
-    return info[accessibility as keyof typeof info] || info.easy;
-  };
-
-  const filteredAndSortedSites = sites
-    .filter(site => {
-      const categoryMatch = selectedCategory === 'all' || site.category === selectedCategory;
-      const regionMatch = selectedRegion === 'all' || site.region === selectedRegion;
-      return categoryMatch && regionMatch;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'name': return a.name.localeCompare(b.name);
-        case 'year': return b.inscriptionYear - a.inscriptionYear;
-        case 'visitors': return b.visitorsInfo.averageVisitors - a.visitorsInfo.averageVisitors;
-        default: return 0;
-      }
-    });
-
-  if (loading) {
+  if (siteLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Chargement des sites UNESCO...</p>
-        </div>
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-32 mb-6" />
+        <Skeleton className="h-12 w-64 mb-4" />
+        <Skeleton className="h-64 w-full mb-8" />
+      </div>
+    );
+  }
+
+  if (!site) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <h1 className="text-2xl font-bold text-destructive mb-4">UNESCO Site {t('notFound')}</h1>
+        <Link to={`/${language}`} className="text-primary hover:underline">
+          {t('returnToHome')}
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-800 via-indigo-700 to-purple-800 text-white py-24">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Sites UNESCO</h1>
-          <p className="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto">
-            Explorez le patrimoine mondial de l'humanité
-          </p>
-          <div className="mt-8 inline-flex items-center gap-2 bg-white/20 px-6 py-3 rounded-full backdrop-blur-sm">
-            <span className="text-2xl">🏛️</span>
-            <span className="font-semibold">{sites.length} Sites Patrimoniaux</span>
-          </div>
-        </div>
-      </div>
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('site', site)} - UNESCO World Heritage Site | Wanderlogue`}
+        description={`Explore ${getLocalizedField('site', site)}, a UNESCO World Heritage Site inscribed in ${site.date_inscribed}. Discover its history and cultural significance.`}
+        keywords={`${getLocalizedField('site', site)}, UNESCO, World Heritage Site, ${site.category}, cultural heritage`}
+        canonical={`https://wanderlogue.lovable.app/${unescoId}`}
+      />
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* Back navigation */}
+        <Link 
+          to={createLink(`/${site.iso_code[0]}`)}
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          {t('back_to_country')}
+        </Link>
 
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? `${category.color} text-white shadow-lg`
-                    : 'bg-white text-gray-700 hover:bg-blue-50 shadow-md'
-                }`}
-              >
-                <span className="text-lg">{category.icon}</span>
-                {category.label}
-              </button>
-            ))}
-          </div>
-          
-          {/* Region & Sort */}
-          <div className="flex gap-4">
-            <select
-              value={selectedRegion}
-              onChange={(e) => setSelectedRegion(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="all">Toutes les Régions</option>
-              {regions.slice(1).map(region => (
-                <option key={region} value={region}>{region}</option>
-              ))}
-            </select>
-            
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="name">Par Nom</option>
-              <option value="year">Par Année d'Inscription</option>
-              <option value="visitors">Par Popularité</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {/* Sites Grid */}
-      <div className="max-w-7xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {filteredAndSortedSites.map((site, index) => (
-            <div 
-              key={site.id}
-              className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Image 1:1 */}
-              <div className="aspect-square overflow-hidden relative">
-                <img 
-                  src={site.image}
-                  alt={site.name}
-                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                />
-                
-                {/* UNESCO Badge */}
-                <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-2 rounded-full text-xs font-bold backdrop-blur-sm border-2 border-white">
-                  🏛️ UNESCO
-                </div>
-                
-                {/* Category Badge */}
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryStyle(site.category)} backdrop-blur-sm`}>
-                  {site.category === 'cultural' ? '🏛️' : site.category === 'natural' ? '🌿' : '🏞️'} 
-                  {site.category.charAt(0).toUpperCase() + site.category.slice(1)}
-                </div>
-                
-                {/* Inscription Year */}
-                <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
-                  📅 {site.inscriptionYear}
-                </div>
-                
-                {/* Accessibility */}
-                <div className="absolute bottom-4 right-4 bg-white/90 text-gray-800 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
-                  {getAccessibilityInfo(site.visitorsInfo.accessibility).icon} {getAccessibilityInfo(site.visitorsInfo.accessibility).text}
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Site header */}
+            <div>
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <h1 className="travel-heading">
+                  {getLocalizedField('site', site)}
+                </h1>
+                {site.danger && (
+                  <Badge variant="destructive" className="flex items-center gap-1">
+                    <AlertTriangle className="h-3 w-3" />
+                    {t('in_danger')}
+                  </Badge>
+                )}
+                {site.transboundary && (
+                  <Badge variant="secondary">
+                    {t('transboundary')}
+                  </Badge>
+                )}
               </div>
               
-              {/* Content */}
-              <div className="p-8">
-                {/* Header */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 leading-tight">
-                    {site.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 flex items-center">
-                    📍 <span className="ml-1 font-medium">{site.country}</span>
-                    <span className="mx-2">•</span>
-                    <span className="text-gray-500">{site.region}</span>
-                  </p>
+              <div className="flex flex-wrap gap-4 mb-6">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Shield className="h-5 w-5" />
+                  <span>{site.category}</span>
                 </div>
-                
-                {/* Description */}
-                <p className="text-gray-600 text-sm line-clamp-4 mb-6 leading-relaxed">
-                  {site.description}
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Calendar className="h-5 w-5" />
+                  <span>{t('inscribed')}: {site.date_inscribed}</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span>{site.region}</span>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-2">{t('location')}</h3>
+                <p className="text-muted-foreground">
+                  {site.location} • {getLocalizedField('states', site)}
                 </p>
-                
-                {/* Significance */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-800 mb-2">🌟 Importance</h4>
-                  <p className="text-xs text-gray-600 line-clamp-3">{site.significance}</p>
-                </div>
-                
-                {/* Best Time to Visit */}
-                <div className="mb-6 bg-blue-50 p-4 rounded-xl">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-blue-600">🗓️</span>
-                    <span className="text-sm font-medium text-blue-800">Meilleure période</span>
-                  </div>
-                  <p className="text-sm text-blue-700">{site.visitorsInfo.bestTime}</p>
-                </div>
-                
-                {/* Action Button */}
-                <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] shadow-lg">
-                  Découvrir ce Site UNESCO
-                </button>
               </div>
             </div>
-          ))}
-        </div>
-        
-        {filteredAndSortedSites.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
-            <p className="text-gray-500 text-lg">Aucun site UNESCO trouvé avec ces critères.</p>
+
+            {/* Main image */}
+            {site.image_url && (
+              <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden travel-shadow">
+                <img
+                  src={site.image_url}
+                  alt={getLocalizedField('site', site)}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <Badge className="mb-2">
+                    {t('unesco_world_heritage_site')} #{site.id_number}
+                  </Badge>
+                </div>
+              </div>
+            )}
+
+            {/* AdSense Ad */}
+              <div className="mb-8 text-center">
+                <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.UNESCO_PAGE} />
+              </div>
+
+            {/* Description */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('about')} {getLocalizedField('site', site)}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="prose max-w-none">
+                  <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                    <HtmlContent content={getLocalizedField('short_description', site)} />
+                  </p>
+                  
+                  {site.justification && (
+                    <div className="mt-6">
+                      <h4 className="font-semibold mb-2">{t('justification_for_inscription')}</h4>
+                      <p className="text-muted-foreground">
+                        <HtmlContent content={site.justification} />
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Criteria */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('unesco_criteria')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">{t('criteria')}</h4>
+                    <p className="text-muted-foreground mb-3">
+                      <HtmlContent content={site.criteria_txt} />
+                    </p>
+                    <p className="text-muted-foreground">
+                      <HtmlContent content={getLocalizedField('criterias', site)} />
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        )}
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Quick facts */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('quick_facts')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('id_number')}:</span>
+                  <span className="font-medium">#{site.id_number}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('category')}:</span>
+                  <span className="font-medium">{site.category}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('date_inscribed')}:</span>
+                  <span className="font-medium">{site.date_inscribed}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('region')}:</span>
+                  <span className="font-medium">{site.region}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('country_code')}:</span>
+                  <span className="font-medium">{site.iso_code}</span>
+                </div>
+                {site.revision > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('revision')}:</span>
+                    <span className="font-medium">{site.revision}</span>
+                  </div>
+                )}
+                {site.extension && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('extension')}:</span>
+                    <Badge variant="outline">{t('yes')}</Badge>
+                  </div>
+                )}
+                {site.transboundary && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('transboundary')}:</span>
+                    <Badge variant="outline">{t('yes')}</Badge>
+                  </div>
+                )}
+                {site.danger && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('in_danger')}:</span>
+                    <Badge variant="destructive">{t('yes')}</Badge>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Coordinates */}
+            {site.latitude && site.longitude && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('coordinates')}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('latitude')}:</span>
+                    <span className="font-medium">{site.latitude.toFixed(6)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">{t('longitude')}:</span>
+                    <span className="font-medium">{site.longitude.toFixed(6)}</span>
+                  </div>
+                  
+                  {/* Google Maps button */}
+                  <Button variant="outline" asChild className="w-full mt-4">
+                    <a 
+                      href={`https://www.google.com/maps?q=${site.latitude},${site.longitude}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      {t('view_on_google_maps')}
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* External links */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('learn_more')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button variant="outline" asChild className="w-full">
+                  <a 
+                    href={`https://whc.unesco.org/en/list/${site.id_number}/`}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {t('unesco_official_page')}
+                  </a>
+                </Button>
+                
+                 <Button variant="outline" asChild className="w-full">
+                   <Link 
+                     to={createLink(`/${site.iso_code[0]}`)}
+                     className="flex items-center gap-2"
+                   >
+                     <MapPin className="h-4 w-4" />
+                     {t('explore_country')} {site.iso_code[0]}
+                   </Link>
+                 </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

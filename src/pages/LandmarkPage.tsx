@@ -1,215 +1,288 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowLeft, MapPin, ExternalLink, Camera } from 'lucide-react';
+import { useFirestoreDocument } from '@/hooks/useFirestore';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/contexts/TranslationContext';
+import { Landmark } from '@/types/travel';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import { HtmlContent } from '@/components/HtmlContent';
+import { ADSENSE_CONFIG } from '@/config/ads-config';
+import { GoogleAd } from "@/components/GoogleAd";
+import SEO from '@/components/SEO';
 
-interface Landmark {
-  id: string;
-  name: string;
-  image: string;
-  country: string;
-  city: string;
-  type: 'historical' | 'natural' | 'architectural' | 'cultural';
-  description: string;
-  yearBuilt?: number;
-  height?: number;
-  visitors: number;
-  rating: number;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  facts: string[];
+interface LandmarkPageProps {
+  landmarkCode: string;
 }
 
-const LandmarkPage: React.FC = () => {
-  const [landmarks, setLandmarks] = useState<Landmark[]>([]);
-  const [selectedType, setSelectedType] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'name' | 'rating' | 'visitors'>('rating');
-  const [loading, setLoading] = useState(true);
+const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
+  const { language, getLocalizedField } = useLanguage();
+  const { t } = useTranslation();
+  const location = useLocation();
 
-  const landmarkTypes = [
-    { id: 'all', label: 'Tous', icon: '🌍' },
-    { id: 'historical', label: 'Historique', icon: '🏛️' },
-    { id: 'natural', label: 'Naturel', icon: '🏔️' },
-    { id: 'architectural', label: 'Architectural', icon: '🏗️' },
-    { id: 'cultural', label: 'Culturel', icon: '🎭' }
-  ];
+  // NEW: state for main image
+  const [mainImage, setMainImage] = useState<string | undefined>();
 
+  // Scroll to top when page loads and reset main image
   useEffect(() => {
-    fetchLandmarks();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [landmarkCode]);
 
-  const fetchLandmarks = async () => {
-    try {
-      // API call here
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching landmarks:', error);
-      setLoading(false);
+  const createLink = (path: string) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('language', language);
+    return `${path}?${searchParams.toString()}`;
+  };
+  
+  const { data: landmark, loading: landmarkLoading } = useFirestoreDocument<Landmark>(
+    'Landmarks', 
+    landmarkCode
+  );
+
+  // NEW: update mainImage when landmark changes
+  useEffect(() => {
+    if (landmark) {
+      setMainImage(landmark.image);
     }
-  };
+  }, [landmark]);
 
-  const getTypeIcon = (type: string) => {
-    const typeMap: Record<string, string> = {
-      historical: '🏛️',
-      natural: '🏔️',
-      architectural: '🏗️',
-      cultural: '🎭'
-    };
-    return typeMap[type] || '📍';
-  };
-
-  const filteredAndSortedLandmarks = landmarks
-    .filter(landmark => selectedType === 'all' || landmark.type === selectedType)
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'name': return a.name.localeCompare(b.name);
-        case 'rating': return b.rating - a.rating;
-        case 'visitors': return b.visitors - a.visitors;
-        default: return 0;
-      }
-    });
-
-  if (loading) {
+  if (landmarkLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-amber-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Chargement des monuments...</p>
-        </div>
+      <div className="container mx-auto px-4 py-8">
+        <Skeleton className="h-8 w-32 mb-6" />
+        <Skeleton className="h-12 w-64 mb-4" />
+        <Skeleton className="h-64 w-full mb-8" />
+      </div>
+    );
+  }
+
+  if (!landmark) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <h1 className="text-4xl font-bold text-foreground">{t('landmark_not_found')}</h1>
+        <Link to={createLink('/')} className="text-primary hover:underline">
+          {t('returnToHome')}
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 text-white py-24">
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="relative max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Monuments Légendaires</h1>
-          <p className="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto">
-            Découvrez les merveilles architecturales et naturelles qui ont marqué l'humanité
-          </p>
-        </div>
-      </div>
+    <div className={`min-h-screen bg-background ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <SEO
+        title={`${getLocalizedField('name', landmark)} - Landmark Guide | Wanderlogue`}
+        description={`Discover ${getLocalizedField('name', landmark)}, a ${landmark.type} landmark. Explore detailed information, images and location details.`}
+        keywords={`${getLocalizedField('name', landmark)}, landmark, ${landmark.type}, travel, tourism`}
+        canonical={`https://wanderlogue.lovable.app/${landmarkCode}`}
+      />
+      
+      <div className="container mx-auto px-4 py-8">
+        {/* Back navigation */}
+        <Link 
+          to={createLink(`/${landmark.city_code}`)}
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground smooth-transition mb-6"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          {t('back_to_city')}
+        </Link>
 
-      {/* Filters & Sort */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
-          {/* Type Filters */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {landmarkTypes.map((type) => (
-              <button
-                key={type.id}
-                onClick={() => setSelectedType(type.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedType === type.id
-                    ? 'bg-amber-500 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-amber-50 shadow-md'
-                }`}
-              >
-                <span>{type.icon}</span>
-                {type.label}
-              </button>
-            ))}
-          </div>
-          
-          {/* Sort Options */}
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as 'name' | 'rating' | 'visitors')}
-            className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-          >
-            <option value="rating">Par Note</option>
-            <option value="visitors">Par Popularité</option>
-            <option value="name">Par Nom</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Landmarks Grid */}
-      <div className="max-w-7xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredAndSortedLandmarks.map((landmark, index) => (
-            <div 
-              key={landmark.id}
-              className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Image 1:1 */}
-              <div className="aspect-square overflow-hidden relative">
-                <img 
-                  src={landmark.image}
-                  alt={landmark.name}
-                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                />
-                
-                {/* Type Badge */}
-                <div className="absolute top-3 left-3 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                  {getTypeIcon(landmark.type)} {landmark.type}
-                </div>
-                
-                {/* Rating */}
-                <div className="absolute top-3 right-3 bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
-                  ⭐ {landmark.rating}
-                </div>
-                
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Quick facts au hover */}
-                <div className="absolute bottom-4 left-4 right-4 text-white transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-sm font-medium">
-                    👥 {landmark.visitors.toLocaleString()} visiteurs/an
-                  </p>
-                  {landmark.yearBuilt && (
-                    <p className="text-sm">📅 Construit en {landmark.yearBuilt}</p>
-                  )}
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Landmark header */}
+            <div>
+              <h1 className="travel-heading mb-4">
+                {getLocalizedField('name', landmark)}
+              </h1>
               
-              {/* Content */}
-              <div className="p-6">
-                {/* Header */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 leading-tight">
-                    {landmark.name}
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    📍 {landmark.city}, <span className="font-medium">{landmark.country}</span>
+              <div className="flex flex-wrap gap-4 mb-6">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span>{landmark.type}</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span className="text-sm text-muted-foreground">{t('code_label')} {landmark.landmark_code}</span>
+                </div>
+                {landmark.latitude && landmark.longitude && (
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <MapPin className="h-5 w-5" />
+                    <span>{landmark.latitude.toFixed(4)}, {landmark.longitude.toFixed(4)}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Address */}
+              {getLocalizedField('address', landmark) && (
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-2">{t('address')}</h3>
+                  <p className="text-muted-foreground">
+                    {getLocalizedField('address', landmark)}
                   </p>
                 </div>
-                
-                {/* Description */}
-                <p className="text-gray-600 text-sm line-clamp-3 mb-4 leading-relaxed">
-                  {landmark.description}
-                </p>
-                
-                {/* Facts */}
-                <div className="mb-6">
-                  <div className="space-y-1">
-                    {landmark.facts.slice(0, 2).map((fact, idx) => (
-                      <p key={idx} className="text-xs text-gray-500 flex items-start">
-                        <span className="text-amber-500 mr-2">•</span>
-                        {fact}
-                      </p>
+              )}
+            </div>
+
+            {/* Main image */}
+            {mainImage && (
+              <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden travel-shadow">
+                <img
+                  src={mainImage}
+                  alt={getLocalizedField('name', landmark)}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            )}
+
+            {/* AdSense Ad */}
+            <div className="mb-8 text-center">
+              <GoogleAd adSlot={ADSENSE_CONFIG.AD_UNITS.LANDMARK_PAGE} />
+            </div>
+
+            {/* Description */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('about')} {getLocalizedField('name', landmark)}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="prose max-w-none">
+                  <HtmlContent content={getLocalizedField('description', landmark)} className="text-lg leading-relaxed" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Types - only show if has content */}
+            {(() => {
+              const types = getLocalizedField('types', landmark);
+              return types && typeof types === 'string' && types.trim().length > 0;
+            })() && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('landmark_types')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <HtmlContent content={getLocalizedField('types', landmark)} />
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Wikipedia link */}
+            {getLocalizedField('wikipedia', landmark) && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('learn_more')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" asChild className="w-full">
+                    <a 
+                      href={getLocalizedField('wikipedia', landmark)} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      {t('read_on_wikipedia')}
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Image gallery */}
+            {landmark.images && landmark.images.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Camera className="h-5 w-5" />
+                    {t('image_gallery')}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-2">
+                    {landmark.images.slice(0, 6).map((image, index) => (
+                      <div
+                        key={index}
+                        className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group"
+                        onClick={() => setMainImage(image)}
+                      >
+                        <img
+                          src={image}
+                          alt={`${getLocalizedField('name', landmark)} - Image ${index + 1}`}
+                          className={`w-full h-full object-cover hover:scale-105 smooth-transition ${mainImage === image ? 'ring-4 ring-primary' : ''}`}
+                        />
+                        {/* Optional: highlight selected */}
+                        {mainImage === image && (
+                          <div className="absolute inset-0 border-4 border-primary rounded-lg pointer-events-none" />
+                        )}
+                      </div>
                     ))}
                   </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Quick facts */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('quick_facts')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('type')}:</span>
+                  <span className="font-medium">{landmark.type}</span>
                 </div>
-                
-                {/* Action */}
-                <button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] shadow-lg">
-                  Explorer ce Monument
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {filteredAndSortedLandmarks.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-gray-500 text-lg">Aucun monument trouvé pour ce type.</p>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('city_code')}:</span>
+                  <span className="font-medium">{landmark.city_code}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">{t('country')}:</span>
+                  <span className="font-medium">{landmark.country_code}</span>
+                </div>
+                {landmark.latitude && landmark.longitude && (
+                  <>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">{t('latitude')}:</span>
+                      <span className="font-medium">{landmark.latitude.toFixed(6)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">{t('longitude')}:</span>
+                      <span className="font-medium">{landmark.longitude.toFixed(6)}</span>
+                    </div>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Google Maps button */}
+            {landmark.latitude && landmark.longitude && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('location')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" asChild className="w-full">
+                    <a 
+                      href={`https://www.google.com/maps?q=${landmark.latitude},${landmark.longitude}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      {t('view_on_google_maps')}
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
