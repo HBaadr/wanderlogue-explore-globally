@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
-
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import SEO from '@/components/SEO';
 
 interface CountryPageProps {
@@ -135,13 +135,15 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
 
           {/* Country image */}
           {country.image && (
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden mb-6 travel-shadow">
-              <img
-                src={country.image}
-                alt={getLocalizedField('name', country)}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="rounded-2xl overflow-hidden mb-6 travel-shadow smooth-transition hover:scale-[1.02]">
+              <AspectRatio ratio={16/9}>
+                <img
+                  src={country.image}
+                  alt={getLocalizedField('name', country)}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              </AspectRatio>
             </div>
           )}
         </div>
@@ -247,27 +249,29 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
               {cities.map((city) => (
                 <Link key={city.id} to={createLink(`/${city.city_code}`)}>
-                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48">
-                      {city.image && (
-                        <img
-                          src={city.image}
-                          alt={getLocalizedField('name', city)}
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <h3 className="text-white text-lg font-semibold mb-1">
-                          {getLocalizedField('name', city)}
-                        </h3>
-                         {city.is_capital && (
-                           <span className="inline-block bg-secondary/80 text-secondary-foreground text-xs px-2 py-1 rounded">
-                             {t('capital')}
-                           </span>
-                         )}
+                  <Card className="group hover:travel-shadow smooth-transition hover:scale-[1.03] overflow-hidden border-2 hover:border-primary/50">
+                    <AspectRatio ratio={1}>
+                      <div className="relative w-full h-full">
+                        {city.image && (
+                          <img
+                            src={city.image}
+                            alt={getLocalizedField('name', city)}
+                            className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-white text-lg font-bold mb-2 drop-shadow-lg">
+                            {getLocalizedField('name', city)}
+                          </h3>
+                          {city.is_capital && (
+                            <span className="inline-block bg-secondary text-secondary-foreground text-xs px-2 py-1 rounded font-semibold shadow-lg">
+                              {t('capital')}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    </AspectRatio>
                   </Card>
                 </Link>
               ))}
@@ -278,25 +282,27 @@ const CountryPage = ({ countryCode }: CountryPageProps) => {
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
               {unescoSites.map((site) => (
                 <Link key={site.id} to={createLink(`/${site.id}`)}>
-                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48">
-                      {site.image_url && (
-                        <img
-                          src={site.image_url}
-                          alt={getLocalizedField('site', site)}
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <h3 className="text-white text-lg font-semibold mb-1">
-                          {getLocalizedField('site', site)}
-                        </h3>
-                        <p className="text-white/80 text-sm">
-                          {t(site.category.toLowerCase())} • {site.date_inscribed}
-                        </p>
+                  <Card className="group hover:travel-shadow smooth-transition hover:scale-[1.03] overflow-hidden border-2 hover:border-primary/50">
+                    <AspectRatio ratio={1}>
+                      <div className="relative w-full h-full">
+                        {site.image_url && (
+                          <img
+                            src={site.image_url}
+                            alt={getLocalizedField('site', site)}
+                            className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-white text-lg font-bold mb-1 drop-shadow-lg">
+                            {getLocalizedField('site', site)}
+                          </h3>
+                          <p className="text-white/90 text-sm font-medium">
+                            {t(site.category.toLowerCase())} • {site.date_inscribed}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    </AspectRatio>
                   </Card>
                 </Link>
               ))}

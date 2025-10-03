@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { HtmlContent } from '@/components/HtmlContent';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import SEO from '@/components/SEO';
 
 interface LandmarkPageProps {
@@ -127,13 +128,15 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
 
             {/* Main image */}
             {mainImage && (
-              <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden travel-shadow">
-                <img
-                  src={mainImage}
-                  alt={getLocalizedField('name', landmark)}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="rounded-2xl overflow-hidden travel-shadow smooth-transition hover:scale-[1.02]">
+                <AspectRatio ratio={16/9}>
+                  <img
+                    src={mainImage}
+                    alt={getLocalizedField('name', landmark)}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                </AspectRatio>
               </div>
             )}
 
@@ -204,22 +207,23 @@ const LandmarkPage = ({ landmarkCode }: LandmarkPageProps) => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-3">
                     {landmark.images.slice(0, 6).map((image, index) => (
                       <div
                         key={index}
-                        className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group"
+                        className="relative rounded-lg overflow-hidden cursor-pointer group border-2 hover:border-primary smooth-transition"
                         onClick={() => setMainImage(image)}
                       >
-                        <img
-                          src={image}
-                          alt={`${getLocalizedField('name', landmark)} - Image ${index + 1}`}
-                          className={`w-full h-full object-cover hover:scale-105 smooth-transition ${mainImage === image ? 'ring-4 ring-primary' : ''}`}
-                        />
-                        {/* Optional: highlight selected */}
-                        {mainImage === image && (
-                          <div className="absolute inset-0 border-4 border-primary rounded-lg pointer-events-none" />
-                        )}
+                        <AspectRatio ratio={1}>
+                          <img
+                            src={image}
+                            alt={`${getLocalizedField('name', landmark)} - Image ${index + 1}`}
+                            className={`w-full h-full object-cover group-hover:scale-110 smooth-transition ${mainImage === image ? 'ring-4 ring-primary' : ''}`}
+                          />
+                          {mainImage === image && (
+                            <div className="absolute inset-0 bg-primary/20" />
+                          )}
+                        </AspectRatio>
                       </div>
                     ))}
                   </div>

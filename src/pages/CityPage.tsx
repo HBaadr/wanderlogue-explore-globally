@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HtmlContent } from '@/components/HtmlContent';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import SEO from '@/components/SEO';
 
 interface CityPageProps {
@@ -133,13 +134,15 @@ const CityPage = ({ cityCode }: CityPageProps) => {
 
           {/* City image */}
           {city.image && (
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden mb-6 travel-shadow">
-              <img
-                src={city.image}
-                alt={getLocalizedField('name', city)}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="rounded-2xl overflow-hidden mb-6 travel-shadow smooth-transition hover:scale-[1.02]">
+              <AspectRatio ratio={16/9}>
+                <img
+                  src={city.image}
+                  alt={getLocalizedField('name', city)}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              </AspectRatio>
             </div>
           )}
         </div>
@@ -334,25 +337,27 @@ const CityPage = ({ cityCode }: CityPageProps) => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {landmarks.map((landmark) => (
                   <Link key={landmark.id} to={createLink(`/${landmark.landmark_code}`)}>
-                    <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                      <div className="relative h-48">
-                        {landmark.image && (
-                          <img
-                            src={landmark.image}
-                            alt={getLocalizedField('name', landmark)}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute bottom-4 left-4">
-                          <h3 className="text-white text-lg font-semibold mb-1">
-                            {getLocalizedField('name', landmark)}
-                          </h3>
-                          <p className="text-white/80 text-sm">
-                            {landmark.type}
-                          </p>
+                    <Card className="group hover:travel-shadow smooth-transition hover:scale-[1.03] overflow-hidden border-2 hover:border-primary/50">
+                      <AspectRatio ratio={1}>
+                        <div className="relative w-full h-full">
+                          {landmark.image && (
+                            <img
+                              src={landmark.image}
+                              alt={getLocalizedField('name', landmark)}
+                              className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="text-white text-lg font-bold mb-1 drop-shadow-lg">
+                              {getLocalizedField('name', landmark)}
+                            </h3>
+                            <p className="text-white/90 text-sm font-medium">
+                              {landmark.type}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      </AspectRatio>
                     </Card>
                   </Link>
                 ))}

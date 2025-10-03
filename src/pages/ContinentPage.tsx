@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { HtmlContent } from '@/components/HtmlContent';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Footer } from '@/components/Footer';
 import SEO from '@/components/SEO';
 
@@ -134,30 +135,32 @@ const ContinentPage = ({ continentId }: ContinentPageProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {countries.map((country) => (
                 <Link key={country.id} to={createLink(`/${country.country_code}`)}>
-                  <Card className="group hover:travel-shadow smooth-transition hover:scale-105 overflow-hidden">
-                    <div className="relative h-48">
-                      {country.image && (
-                        <img
-                          src={country.image}
-                          alt={getLocalizedField('name', country)}
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          {country.flag && (
-                            <img src={country.flag} alt="Flag" className="w-8 h-6 rounded" />
-                          )}
-                          <span className="text-white text-lg font-semibold">
-                            {getLocalizedField('name', country)}
-                          </span>
+                  <Card className="group hover:travel-shadow smooth-transition hover:scale-[1.03] overflow-hidden border-2 hover:border-primary/50">
+                    <AspectRatio ratio={1}>
+                      <div className="relative w-full h-full">
+                        {country.image && (
+                          <img
+                            src={country.image}
+                            alt={getLocalizedField('name', country)}
+                            className="w-full h-full object-cover group-hover:scale-110 smooth-transition"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            {country.flag && (
+                              <img src={country.flag} alt="Flag" className="w-8 h-6 rounded shadow-lg" />
+                            )}
+                            <span className="text-white text-lg font-bold drop-shadow-lg">
+                              {getLocalizedField('name', country)}
+                            </span>
+                          </div>
+                          <p className="text-white/90 text-sm font-medium">
+                            {t('capital')}: {getLocalizedField('capital', country)}
+                          </p>
                         </div>
-                        <p className="text-white/80 text-sm">
-                          {t('capital')}: {getLocalizedField('capital', country)}
-                        </p>
                       </div>
-                    </div>
+                    </AspectRatio>
                   </Card>
                 </Link>
               ))}

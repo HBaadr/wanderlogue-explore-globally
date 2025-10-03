@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { HtmlContent } from '@/components/HtmlContent';
 import { ADSENSE_CONFIG } from '@/config/ads-config';
 import { GoogleAd } from "@/components/GoogleAd";
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import SEO from '@/components/SEO';
 
 interface UnescoPageProps {
@@ -126,18 +127,20 @@ const UnescoPage = ({ unescoId }: UnescoPageProps) => {
 
             {/* Main image */}
             {site.image_url && (
-              <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden travel-shadow">
-                <img
-                  src={site.image_url}
-                  alt={getLocalizedField('site', site)}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <Badge className="mb-2">
-                    {t('unesco_world_heritage_site')} #{site.id_number}
-                  </Badge>
-                </div>
+              <div className="rounded-2xl overflow-hidden travel-shadow smooth-transition hover:scale-[1.02]">
+                <AspectRatio ratio={16/9}>
+                  <img
+                    src={site.image_url}
+                    alt={getLocalizedField('site', site)}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <Badge className="mb-2 shadow-lg">
+                      {t('unesco_world_heritage_site')} #{site.id_number}
+                    </Badge>
+                  </div>
+                </AspectRatio>
               </div>
             )}
 
